@@ -1,0 +1,28 @@
+{
+  "jurisdiction": "NG",
+  "year": 2026,
+  "effective_from": "2026-01-01",
+  "source": "Nigeria Tax Act 2025, Fourth Schedule s.58; s.30(2)(a)",
+  "zero_threshold": 800000,
+  "bands": [
+    {"lower": 0, "upper": 800000, "rate": "0.00"},
+    {"lower": 800000, "upper": 3000000, "rate": "0.15"},
+    {"lower": 3000000, "upper": 12000000, "rate": "0.18"},
+    {"lower": 12000000, "upper": 25000000, "rate": "0.21"},
+    {"lower": 25000000, "upper": 50000000, "rate": "0.23"},
+    {"lower": 50000000, "upper": null, "rate": "0.25"}
+  ],
+  "reliefs": {
+    "rent": {
+      "type": "percent_cap",
+      "percent": "0.20",
+      "cap": "500000",
+      "source": "NTA 2025 s.30(2)(a)(vi)"
+    },
+    "pension": {"type": "full", "source": "NTA 2025 s.30(2)(a)(iii)"},
+    "nhf": {"type": "full", "source": "NTA 2025 s.30(2)(a)(i)"},
+    "nhis": {"type": "full", "source": "NTA 2025 s.30(2)(a)(ii)"},
+    "mortgage_interest": {"type": "full", "source": "NTA 2025 s.30(2)(a)(iv)"},
+    "life_insurance": {"type": "full", "source": "NTA 2025 s.30(2)(a)(v)"}
+  }
+}
