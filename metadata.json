@@ -1,0 +1,37 @@
+{
+  "team_id": "taxsabi",
+  "domain": "corporate_enterprise",
+  "language_scope": ["en", "pcm"],
+  "african_alpha_claim": true,
+  "budget_laptop_claim": true,
+  "submitter": {
+    "name": "Chukwuemeka Aladimma",
+    "email": "emekaaladimma@gmail.com",
+    "github_handle": "Acel-01"
+  },
+  "cross_disciplinary_pairing": {
+    "discipline": "computational_law",
+    "load_bearing": true,
+    "description": "A deterministic Decimal-based tax rules engine verifies every training example against the Nigeria Tax Act 2025, so the fine-tuned model learns from engine-guaranteed calculations rather than LLM-guessed arithmetic."
+  },
+  "test_prompts": [
+    {
+      "prompt_id": "tp_001",
+      "prompt": "I earn NGN 800,000 a year and no deductions or reliefs. How much tax do I pay? Please show the calculation."
+    },
+    {
+      "prompt_id": "tp_002",
+      "prompt": "What are the individual income-tax bands in Nigeria for the 2026 year of assessment?"
+    }
+  ],
+  "model": {
+    "name": "TaxSabi-1.5B-Q4_K_M",
+    "runtime": "llama.cpp",
+    "quantization": "GGUF Q4_K_M",
+    "parameters_estimate": "1.5B",
+    "packaging": "binary_bundle"
+  },
+  "_runtime": {
+    "model_path": "model/qwen2.5-1.5b-v6c.Q4_K_M.gguf"
+  }
+}

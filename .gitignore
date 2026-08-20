@@ -16,6 +16,7 @@ data/train/cloud_verified.jsonl
 data/train/cloud_verified_v2.jsonl
 submission.json
 submission_full.json
+submission_2.json
 adtc_2026_project_plan.md
 tax_advisor_implementation_plan.md
 data/train/final_english.jsonl
@@ -26,3 +27,4 @@ data/train/pidgin_pilot*.jsonl
 data/train/pidgin_reviewed.jsonl
 data/train/targeted_v6_pidgin_draft*.jsonl
 data/train/targeted_v6c_pidgin_draft*.jsonl
+submission/
