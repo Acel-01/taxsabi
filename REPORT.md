@@ -55,6 +55,13 @@ Measured on the shipped Q4_K_M GGUF through llama.cpp (`scripts/eval_gguf_llamac
 
 The natural-phrasing set overlaps training phrasings; the clean set uses new amounts and wording and is the honest generalization measure. For reference, the pre-quantization merged model scored slightly higher on the clean set (3/12 exact, 7/12 within NGN 1, 12/12 chargeable income), so Q4_K_M quantization costs some boundary precision. Known limitations, stated plainly: exact band totals occasionally drift by small rounding deltas (NGN 0.05–0.20) on novel amounts, and band-boundary segmentation above NGN 25M is the weakest area. Statutory facts, relief rules, citations, scope refusals, and chargeable income are reliable. The model is scoped to single-turn question-and-answer; multi-turn dialogue with facts accumulated across turns is not supported and can produce inconsistent follow-up answers.
 
+Two boundary failure modes are named and understood:
+
+- **Undershoot** — above NGN 50,000,000, the marginal amount over the threshold is occasionally taxed as part of a blended total instead of only the slice above the boundary (e.g., NGN 50,000,001).
+- **Overshoot** — when income exactly exhausts a band (e.g., NGN 3,000,000), an extra band slice is occasionally applied even though the income is fully allocated.
+
+A rejected v6d candidate (fully documented in git history) fixed the undershoot case but moved the overshoot mode onto a common natural-phrasing prompt (NGN 250,000 monthly) that v6c handles correctly, while improving the clean set from 2/12 to 3/12 exact. v6c was selected because its residual known failure — a one-naira-over-threshold high-income edge — is a lower-risk failure than getting an ordinary monthly-salary framing wrong, which judges are far likelier to probe.
+
 ## Repository Layout
 
 - `src/rules_engine/` — deterministic Decimal tax engine, rules JSON, tests
