@@ -1,0 +1,86 @@
+{
+  "schema_version": "1.1.0",
+  "profiler_version": "adtc-profiler 0.1.0",
+  "submission": {
+    "team_id": "taxsabi",
+    "domain": "corporate_enterprise",
+    "language_scope": [
+      "en",
+      "pcm"
+    ],
+    "african_alpha_claim": true,
+    "budget_laptop_claim": true,
+    "submitter": {
+      "name": "Chukwuemeka Aladimma",
+      "email": "emekaaladimma@gmail.com",
+      "github_handle": "Acel-01"
+    },
+    "cross_disciplinary_pairing": {
+      "discipline": "tax_law",
+      "load_bearing": true,
+      "description": "An offline assistant that answers Nigerian personal-income-tax questions — tax bands, reliefs, calculations, and what-if scenarios — in English and Nigerian Pidgin, with every trained answer verified by a deterministic tax rules engine."
+    },
+    "test_prompts": [
+      {
+        "prompt_id": "tp_001",
+        "prompt": "I earn NGN 800,000 a year and no deductions or reliefs. How much tax do I pay? Please show the calculation."
+      },
+      {
+        "prompt_id": "tp_002",
+        "prompt": "What are the individual income-tax bands in Nigeria for the 2026 year of assessment?"
+      }
+    ],
+    "model": {
+      "name": "TaxSabi-1.5B-Q4_K_M",
+      "runtime": "llama.cpp",
+      "quantization": "GGUF Q4_K_M",
+      "parameters_estimate": "1.5B",
+      "packaging": "binary_bundle"
+    }
+  },
+  "environment": {
+    "measured_on": "participant_laptop",
+    "cpu_model": "Intel(R) Core(TM) i5-8250U CPU @ 1.60GHz",
+    "ram_gb": 7.7,
+    "gpu": "none",
+    "os": "Ubuntu 20.04.6 LTS"
+  },
+  "throughput": {
+    "tokens_per_second_generation": 9.89,
+    "first_token_latency_ms": 18096.7,
+    "prompt_tokens": 512,
+    "generated_tokens": 128
+  },
+  "memory": {
+    "peak_rss_mb": 1690.68,
+    "steady_state_rss_mb": 1603.08,
+    "peak_vms_mb": 2184.14
+  },
+  "accuracy": [
+    {
+      "benchmark": "arc_easy",
+      "dataset_version": "lm-eval-harness",
+      "language": "en",
+      "samples": 50,
+      "score": 0.76,
+      "metric": "acc_norm"
+    }
+  ],
+  "cpu_thermal": {
+    "cpu_percent_p99": 71.7,
+    "core_temp_c_peak": null,
+    "throttled": false
+  },
+  "reproducibility": {
+    "git_commit_sha": "1dbd5bbb3752",
+    "docker_image_digest": "unknown",
+    "random_seed": 42
+  },
+  "model_info": {
+    "params_count": 1543714304,
+    "context_length": 32768,
+    "architecture": "qwen2",
+    "claimed_params_estimate": "1.5B",
+    "params_match": true
+  }
+}
