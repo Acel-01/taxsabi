@@ -4,7 +4,7 @@ ADTC 2026 — Laptop LLM Challenge, Corporate/Enterprise track.
 
 A fully offline Nigerian personal-income-tax assistant: a fine-tuned GGUF model that answers 2026 tax-band, relief, calculation, and what-if questions in English and Nigerian Pidgin. A deterministic Decimal-based rules engine verifies every training example against the Nigeria Tax Act 2025, so the model learns from engine-guaranteed arithmetic.
 
-The scored artifact is the raw GGUF (`model/qwen2.5-1.5b-v6c.Q4_K_M.gguf`), downloaded by `download_model.sh` and run through llama.cpp. No application layer is invoked at evaluation time.
+The scored artifact is the raw GGUF (`model/TaxSabi-1.5B-Q4_K_M.gguf`), downloaded by `download_model.sh` and run through llama.cpp. No application layer is invoked at evaluation time.
 
 Project overview: `PROJECT.md`
 Technical report: `REPORT.md`
@@ -34,7 +34,7 @@ adtc-profiler run --submission . --mode participant --output submission.json
 
 # chat with the model
 llama-cli \
-  -m model/qwen2.5-1.5b-v6c.Q4_K_M.gguf \
+  -m model/TaxSabi-1.5B-Q4_K_M.gguf \
   -cnv -t 4 -c 2048 -n 256 --temp 0 \
   -p "I earn NGN 800,000 a year and no deductions or reliefs. How much tax do I pay? Please show the calculation."
 

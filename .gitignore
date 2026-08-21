@@ -14,7 +14,6 @@ data/train/cloud_batch_*.jsonl
 data/train/cloud_v2_batch_*.jsonl
 data/train/cloud_verified.jsonl
 data/train/cloud_verified_v2.jsonl
-submission.json
 submission_full.json
 submission_2.json
 adtc_2026_project_plan.md

@@ -10,9 +10,9 @@ set -euo pipefail
 
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 MODEL_DIR="$HERE/model"
-MODEL_FILE="$MODEL_DIR/qwen2.5-1.5b-v6c.Q4_K_M.gguf"
+MODEL_FILE="$MODEL_DIR/TaxSabi-1.5B-Q4_K_M.gguf"
 
-MODEL_URL="https://huggingface.co/acel-01/taxsabi/resolve/main/qwen2.5-1.5b-v6c.Q4_K_M.gguf"
+MODEL_URL="https://huggingface.co/acel-01/taxsabi/resolve/main/TaxSabi-1.5B-Q4_K_M.gguf"
 
 mkdir -p "$MODEL_DIR"
 

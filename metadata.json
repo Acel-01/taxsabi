@@ -10,9 +10,9 @@
     "github_handle": "Acel-01"
   },
   "cross_disciplinary_pairing": {
-    "discipline": "computational_law",
+    "discipline": "tax_law",
     "load_bearing": true,
-    "description": "A deterministic Decimal-based tax rules engine verifies every training example against the Nigeria Tax Act 2025, so the fine-tuned model learns from engine-guaranteed calculations rather than LLM-guessed arithmetic."
+    "description": "An offline assistant that answers Nigerian personal-income-tax questions — tax bands, reliefs, calculations, and what-if scenarios — in English and Nigerian Pidgin, with every trained answer verified by a deterministic tax rules engine."
   },
   "test_prompts": [
     {
@@ -32,6 +32,6 @@
     "packaging": "binary_bundle"
   },
   "_runtime": {
-    "model_path": "model/qwen2.5-1.5b-v6c.Q4_K_M.gguf"
+    "model_path": "model/TaxSabi-1.5B-Q4_K_M.gguf"
   }
 }
