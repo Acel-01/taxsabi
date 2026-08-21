@@ -27,3 +27,4 @@ data/train/pidgin_reviewed.jsonl
 data/train/targeted_v6_pidgin_draft*.jsonl
 data/train/targeted_v6c_pidgin_draft*.jsonl
 submission/
+submission2.json
