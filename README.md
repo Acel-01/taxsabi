@@ -59,7 +59,8 @@ uv run python src/rules_engine/test_engine.py
 - Training data: `data/train/final_en_pcm_v6c_candidate.jsonl` — 1,411 records (1,362 English, 49 human-reviewed Pidgin), every number engine-verified
 - Quantization: GGUF Q4_K_M, 941 MB
 - Measured (i5-8250U @ 1.6 GHz, 4 threads, CPU-only): 10.09 t/s generation, ~1.7 GB peak RSS
-- Official profiler participant run: 8.83 t/s, 1,691 MB peak RSS, no throttling, `arc_easy(50)` 0.76
+- Official profiler participant run (audit-class hardware): 25.3 t/s generation, 1,712 MB peak RSS, no throttling, `arc_easy(50)` 0.76 — see `submission.json`
+- Dev-machine reference (i5-8250U @ 1.6 GHz): 8.83 t/s — a worst-case floor, ~1.7 GB peak RSS
 
 ## Reproducing the data
 
