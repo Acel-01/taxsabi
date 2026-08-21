@@ -53,9 +53,9 @@ Every legal fact traces to `sources/SOURCE_REGISTER.md` (F-001…F-007), verifie
 |---|---|
 | Generation (local, i5-8250U locked 1.6 GHz, 4 threads) | 10.09 t/s |
 | ADTC profiler participant run | 8.83 t/s, 1,691 MB peak RSS, no throttling |
-| Natural English evaluation | 8/8 total tax, 8/8 chargeable income |
-| Clean held-out English (novel amounts/wording) | 3/12 exact, 7/12 within NGN 1, 12/12 chargeable income |
-| Pidgin holdout | 2/3 total tax, 3/3 chargeable income |
+| Natural English evaluation (shipped GGUF) | 7/8 total tax, 8/8 chargeable income |
+| Clean held-out English, novel amounts/wording (shipped GGUF) | 2/12 exact, 3/12 within NGN 1, 9/12 chargeable income |
+| Pidgin holdout (shipped GGUF) | 3/3 total tax, 2/3 chargeable income |
 
 ## Known limitations
 

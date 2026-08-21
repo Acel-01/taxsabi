@@ -45,13 +45,15 @@ Local numbers are a worst-case floor: the evaluation machine (10th–12th gen i5
 
 ## Evaluation
 
+Measured on the shipped Q4_K_M GGUF through llama.cpp (`scripts/eval_gguf_llamacpp.py`):
+
 | Set | Total-tax exact | Total-tax within NGN 1 | Chargeable income |
 |---|---:|---:|---:|
-| Natural-phrasing English (8) | 8/8 | 8/8 | 8/8 |
-| Held-out clean English (12) | 3/12 | 7/12 | 12/12 |
-| Reviewed Pidgin holdout (3 calc + 3 behavior) | 2/3 | 2/3 | 3/3 |
+| Natural-phrasing English (8) | 7/8 | 7/8 | 8/8 |
+| Held-out clean English (12) | 2/12 | 3/12 | 9/12 |
+| Reviewed Pidgin holdout (3 calc + 3 behavior) | 3/3 | 3/3 | 2/3 |
 
-The natural-phrasing set overlaps training phrasings; the clean set uses new amounts and wording and is the honest generalization measure. Known limitations, stated plainly: exact band totals occasionally drift by small rounding deltas (NGN 0.05–0.20) on novel amounts, and band-boundary segmentation above NGN 25M is the weakest area. Statutory facts, relief rules, citations, scope refusals, and chargeable income are reliable. The model is scoped to single-turn question-and-answer; multi-turn dialogue with facts accumulated across turns is not supported and can produce inconsistent follow-up answers.
+The natural-phrasing set overlaps training phrasings; the clean set uses new amounts and wording and is the honest generalization measure. For reference, the pre-quantization merged model scored slightly higher on the clean set (3/12 exact, 7/12 within NGN 1, 12/12 chargeable income), so Q4_K_M quantization costs some boundary precision. Known limitations, stated plainly: exact band totals occasionally drift by small rounding deltas (NGN 0.05–0.20) on novel amounts, and band-boundary segmentation above NGN 25M is the weakest area. Statutory facts, relief rules, citations, scope refusals, and chargeable income are reliable. The model is scoped to single-turn question-and-answer; multi-turn dialogue with facts accumulated across turns is not supported and can produce inconsistent follow-up answers.
 
 ## Repository Layout
 
