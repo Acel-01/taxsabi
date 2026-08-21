@@ -40,21 +40,21 @@
   },
   "environment": {
     "measured_on": "participant_laptop",
-    "cpu_model": "Intel(R) Core(TM) i5-8250U CPU @ 1.60GHz",
-    "ram_gb": 7.7,
+    "cpu_model": "AMD EPYC 7763 64-Core Processor",
+    "ram_gb": 15.6,
     "gpu": "none",
-    "os": "Ubuntu 20.04.6 LTS"
+    "os": "Ubuntu 24.04.4 LTS"
   },
   "throughput": {
-    "tokens_per_second_generation": 9.89,
-    "first_token_latency_ms": 18096.7,
+    "tokens_per_second_generation": 25.3,
+    "first_token_latency_ms": 9149.51,
     "prompt_tokens": 512,
     "generated_tokens": 128
   },
   "memory": {
-    "peak_rss_mb": 1690.68,
-    "steady_state_rss_mb": 1603.08,
-    "peak_vms_mb": 2184.14
+    "peak_rss_mb": 1712.29,
+    "steady_state_rss_mb": 1658.99,
+    "peak_vms_mb": 2181.18
   },
   "accuracy": [
     {
@@ -67,12 +67,12 @@
     }
   ],
   "cpu_thermal": {
-    "cpu_percent_p99": 71.7,
+    "cpu_percent_p99": 71.6,
     "core_temp_c_peak": null,
     "throttled": false
   },
   "reproducibility": {
-    "git_commit_sha": "1dbd5bbb3752",
+    "git_commit_sha": "61c174cf50b7",
     "docker_image_digest": "unknown",
     "random_seed": 42
   },

@@ -71,3 +71,5 @@ A rejected v6d candidate (fully documented in git history) fixed the undershoot 
 - `model/` — downloaded by `download_model.sh` (not committed)
 
 These are self-reported development benchmarks. Official scores are measured by the ADTC profiler on the standard evaluation machine.
+
+A second participant-mode profiler run was performed on a 4-vCPU AMD EPYC 7763 cloud instance to approximate audit-class hardware: 25.3 t/s generation, 1,712 MB peak RSS, no throttling, identical accuracy (0.76). That report is included as `submission.json`; our own laptop's report (9.89 t/s) remains in git history for comparison, since development hardware is deliberately slower than the evaluation profile.
