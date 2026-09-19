@@ -1,0 +1,306 @@
+PwC
+Highlights of 
+the Deduction 
+at Source 
+(Withholding) 
+Regulations 
+2024
+www.pwc.com/ng
+July 2024
+
+PwC
+July 2024
+02
+Highlights of the Deduction at Source (Withholding) Regulations 2024
+The Federal Ministry of Finance has recently issued the Deduction at Source 
+(Withholding) Regulations 2024 (the “Regulations” or “WHT Regulations”), 
+effective 1 July 2024, except for the rules applicable to the gaming sector which 
+are billed to commence on 1 October 2024. These Regulations have introduced 
+a number of changes to the Withholding Tax (WHT) regime in Nigeria. 
+Caveat: The Regulations have been signed by the Minister of Finance thus come 
+into force in line with the Interpretation Act. The gazette is expected shortly in line 
+with the Authentication Act as it announces it formally and validates its 
+authenticity. It is less likely that the signed regulation in circulation will change but 
+it is recommended that taxpayers rely on the gazetted version. 
+Background
+Overview
+Withholding Tax (WHT) is an advance payment of income tax 
+and is deductible at source on payments made for certain 
+transactions. It can be applied as a credit against income tax in 
+most instances, except where the laws provide that the WHT is 
+final tax. Some of the key benefits of WHT is that it facilitates 
+cash flow for the government (by collecting tax in advance on 
+transaction basis rather than waiting for annual tax filings), 
+reduces tax leakages and gathers information on commercial 
+activities being carried out by taxpayers. 
+In the pre-existing WHT Regulations, there were a number of 
+concerns around different issues such as when to deduct WHT, 
+what type of transactions were exempt from WHT, excessive 
+WHT rates for certain transactions, and other administrative 
+issues. 
+The new WHT Regulations seeks to address some of these 
+issues, and we have highlighted the major changes below:
+Commencement date: Businesses have to apply the new rules from 1 July 2024 subject to changes from a 
+gazetted version. However, the rules pertaining to the gaming sector become effective on 1 October 2024.
+Clarity and reduced rates for certain transactions: The WHT Regulations either exempt  or reduce the 
+WHT rates for certain transactions. They also clarify the WHT regime on the sale of goods.
+The previous WHT Regulations exempted “sales in the ordinary course of business” from WHT. However, this 
+exemption was considered ambiguous, even after some clarity was introduced by the Tax Appeal Tribunal1 . The 
+new WHT Regulations specify that the sale of goods by Nigerian businesses are generally subject to WHT at 2%, 
+with the exception of goods manufactured or materials supplied directly by the manufacturer or producer, over-the-
+counter sales and other relevant specific exemptions in the “Transactions exempt” section below.
+Changes introduced by the Regulations
+Tetra Pak v FIRS
+PwC
+July 2024
+03
+Highlights of the Deduction at Source (Withholding) Regulations 2024
+WHT on transactions with no identification number: WHT will apply at twice the designated rate on 
+trading income earned by vendors that do not provide a Taxpayers Identification Number (TIN).
+Who should deduct WHT: The new WHT Regulations removes the operation of the Pay-As-You-Earn (PAYE) 
+scheme as a requirement to be eligible to deduct WHT. The Regulations clarify that other than individuals, virtually 
+all businesses, organisations (including those exempt from tax), government ministries, departments and agencies, 
+and their payment agents are required to deduct WHT on eligible transactions. 
+However, small companies are exempt from deducting WHT, provided that the transaction value is less than 
+NGN2,000,000 and the vendor has a valid TIN.
+When to deduct: The Regulations clarifies that for transactions between unrelated parties, WHT is to be 
+deducted at the earlier of when:
+• payment is made; or
+• the amount due is otherwise settled
+However, WHT on transactions between related parties apply at the earlier of payment or when the liability is 
+recognised.
+This largely addresses the ambiguity around the timing of WHT deductions. However, for passive incomes 
+(dividends, interest, royalty and rent), the substantive laws still generally provide that the WHT should be due at the 
+earlier of when the payment is “made or credited”, and this would supersede the Regulations. 
+When to pay WHT: The timelines for payment of WHT remain the same as under the previous WHT 
+Regulations (i.e 21st of the following month for payments to the FIRS, and 30th of the following month for payments 
+to the relevant SIRS). Additionally, the Regulations clarify that Capital Gains Tax (CGT) deducted on payments to 
+individuals should be paid to the relevant SIRS by the 10th of the following month, similar to income tax paid 
+through the PAYE Scheme. 
+WHT receipts and credits now issued by customer: The Regulations provide that the customer (and not 
+the tax authority) should issue a receipt of tax deducted to the vendor. The vendor can present this receipt to the 
+relevant tax authority as evidence of WHT deducted and will get value, regardless of whether the WHT was 
+remitted by the customer or not. 
+Where customers issue receipts for deducted but unremitted WHT, the customer will be liable to the WHT as their 
+tax liability, together with interest and penalty in line with the law.
+Customers that pay vendors in full: Customers that did not deduct WHT but paid their vendors in full will be 
+subject to administrative penalty and a one-off interest, as opposed to the current practice of requiring such 
+customers to also pay the WHT.
+Transactions exempt: The Regulations include the following as WHT exempt (among others):
+• Goods manufactured or materials produced by the person making the supply. The Regulations define 
+manufacturing/production to include the production of energy, including electricity, gas and petroleum 
+products
+• Across the counter transactions, i.e transactions carried out between parties without established or prior 
+contractual relationship and in which payment is made on the spot
+• Interest and fees paid to a Nigerian bank by way of direct debits to accounts in the banks
+• Out-of-pocket expenses normally expected to be incurred by the supplier distinguishable from contract fees
+• Insurance premium
+• Supply of Liquefied Petroleum Gas, Compressed Natural Gas (CNG), Premium Motor Spirits (PMS), 
+Automotive Gas Oil (AGO), Low Pour Fuel Oil (LPFO), Dual Purpose Kerosene (DPK) and JET-A1
+• Commission retained by broker from monies collected on behalf of principal in line with the industry norm
+• Winnings from a game of chance or a reality show with contents designed to promote entrepreneurship, 
+academics, technological or scientific innovation
+
+PwC
+July 2024
+04
+Highlights of the Deduction at Source (Withholding) Regulations 2024
+Transactions
+Corporate recipients Non corporate recipients
+Remarks
+Residents Non 
+residents Residents Non 
+residents
+Dividends and Interest 10% 10% 10% 10% Rates as specified in 
+the law
+Royalties 10% 10% 5% 5% Rates as specified in 
+the law
+Rent Hire, Lease 5% 10% 5% 10% Rates as specified in 
+the law
+Commission, consultancy, 
+technical, management, and 
+professional fees
+5% 10% 5% 10% Higher rates for non 
+residents to serve as 
+final tax
+Supply of goods other than by 
+manufacturer
+2% NA 2% NA Simplified description 
+and reduced rate to 
+address low margin
+Colocation and 
+telecommunication tower 
+services
+2% 5% 2% 5% Lower rate to reflect 
+low industry margin
+Supply or rendering of 
+services other than those 
+specifically stated
+2% 5% 2% 5% Simplified description 
+and reduced rate
+Construction of road, bridges, 
+building and power plants 
+2% 5% 2% 5% Further rate reduction 
+to reflect lower 
+margin
+Any other form of construction 
+and related activities
+5% 10% 5% 10% Amount due from non 
+resident is final
+Brokerage fee 5% 10% 5% 10% Subject to paragraph 
+7(2)
+Directors' fees N/A N/A 15% 20% Rates reflect 
+marginal PIT rate for 
+directors
+Compensation for loss of 
+employment
+N/A N/A 10% 10% Section 36 of the 
+CGT Act
+Entertainment and 
+sportspersons
+N/A 15% NA 15% Applies on amounts 
+earned in Nigeria
+Winnings from lottery, gaming, 
+reality shows (other than those 
+listed as exempt)
+N/A N/A 5% 15% With effect from 1 
+October 2024
+Takeaway and Impact analysis on key industries
+The WHT Regulations have introduced key changes which reduce uncertainties and administrative burden on 
+taxpayers, and are generally beneficial to taxpayers. It also raises certain issues some of which we highlight below: 
+General/administrative considerations____________________________________________
+a) Transition period: The National Tax Policy (NTP) recommends a 90-day window for the implementation of tax 
+law amendments. The regulations take effect immediately with no transition period contrary to the provisions of 
+the NTP. 
+b) Configuration of systems: Accounting systems need to be upgraded to reflect more tax rates. There are now at 
+least 6 WHT rates: 0%, 2%, 5%, 10%, 15% and 20% and potentially more considering that the rates are doubled 
+where vendors do not provide TINs. Compliance processes should be tightened possibly with a need to invest in 
+more modules to avoid significant exposures arising from several tax rates.  
+PwC
+July 2024
+05
+Highlights of the Deduction at Source (Withholding) Regulations 2024
+c) Instant credits: The new Regulations require the customer to issue WHT receipts as against the historical 
+practice where this was done by the tax authorities. Taxpayers will be pleased that they can obtain value as 
+soon as the customer issues WHT receipts, as this avoids unnecessary delays and loss of value. 
+However, there are concerns on how this will be applied on the Taxpro Max  portal which is used by the 
+FIRS, or other online system used by other state tax authorities. Currently, WHT deducted and paid by 
+customers automatically reflect in favour of the vendors on Taxpro Max. With the introduction of the new 
+Regulations, vendors will have to submit WHT receipts issued by customers for manual update on Taxpro 
+Max by the FIRS. This introduces a manual administrative step which may also require reconfiguration of the 
+system, and may mean that the FIRS would need to set up procedures to verify the uploads. We recommend 
+that receipts issued by customers should bear payment reference numbers to ease reconciliation. 
+d) Sales in the ordinary course of business: The Regulations clarify the previous ambiguity around “sales in 
+the ordinary course of business” as it more clearly defines WHT exempt supplies. Certain services that were 
+considered as “sales in the ordinary course of business” and previously exempt will now no longer enjoy the 
+WHT exemption. For other sales of goods that are not exempt, vendors should be aware that their supplies 
+now attract 2% WHT. These companies would now need to make a taxable margin of at least 6.7% in order 
+to fully absorb the WHT, otherwise, they would be in a tax refund position.
+e) Addressing WHT refunds: There was a reduction of the WHT rate for a number of transactions including 
+colocation and other services with low profit margins. Affected taxpayers may have over time accumulated 
+excess WHT credits with no cash refund in view. The amendments therefore lend support to better cash flow 
+management, freed up funds for capital investments and the ease of doing business amidst recent exits of 
+multinationals from Nigeria. 
+It is hoped that the FIRS and Joint Tax Board would also issue clear modalities in future around obtaining 
+accumulated WHT refunds with more focused rather than unduly lengthy audits. 
+f) Commission and brokerage fees: The Regulations clarify that WHT should not apply on commission 
+retained by a broker on monies collected on behalf of the principal in line with the industry norm. This puts 
+the agelong issue to rest and overrides previous judicial precedents that gave contrary rulings. It is expected 
+to be a welcome development to players in sectors where agents or brokers deduct their fees at source. 
+g) Transaction currency: Following the announcement of the 30 day quick wins of the Presidential Committee 
+on fiscal policy and tax reforms last year, we anticipate an amendment that allows WHT to be paid in Naira 
+regardless of the transaction currency. This is expected to reduce the pressure on the Naira especially in 
+view of the declining foreign exchange rate.
+a) The imposition of WHT on winnings (except for the specific exemptions listed) raises further concerns in the 
+gaming industry:
+i. It may be technologically and financially burdensome to implement a solution that is able to account for 
+WHT on certain gaming operations (especially casino activities).Operators in the industry generally prefer 
+for taxes to be imposed on their operations as opposed to players’ winnings. There is a risk that gaming 
+and lottery companies could revisit their business models in order to be competitive against illegal or 
+foreign operators (who do not comply with the Regulations).
+Gaming sector_________________________________________________________________
+PwC
+July 2024
+06
+Highlights of the Deduction at Source (Withholding) Regulations 2024
+ii. Countries such as Angola, Liberia, Malawi and Rwanda include a threshold to avoid taxing participants within 
+income brackets exempt from income tax. The Regulations currently set no threshold for those in lower income 
+brackets.
+iii. There are some ambiguities on how to apply the WHT exemption to “winnings from a game of chance or a 
+reality show with contents designed to promote entrepreneurship, academics, technological or scientific 
+innovation” as highlighted in the WHT Regulations. The intention may be that the latter qualifying terms apply to 
+both “game of chance” and “reality shows”. Any other interpretation would mean that all games of chance are 
+exempt from WHT, which cannot be the intention of the Regulations as these activities are included in the WHT 
+table. Other practical concerns are whether promotions like raffles would be considered an entrepreneurial 
+game of chance or whether tax should be accounted for on non-monetary winnings. 
+iv. It is common for players to lose a number of bets before winning. In such instances, it is not very clear to what 
+extent the losses can be used to reduce the wins on which WHT applies. The Regulations sought to address 
+this issue by defining “winnings” as “the net payout…in a game of chance…”. However, this is expected to be 
+difficult to implement in practice considering the different models and modalities for accounting for winnings by 
+the different types of gaming businesses. 
+Oil and gas/Energy
+The Regulations stipulate that businesses in this sector are now exempt from WHT where such businesses 
+supply energy (including electricity, gas and petroleum products). The Regulations also clarify that WHT does not 
+apply on the sale of LPG, CNG, PMS, AGO, LPFO, DPK and JET-A1. This is expected to be well received by 
+participants in this sector.
+Non-residents
+a) The Regulations do not clearly exclude non-residents from  deducting WHT. Based on jurisdictional 
+expedience, Nigerian laws should ordinarily not extend to NRCs, especially if they do not have a fixed base or 
+dependent agency arrangement in Nigeria.
+b) Many non-residents, especially those that remotely transact with Nigerian customers or earn passive income 
+from Nigeria, do not register for taxes in Nigeria in practice. This may result in the application of double the 
+WHT rate on the relevant transactions in line with the new Regulations. Such costs may eventually be borne 
+by the customers in practice. The tax authorities may consider ruling that where the beneficiary TIN is not 
+available, the customer can include alternative means of identification of the non-resident supplier ( such as 
+Business Registration Number, etc). The rationale is to align with global best practice and reduce 
+administrative burden for non-residents seeking to do business with Nigeria, and ultimately ensure WHT 
+deducted is remitted to the tax authorities.
+Public  sector
+Ministries, Departments, and Agencies (MDAs), have historically been required to deduct WHT based on the 
+rates specified in the Government Financial Management Information Systems (GFMIS). The GFMIS now needs 
+to be updated to reflect the new rates. The GFMIS notably still charges Stamp duties on transactions with the 
+government, despite the legal exemption of Stamp duties on transactions with the federal government. 
+In general, the new WHT Regulations are  expected to make the tax landscape in Nigeria more business friendly.
+At PwC, our purpose is to build trust in society and solve important problems. We’re a network of firms in 151 countries 
+with more than 360,000 people who are committed to delivering quality in assurance, advisory and tax services. Find 
+out more and tell us what matters to you by visiting us at www.pwc.com.
+©2024 PwC. All rights reserved. PwC refers to the PwC network and/or one or more of its member firms, each of 
+which is a separate legal entity. Please see www.pwc.com/structure for further details.
+Contacts
+Emeka Chime
+ Associate Director
+chukwuemeka.x.chime@pwc.com
+Ugochi Ndebbio
+Associate Director
+ugochi.ndebbio@pwc.com
+Babatunde Olaniyi
+Associate Director
+babatunde.x.olaniyi@pwc.com
+Chijioke Uwaegbute
+Partner and Tax Leader
+Esiri Agbeyi
+Partner
+Kenneth Erikume
+Partner
+Timothy Siloma
+Partner
+timothy.s.siloma@pwc.com
+Seun Adu
+Partner
+seun.y.adu@pwc.com
+Tiwalade Otufale
+Partner
+tiwalade.otufale@pwc.com
+chijioke.uwaegbute@pwc.com emuesiri.agbeyi@pwc.com kenneth.y.erikume@pwc.com
+Ademola Idowu
+Associate Director
+ademola.idowu@pwc.com
+Opeyemi Mabawonku
+Manager
+opeyemi.mabawonku@pwc.com
+Francis Uzoewulu
+Manager
+francis.uzoewulu@pwc.com
+Maduabuchi Eleje
+Senior Associate
+maduabuchi.eleje@pwc.com

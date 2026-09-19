@@ -1,0 +1,462 @@
+# TaxSabi — 9-Month Development Plan
+
+**Status:** Locked
+**Base model:** Qwen3-1.7B (Apache 2.0, public GGUF, 28 layers, 32K context)
+**Pipeline:** DAPT → SFT → KTO → GRPO (no thinking mode)
+**Vision:** A personal tax-efficiency coach for Nigerians — legal optimization, not just calculation
+**Constraint:** CPU-only inference, llama.cpp, GGUF, judged on the raw model
+**Timeline:** ~39 weeks (9 months from Sept 2026)
+
+---
+
+## Architecture (locked)
+
+```
+                    ┌─────────────────────────┐
+                    │   User (En / Pidgin /   │
+    │   future: Yoruba, Hausa, Igbo)          │
+                    └────────────┬────────────┘
+                                 │
+                    ┌────────────▼────────────┐
+                    │  TaxSabi GGUF model     │
+                    │  (Qwen3-1.7B, Q4_K_M)   │
+                    │                         │
+                    │  Trained via:           │
+                    │  1. DAPT (knowledge)    │
+                    │  2. SFT (behavior)      │
+                    │  3. KTO (preferences)   │
+                    │  4. GRPO (accuracy)     │
+                    │                         │
+                    │  No thinking mode       │
+                    │  No RAG                 │
+                    │  All knowledge in       │
+                    │  weights                │
+                    └────────────┬────────────┘
+                                 │
+              ┌──────────────────┼──────────────────┐
+              │                  │                  │
+    ┌─────────▼────────┐ ┌──────▼───────┐ ┌───────▼────────┐
+    │  CONSTITUTION    │ │  RULES       │ │  SOURCE        │
+    │  (behavioral     │ │  ENGINE      │ │  REGISTER      │
+    │  principles)     │ │  (determin-  │ │  (F-001–F-007  │
+    │                  │ │  istic       │ │  + expanded)   │
+    │  Drives:         │ │  Decimal)    │ │                │
+    │  - KTO labels    │ │              │ │  Drives:       │
+    │  - GRPO rewards  │ │  Drives:     │ │  - Citation    │
+    │  - SFT data gen  │ │  - GRPO      │ │    checking    │
+    │  - System prompt │ │    rewards   │ │  - DAPT corpus │
+    └──────────────────┘ │  - Scenario  │ │                │
+                         │    ground    │ └────────────────┘
+                         │    truth    │
+                         └─────────────┘
+```
+
+**Core design rules (locked):**
+
+1. The LLM handles language — understanding questions, explaining answers, asking clarifications
+2. The engine handles arithmetic — every naira figure in training data is engine-computed
+3. All knowledge lives in the weights (no RAG, no retrieval at inference)
+4. No thinking mode — direct answers, latency matters
+5. Citations are contextual — shown when a specific legal claim is made, omitted for simple arithmetic
+6. The constitution is the behavioral ground truth — engine for arithmetic, written principles for everything else
+7. The user (Chukwuemeka) is the taste-maker — iterative review drives SFT and KTO data quality
+
+---
+
+## Phase 0: Foundation (Weeks 1–4)
+
+**Objective:** Everything needed before training begins.
+
+### 0.1 Constitution Draft
+- [x] Draft behavioral principles document (~20-30 principles)
+- [x] Cover: citation behavior, caveat appropriateness, decline-vs-guess, answer length vs question complexity, relief suggestion phrasing, sequencing advice style, scope boundaries, multi-turn behavior, clarification triggers
+- [x] User reviews and iterates (target: 3 revision rounds)
+- [x] Lock v1.0
+
+**Deliverable:** `CONSTITUTION.md` ✓ (approved 2026-09) — 40 principles, 8 sections, each traceable to a Gate 1 failure
+
+### 0.2 Base Model Validation
+- [x] Download Qwen3-1.7B GGUF (official or convert from safetensors) — unsloth/Qwen3-1.7B-GGUF, 1.06 GB, sha256 recorded
+- [x] Bench on dev laptop (same session as Qwen2.5-1.5B for comparison) — 20.89 pp / 6.09 tg (vs Qwen2.5-1.5B: 19.00 pp / 6.15 tg; ~5% gap confirmed)
+- [ ] Bench on Codespace EPYC (audit-class proxy)
+- [x] Run behavioral baseline: 30 diverse tax prompts through the un-fine-tuned base — `data/eval/baselines/base_qwen3_1.7b.jsonl`
+- [x] Run Pidgin baseline: 10 Pidgin prompts — included in the 30
+- [x] Confirm non-thinking mode works correctly through llama.cpp chat template — chat_template_kwargs confirmed
+- [x] Verify GGUF provenance (unsloth quant, sha256 checksummed to `model/CHECKSUMS.txt`)
+- [x] Baseline analysis written — `data/eval/baselines/ANALYSIS.md` (confabulated knowledge documented)
+
+**Deliverable:** `data/eval/baselines/base_qwen3_1.7b.jsonl` + `ANALYSIS.md` ✓
+
+### 0.3 DAPT Corpus Assembly
+- [x] Extract clean text from `sources/tax_act_2025.txt` — 428,778 chars, all artifacts fixed and verified (`scripts/clean_tax_act.py`)
+- [x] Download and clean the Nigeria Tax Administration Act 2025 gazette — 187,277 chars (`scripts/clean_ntaa.py`); combined corpus ~616K chars
+- [x] Expand source register: F-008..F-013 added (commencement, minimum-wage exemption, no-CRA, PAYE administration, evidence practice, pension exemption); P-003..P-005 resolved via LIRS sources
+- [x] Verify remaining pending facts: P-001 → F-014 + F-016 (8%/10% rates, VPC rules, 7-working-day remittance, ≥2%/month penalty); P-002 → F-015 (N70,000/month via PLAC bill text, S9); P-006 → PAYE remittance = 10th (S5, DToS Regulations caveat noted)
+- [x] Recover the PRA 2014 primary text — PenCom's PDF is a scan with a scrambled text layer; OCR'd via `scripts/ocr_pra_2014.py` → `sources/pra_2014_ocr.txt` (62 pp); key sections spot-checked against rendered pages
+- [x] Collect procedural/planning knowledge: relief claiming processes, documentation requirements, employer payroll interaction, VPC setup, mortgage relief claiming (PenCom VPC Guidelines S8 + PRA text on file)
+- [x] Write domain prose connecting facts to practical advice — `data/dapt_corpus/procedural/` (6 documents, 50,390 chars: tax basics, reliefs guide + filing mechanics, efficiency/planning, PAYE, pensions/VPC, scope); draft pending review
+- [x] Filing-mechanics research (relief claim timing/refunds): F-017 (e-Tax/Tax Form A, annual return), F-018 (s.55 refunds/credits, reg. 5 advance tax), F-019 (assessments/objections); DToS Regulations 2024 gazette obtained (S10) — PAYE 10th day now `verified_primary`
+- [ ] Target: 500KB–2MB of clean domain text — at ~690K, on track
+- [ ] License-check all sourced text (statutes are government gazettes; PenCom guidelines are a public regulator publication)
+
+**Deliverable:** `data/dapt_corpus/` — two cleaned statutes + PenCom VPC guidelines + procedural prose + README with provenance ✓
+
+### 0.4 Evaluation Framework Upgrade
+- [x] Build held-out probe set (20 prompts, zero overlap with all training data) — `data/eval/probe_prompts_heldout.jsonl`, built by `scripts/build_heldout_probe.py`
+- [x] Capture base model on held-out probe — `data/eval/baselines/base_qwen3_1.7b_heldout.jsonl`
+- [x] Build development probe (30 prompts, mixed) + base capture — `data/eval/baseline_prompts.jsonl`, `data/eval/baselines/base_qwen3_1.7b.jsonl`
+- [x] Build reusable stage-capture harness — `scripts/run_baseline.py` (thinking-off, engine-scorable)
+- [x] Build paraphrase-consistency suite (20 cores × 5 phrasings = 100 prompts, 40 engine-scorable) — `data/eval/paraphrase_suite.jsonl`, `scripts/build_paraphrase_suite.py`
+- [x] Build multi-turn probe suite (10 conversations, 32 turns, 18 engine-scorable) — `data/eval/multiturn_suite.jsonl`, runner `scripts/run_multiturn.py`
+- [x] Build coach-behavior eval (relief discovery, savings modeling, sequencing, filing workflow; 15 prompts, 4 engine-scorable, judge checklists) — `data/eval/coach_eval.jsonl`, `scripts/build_coach_eval.py`
+- [x] Build base-vs-stage comparison harness (scoring, paraphrase consistency, movement analysis) — `scripts/compare_captures.py`; dev-probe ground truth added via `scripts/patch_eval_ground_truth.py` (9 records)
+- [x] Integrate LLM judge scaffold for behavioral dimensions (constitution rubric, OpenAI-compatible endpoint, dry-run verified) — `scripts/judge_responses.py`
+- [x] Define stage-gate metrics — `data/eval/STAGE_GATES.md` (per-stage hard gates, targets, regression guards, failure protocol)
+
+**Deliverable:** `data/eval/probe_prompts_heldout.jsonl` ✓ + `scripts/run_baseline.py` ✓ + `scripts/build_heldout_probe.py` ✓ + paraphrase/multi-turn/coach suites ✓ + `scripts/compare_captures.py` ✓ + `scripts/judge_responses.py` ✓ + `data/eval/STAGE_GATES.md` ✓
+
+**Guardrail:** `build_heldout_probe.py --verify-only` re-checks zero overlap after any training-data change — run before every stage's data generation.
+
+### 0.5 Compute Setup
+- [x] Register on aghcloud.ai, claim $50 GPU credits (done 2026-09-19)
+- [x] Prepare the Unsloth smoke test — `scripts/unsloth_smoke_test.py`: version/GPU report (CUDA + ROCm detection), 4-bit load, thinking-off chat template, mini-SFT with loss check, KTO/GRPO availability
+- [x] Prepare the DAPT training script — `scripts/dapt_pretrain.py`: corpus + replay mix (wikitext streaming or local), EOS-separated packed blocks, train/val split, adapter + merged (+ GGUF), `dapt_run.json` provenance
+- [x] Estimate compute budget — `data/eval/COMPUTE_BUDGET.md` (~174K corpus tokens; AGH ≈ 2.5–6 GPU-h total, T4-only ≈ 6–12)
+- [ ] Run the smoke test on AGH (or Colab T4) — pending: confirm AGH console type (Jupyter/SSH/container) and GPU vendor (Unsloth needs CUDA)
+- [ ] Verify the Colab T4 pipeline end-to-end (same smoke test on a T4)
+- [ ] Re-estimate the budget with measured tokens/s from the smoke test and `dapt_run.json`
+
+**Deliverable:** Working training pipeline for Qwen3-1.7B on T4 and/or AGH — scripts ready; first GPU run pending
+
+---
+
+## Phase 1: DAPT — Domain Knowledge Absorption (Weeks 5–10)
+
+**Objective:** Bake domain knowledge into the weights via continued pretraining.
+
+### 1.1 Corpus Preparation
+- [ ] Tokenize and clean the DAPT corpus
+- [ ] Structure into training-format documents (plain text, sectioned)
+- [ ] Mix with 10-20% general-domain text (replay to prevent narrowing)
+- [ ] Split into training/validation
+
+### 1.2 DAPT Training
+- [ ] Configure Unsloth for continued pretraining (next-token prediction on raw text)
+- [ ] QLoRA on Qwen3-1.7B, low LR (~5e-5), 1-2 epochs max
+- [ ] Monitor for memorization vs absorption (validation loss vs training loss)
+- [ ] Checkpoint after each epoch
+
+### 1.3 Knowledge Evaluation
+- [ ] Test: does the model know the bands without being asked in SFT format?
+- [ ] Test: does it know PAYE procedures, relief claiming steps, documentation requirements?
+- [ ] Test: can it correctly reference the Act's sections when prompted?
+- [ ] Compare against Phase 0 baseline — quantify knowledge gain
+- [ ] Check for degradation: general language ability, instruction following, multilingual
+
+### 1.4 Iterate
+- [ ] If knowledge gaps: expand corpus, retrain
+- [ ] If degradation: increase replay ratio, reduce epochs
+- [ ] Target: model can answer factual questions about Nigerian tax law from weights alone
+
+**Stage gate:** Model correctly answers ≥80% of domain-knowledge questions (bands, reliefs, procedures, sections) without SFT formatting.
+
+---
+
+## Phase 2: SFT — Behavior Shaping (Weeks 11–20)
+
+**Objective:** Teach the model how to use its knowledge — conversation, coaching, multi-turn, clarification.
+
+**This is the hardest phase.** The user's taste drives quality. Iterate.
+
+### 2.1 Conversation Generation Pipeline
+- [ ] Build dialogue skeleton generator (programmatic)
+      - Accumulate-then-compute (facts across turns → calculation)
+      - Follow-up/counterfactual (calculate → what-if → what-if-again)
+      - Correction (user revises a fact → model uses new value)
+      - Clarify-then-compute (ambiguous → model asks → user answers)
+      - Coach conversations (relief discovery, savings modeling, sequencing)
+      - Topic shift with retention
+      - Out-of-scope decline (other country, other year, non-tax)
+- [ ] Engine verifies every number in every assistant turn
+- [ ] Generate initial batch: ~500 conversations
+- [ ] Target: 3-8 turns per conversation, natural phrasing variety
+
+### 2.2 User Review Loop (Round 1)
+- [ ] User reviews 100 sample conversations
+- [ ] User marks: approve / reject / annotate
+- [ ] Rejected → analyzed for patterns → constitution updated if needed
+- [ ] Approved → added to SFT training pool
+- [ ] User identifies missing conversation types
+- [ ] Iterate generator with feedback
+
+### 2.3 SFT Data Assembly
+- [ ] Layer 1: Approved conversations (engine-verified)
+- [ ] Layer 2: Single-turn Q&A from scenarios (existing 1,108 + expanded)
+- [ ] Layer 3: Replay data (10-20% general chat from open datasets)
+- [ ] Citation behavior: mix of cited and uncited answers (contextual, per constitution)
+- [ ] Pidgin conversations (user-reviewed)
+- [ ] Target total: 3,000–5,000 examples
+
+### 2.4 SFT Training (Round 1)
+- [ ] QLoRA on DAPT checkpoint
+- [ ] Moderate LR (~1e-4), 2-3 epochs
+- [ ] Checkpoint and evaluate
+
+### 2.5 Evaluation Round 1
+- [ ] Run all eval suites (paraphrase, multi-turn, coach, calculation, Pidgin)
+- [ ] Base-model comparison (before/after side by side)
+- [ ] User reviews 20 sample outputs — accept/reject/annotate
+- [ ] Identify top 3 failure patterns
+
+### 2.6 Iterate (Rounds 2–4)
+- [ ] Generate targeted data for identified failures
+- [ ] User review each round
+- [ ] Retrain with expanded dataset
+- [ ] Re-evaluate
+- [ ] Target: 4 full iterations
+
+**Stage gate:** Model handles multi-turn conversations without template regression, answers coach-style questions with relief discovery, and passes paraphrase-consistency at ≥70%.
+
+---
+
+## Phase 3: KTO — Preference Tuning (Weeks 21–28)
+
+**Objective:** Teach the model which answer is better — citation discipline, caveat appropriateness, decline-vs-guess, answer cleanliness.
+
+### 3.1 Binary Label Generation
+- [ ] Deterministic labels (engine-verified):
+      - Correct tax figure → desirable
+      - Wrong tax figure → undesirable
+      - Exact citation match → desirable
+      - Invented act/year/section → undesirable
+- [ ] Rule-based labels (citation checker):
+      - Citation present when legal claim made → desirable
+      - Citation absent when needed → undesirable
+      - Citation present for simple arithmetic → undesirable (per constitution)
+- [ ] LLM-judge labels (constitution-based, uses API or credits):
+      - Appropriate caveat vs unnecessary caveat
+      - Decline vs guess behavior
+      - Answer length appropriateness
+      - Relief suggestion phrasing (question, not assertion)
+- [ ] Target: 2,000–5,000 binary-labeled examples
+- [ ] User spot-checks 200 labels for quality
+
+### 3.2 KTO Training
+- [ ] QLoRA on SFT checkpoint
+- [ ] KTO loss (prospect-theoretic, unpaired binary labels)
+- [ ] Monitor for reward hacking / degenerate outputs
+- [ ] Checkpoint and evaluate
+
+### 3.3 Evaluation
+- [ ] Citation behavior: does it cite when appropriate, omit when not?
+- [ ] Caveat behavior: section-32 only when deductions claimed?
+- [ ] Decline behavior: other years/countries → clean redirect?
+- [ ] Guess behavior: unstated amounts → asks, doesn't invent?
+- [ ] Run full eval suite
+- [ ] User reviews 20 outputs — taste check
+
+### 3.4 Iterate (Rounds 2–3)
+- [ ] Generate more labels for remaining failures
+- [ ] Retrain
+- [ ] Target: 3 iterations
+
+**Stage gate:** Citation behavior contextual (≥80% appropriate), zero invented acts/years, decline-and-ask behaviors reliable.
+
+---
+
+## Phase 4: GRPO — Reinforcement Learning with Verifiable Rewards (Weeks 29–36)
+
+**Objective:** Sharpen calculation accuracy to near-perfect on the auditable distribution. No thinking mode.
+
+### 4.1 Reward Function Design
+- [ ] Primary reward: final tax figure matches engine (binary, exact)
+- [ ] Secondary reward: chargeable income matches (partial credit)
+- [ ] Tertiary reward: citation format correct (small weight)
+- [ ] Penalty: answer length beyond necessary (discourage padding)
+- [ ] No thinking-mode reward — direct answers only
+- [ ] Validate reward function against 100 known scenarios
+
+### 4.2 Prompt Pool Curation
+- [ ] Source: existing 1,108 scenarios + newly generated
+- [ ] Difficulty distribution: model should succeed ~50-70% of the time (GRPO needs group variance)
+- [ ] Include: boundary values, relief combinations, monthly/annual, Pidgin phrasings
+- [ ] Exclude: scenarios the model always gets right (no learning signal) or always wrong (no variance)
+- [ ] Target: 500–1,500 prompts, curated by difficulty
+
+### 4.3 GRPO Training
+- [ ] TRL GRPOTrainer (or Unsloth GRPO support)
+- [ ] Group size: 8–16 samples per prompt
+- [ ] QLoRA on KTO checkpoint
+- [ ] Monitor: training stability, reward curve, KL divergence from reference
+- [ ] Watch for: reward hacking (right answer, wrong reasoning), length inflation
+- [ ] Checkpoint frequently
+
+### 4.4 Evaluation
+- [ ] Calculation accuracy on held-out scenarios (target: ≥90% exact)
+- [ ] Boundary-specific accuracy (the 800k, 3M, 12M, 25M, 50M edges)
+- [ ] Pidgin calculation accuracy
+- [ ] No degradation on: multi-turn, coach behavior, citation discipline, general language
+- [ ] Full eval suite
+- [ ] Base-model comparison (the full journey: base → DAPT → SFT → KTO → GRPO)
+
+### 4.5 Iterate
+- [ ] If accuracy plateaus: adjust difficulty distribution, increase group size
+- [ ] If degradation: reduce GRPO steps, increase KL penalty
+- [ ] Target: 3 iterations
+
+**Stage gate:** ≥90% exact calculation accuracy on held-out scenarios including boundary values. No regression on any other eval dimension.
+
+---
+
+## Phase 5: Product Integration (Weeks 37–42)
+
+**Objective:** Package the model into the product users experience.
+
+### 5.1 GGUF Export & Optimization
+- [ ] Merge adapters → full model → GGUF Q4_K_M
+- [ ] Test through llama.cpp on dev laptop (speed, memory, correctness)
+- [ ] Test on Codespace (audit-class proxy)
+- [ ] Verify chat template works correctly for non-thinking mode
+- [ ] Compare file size and speed vs Gate 1 model
+
+### 5.2 App Bundle Updates
+- [ ] Update Tier 1 bundles with new model
+- [ ] Test on Windows (user's machine), Linux (dev machine), macOS (untestable — note)
+- [ ] Update the TaxSabi.html app if needed (new capabilities → new UI affordances)
+
+### 5.3 Fact Ledger Architecture (Tier 2)
+- [ ] Design the ledger schema (income, reliefs, period, established facts, pending questions)
+- [ ] Build grammar-constrained extraction (GBNF or JSON schema)
+- [ ] Build the merge/validate/compute loop
+- [ ] Build the "what we know so far" UI panel
+- [ ] Integrate into the app bundle
+- [ ] This is the product differentiator — invest time here
+
+### 5.4 Mobile Considerations
+- [ ] Evaluate llama.cpp on Android (NDK build or Termux)
+- [ ] Evaluate MLC conversion for iOS
+- [ ] Prototype if feasible, defer if not — this is a stretch goal
+
+---
+
+## Phase 6: Submission Preparation (Weeks 43–46+)
+
+**Objective:** Ship it.
+
+### 6.1 Final Evaluation
+- [ ] Full eval suite on final model
+- [ ] Official profiler run (participant mode, full accuracy)
+- [ ] Compare against Gate 1 scores (baseline: Accuracy 65.81, Perf 24.47, Eff 84.65, Total 60.18)
+- [ ] Document honestly — including remaining failure modes
+
+### 6.2 Provenance Documentation (Gate 2 requirement)
+- [ ] Model Provenance section in REPORT.md
+- [ ] provenance/ folder:
+      - adapter weights (each stage)
+      - training scripts/configs
+      - training logs (loss curves per stage)
+      - dataset or representative sample + link
+      - SHA256 checksums (base, adapters, final GGUF)
+      - merge/quantization script
+- [ ] Before/after comparison: ≥2 prompts showing base vs fine-tuned outputs
+- [ ] Git commit SHA in metadata.json
+
+### 6.3 Submission Materials
+- [ ] Updated REPORT.md
+- [ ] Updated metadata.json (2 test prompts — choose from verified-correct outputs)
+- [ ] Updated download_model.sh (new HF URL for final model)
+- [ ] Video (30s pitch + 1min demo + 30s innovation) — strictly 2 minutes
+- [ ] Book and complete due diligence call
+- [ ] Final repo check: all files present, no weights committed, clean history
+
+### 6.4 Post-Submission
+- [ ] Monitor for organizer questions
+- [ ] Prepare for live defense (if selected as finalist)
+
+---
+
+## Cross-Cutting Concerns (All Phases)
+
+### Evaluation Discipline
+- [ ] Never evaluate on training data
+- [ ] Always compare against the previous stage's checkpoint
+- [ ] Always compare against the base model (the full journey)
+- [ ] Log every eval result with model version, dataset version, and timestamp
+- [ ] Gate each phase on its stage criteria before proceeding
+
+### Data Discipline
+- [ ] Every naira figure in training data is engine-computed
+- [ ] Every citation in training data traces to the source register
+- [ ] Every Pidgin record is human-reviewed
+- [ ] Every conversation is either programmatically generated + engine-verified, or human-written
+- [ ] Track dataset versions (git or explicit versioning)
+
+### Compute Budget
+| Phase | Estimated GPU hours | Source |
+|---|---|---|
+| DAPT | 4–8 | T4 (free) or AGH credits |
+| SFT (4 rounds) | 12–20 | T4 |
+| KTO (3 rounds) | 6–12 | T4 |
+| GRPO (3 rounds) | 18–36 | AGH credits ($50) + T4 |
+| Eval + misc | 4–8 | T4 |
+| **Total** | **44–84** | Mixed |
+
+### Risk Register
+| Risk | Phase | Mitigation |
+|---|---|---|
+| DAPT causes memorization, not learning | 1 | Low LR, 1 epoch, validation split, check for verbatim recall |
+| SFT narrows the model (Gate 1 lesson) | 2 | 10-20% replay data, diverse conversation types, paraphrase eval |
+| KTO reward hacking | 3 | Monitor outputs, user spot-check, KL leash |
+| GRPO training instability | 4 | Small group size initially, frequent checkpoints, KL penalty |
+| Model too slow on audit hardware | 5 | Bench at every stage; if below target, consider Qwen3-0.6B fallback |
+| Constitution too vague to generate good data | 0+2 | User review loop catches ambiguity; iterate constitution |
+| Knowledge bleeding between stages | All | Evaluate general ability at every stage; replay data throughout |
+| Pidgin quality degrades | 2+3 | Pidgin eval at every stage; user reviews all Pidgin data |
+
+### Decision Points (check at each)
+| When | Question | Default |
+|---|---|---|
+| End of Phase 1 | Is DAPT worth the compute vs pure SFT? | If knowledge gain <10%, skip to SFT |
+| End of Phase 2 | Is the model good enough to skip KTO? | No — KTO is cheap and targets judged failures |
+| End of Phase 3 | Is GRPO worth the risk? | If calc accuracy already ≥85%, consider skipping |
+| Mid Phase 4 | Is GRPO degrading other abilities? | If yes, stop and use KTO checkpoint |
+| End of Phase 4 | Is the model ready for product? | Stage-gate criteria |
+| Phase 5 | Is the fact-ledger adding value? | If extraction is unreliable, simplify to direct model + engine |
+
+---
+
+## Success Criteria (Final)
+
+| Metric | Gate 1 (baseline) | Target | Stretch |
+|---|---|---|---|
+| Calculation accuracy (natural) | 87.5% (7/8) | ≥95% | 100% |
+| Calculation accuracy (boundary) | ~25% (3/12 clean) | ≥80% | ≥90% |
+| Citation appropriateness | Always cites | ≥80% contextual | 100% contextual |
+| Multi-turn coherence | Not supported | Basic (3-5 turns) | Robust (8+ turns) |
+| Coach behavior | Not present | Relief discovery + sequencing | Full planning conversations |
+| Pidgin fluency | Fragile | Natural on core prompts | Robust across phrasings |
+| Zero invented citations | Fails (BFA-1991) | Zero tolerance | Zero |
+| Zero invented amounts | Fails (NGN 100k) | Zero tolerance | Zero |
+| Sperf (audit hardware) | 24.47 | ≥24 | ≥30 |
+| Seff | 84.65 | ≥80 | ≥85 |
+| Total score | 60.18 | ≥70 | ≥80 |
+
+---
+
+## What's Intentionally NOT In This Plan
+
+- **RAG / retrieval at inference** — decided against; all knowledge in weights
+- **Thinking mode** — decided against; latency risk with unknown judge timeout
+- **A larger base model (3B+)** — CPU constraint; 1.7B is the ceiling
+- **Fine-tuning a model from scratch** — not practical with our compute
+- **Fine-tuning for mobile separately** — same model, different packaging
+- **Full Yoruba/Hausa/Iglo support** — stretch goal after Gate 2, needs native-speaker review
+
+---
+
+## Document Control
+
+| Version | Date | Author | Notes |
+|---|---|---|---|
+| 1.0 | Sept 2026 | DeepSeek + Chukwuemeka | Initial lock |
+| | | | |
