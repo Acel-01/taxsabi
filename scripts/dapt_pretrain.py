@@ -86,9 +86,10 @@ def main() -> None:
     args = parser.parse_args()
 
     import torch
+    # Unsloth must be imported before transformers/trl so its patches apply.
+    from unsloth import FastLanguageModel, is_bfloat16_supported
     from datasets import Dataset
     from transformers import Trainer, TrainingArguments, DataCollatorForLanguageModeling
-    from unsloth import FastLanguageModel, is_bfloat16_supported
 
     torch.manual_seed(args.seed)
     random.seed(args.seed)

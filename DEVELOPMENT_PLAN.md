@@ -122,11 +122,12 @@
 - [x] Prepare the Unsloth smoke test — `scripts/unsloth_smoke_test.py`: version/GPU report (CUDA + ROCm detection), 4-bit load, thinking-off chat template, mini-SFT with loss check, KTO/GRPO availability
 - [x] Prepare the DAPT training script — `scripts/dapt_pretrain.py`: corpus + replay mix (wikitext streaming or local), EOS-separated packed blocks, train/val split, adapter + merged (+ GGUF), `dapt_run.json` provenance
 - [x] Estimate compute budget — `data/eval/COMPUTE_BUDGET.md` (~174K corpus tokens; AGH ≈ 2.5–6 GPU-h total, T4-only ≈ 6–12)
-- [ ] Run the smoke test on AGH (or Colab T4) — pending: confirm AGH console type (Jupyter/SSH/container) and GPU vendor (Unsloth needs CUDA)
-- [ ] Verify the Colab T4 pipeline end-to-end (same smoke test on a T4)
-- [ ] Re-estimate the budget with measured tokens/s from the smoke test and `dapt_run.json`
+- [x] Run the smoke test on AGH A100 40GB (Shadeform partner) — passed 2026-09-19: torch 2.11+cu128, bf16 supported, Unsloth 2026.9.7 patched Qwen3, mini-SFT loss 7.5→1.8 in 8 steps, KTO/GRPO/DPO trainers available
+- [x] Reproducible environment recipe — `scripts/setup_training_env.sh` (uv + Python 3.12 + `--torch-backend=cu128`; avoids the old system Python on generic cloud images)
+- [x] Colab T4 pipeline — superseded: identical scripts; Colab remains the fallback if AGH access lapses
+- [ ] Re-estimate the budget with measured tokens/s from the first DAPT run (`dapt_run.json`)
 
-**Deliverable:** Working training pipeline for Qwen3-1.7B on T4 and/or AGH — scripts ready; first GPU run pending
+**Deliverable:** Working training pipeline for Qwen3-1.7B on AGH A100 — smoke test passed; DAPT/SFT runs next
 
 ---
 
