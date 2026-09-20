@@ -9,10 +9,10 @@ Source texts for Domain-Adaptive Continued Pretraining (Phase 1).
 | `tax_act_2025_clean.txt` | Nigeria Tax Act 2025 — cleaned statute text, 428,778 chars, 8,256 lines |
 | `ntaa_2025_clean.txt` | Nigeria Tax Administration Act 2025 — cleaned statute text, 187,277 chars |
 | `pencom_vc_guidelines_2018_clean.txt` | PenCom Voluntary Contribution Guidelines (2018) — cleaned regulator text, 28,892 chars |
-| `procedural/` | Hand-written procedural/planning prose — 6 documents, 50,390 chars (see its README for grounding) |
+| `procedural/` | Hand-written procedural/planning prose — 7 documents, 55,869 chars (see its README for grounding) |
 | `README.md` | This document |
 
-**Combined corpus: ~695,000 chars** (target range 500KB–2MB).
+**Combined corpus: ~700,800 chars** (target range 500KB–2MB).
 
 ## Provenance
 

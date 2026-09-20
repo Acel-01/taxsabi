@@ -12,6 +12,7 @@ Hand-written domain prose for Domain-Adaptive Continued Pretraining (Phase 1). T
 | `04_paye_payroll_and_compliance.md` | Employer and employee duties, the remittance clocks (PAYE, pension, WHT), returns, payslip literacy, reconciliation/refunds, routine |
 | `05_pension_and_vpc_guide.md` | Contributory Pension Scheme mechanics, mandatory and voluntary contributions, remittance rules and penalties, tax treatment, practical steps |
 | `06_scope_and_boundaries.md` | What the 2026 framework covers and what changed, out-of-scope topics, the discipline behind every statement |
+| `07_key_facts_reference.md` | Distilled verified-fact sheet: framework, bands, deductions, PAYE, pensions/VPC, refunds, assessments — added for DAPT run 4 after run 3 left rent-relief knowledge unabsorbed |
 
 ## Grounding
 
