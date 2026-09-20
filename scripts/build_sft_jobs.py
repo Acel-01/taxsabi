@@ -143,6 +143,26 @@ def calc_block(gross, reliefs, ruleset) -> dict:
     }
 
 
+def base_facts_phrase(base_reliefs: dict) -> str:
+    if not base_reliefs:
+        return ""
+    listing = ", ".join(f"{format(v, '.2f')} for {k}" for k, v in base_reliefs.items())
+    return f" and these current payments: {listing}"
+
+
+def change_phrase(field: str, new_value: float, base_reliefs: dict) -> str:
+    if field in base_reliefs:
+        current = format(base_reliefs[field], ".2f")
+        return f"increasing their {field} to {new_value} (currently {current})"
+    return f"adding {new_value} of {field}"
+
+
+def extra_amount(field: str, new_value: float, base_reliefs: dict) -> float:
+    if field in base_reliefs:
+        return round(new_value - base_reliefs[field], 2)
+    return new_value
+
+
 def build_accumulate(calcs: list[dict], rng: random.Random, count: int) -> list[dict]:
     blueprints = []
     for i in range(count):
@@ -205,6 +225,8 @@ def build_counterfactual(cf: list[dict], rng: random.Random, count: int) -> list
         base_gross = float(gt["gross_annual_salary"])
         base_reliefs = {k: float(v) for k, v in gt.get("base_relief_inputs", {}).items()}
         authoritative = {
+            "gross_annual_salary": gt["gross_annual_salary"],
+            "base_relief_inputs": gt.get("base_relief_inputs", {}),
             "base_chargeable_income": gt["base_chargeable_income"],
             "base_tax": gt["base_tax"],
             "scenario_chargeable_income": gt["scenario_chargeable_income"],
@@ -212,12 +234,19 @@ def build_counterfactual(cf: list[dict], rng: random.Random, count: int) -> list
             "tax_saving": gt["tax_saving"],
             "changed_field": field,
             "new_value": format(float(new_value), ".2f"),
+            "extra_amount": format(extra_amount(field, float(new_value), base_reliefs), ".2f"),
         }
         turns = [
-            {"role": "user", "guidance": "state salary and current reliefs, then ask for the tax"},
             {
                 "role": "user",
-                "guidance": f"ask what happens to the tax if they add {new_value} of {field}; the assistant shows both taxes and the saving",
+                "guidance": "state salary" + base_facts_phrase(base_reliefs) + ", then ask for the tax",
+            },
+            {
+                "role": "user",
+                "guidance": (
+                    f"ask what happens to the tax if {change_phrase(field, float(new_value), base_reliefs)}; "
+                    "the assistant shows both taxes and the saving"
+                ),
             },
         ]
         blueprints.append(
@@ -366,12 +395,13 @@ def build_coaching(cf: list[dict], facts: list[dict], rng: random.Random, count:
             base_gross = float(gt["gross_annual_salary"])
             base_reliefs = {k: float(v) for k, v in gt.get("base_relief_inputs", {}).items()}
             cf_result = run_counterfactual(base_gross, base_reliefs, field, new_value, ruleset)
+            base_calc = calculate_full(base_gross, base_reliefs, ruleset)
             discovery = COACHING_DISCOVERY[i % len(COACHING_DISCOVERY)]
             turns = [
                 {"role": "user", "guidance": f"{discovery}; the assistant asks questions rather than asserting reliefs apply"},
                 {
                     "role": "user",
-                    "guidance": f"confirm they can add {new_value:.0f} of {field}, then ask how much tax it saves",
+                    "guidance": f"confirm they will {change_phrase(field, new_value, base_reliefs)}, then ask how much tax it saves",
                 },
             ]
             blueprints.append(
@@ -381,8 +411,12 @@ def build_coaching(cf: list[dict], facts: list[dict], rng: random.Random, count:
                     "turns": turns,
                     "authoritative": {
                         "gross_annual_salary": format(base_gross, ".2f"),
+                        "base_relief_inputs": {k: format(v, ".2f") for k, v in base_reliefs.items()},
+                        "base_chargeable_income": format(base_calc["chargeable_income"], ".2f"),
+                        "base_tax": format(cf_result["base_tax"], ".2f"),
                         "changed_field": field,
                         "new_value": format(new_value, ".2f"),
+                        "extra_amount": format(extra_amount(field, new_value, base_reliefs), ".2f"),
                         "scenario_chargeable_income": format(cf_result["scenario_chargeable_income"], ".2f"),
                         "scenario_tax": format(cf_result["scenario_tax"], ".2f"),
                         "tax_saving": format(cf_result["delta"], ".2f"),
@@ -397,8 +431,15 @@ def build_coaching(cf: list[dict], facts: list[dict], rng: random.Random, count:
             gt = scenario["ground_truth"]
             field = gt["changed_field"]
             new_value = float(gt.get(f"new_{field}") or gt.get("new_value"))
+            base_reliefs = {k: float(v) for k, v in gt.get("base_relief_inputs", {}).items()}
             turns = [
-                {"role": "user", "guidance": "state salary and ask how much tax a specified contribution would save"},
+                {
+                    "role": "user",
+                    "guidance": (
+                        "state salary" + base_facts_phrase(base_reliefs)
+                        + f", then ask how much tax they would save by {change_phrase(field, new_value, base_reliefs)}"
+                    ),
+                },
                 {"role": "user", "guidance": "ask whether there is a limit on that kind of contribution"},
             ]
             vpc_fact = facts[5]
@@ -409,6 +450,7 @@ def build_coaching(cf: list[dict], facts: list[dict], rng: random.Random, count:
                     "turns": turns,
                     "authoritative": {
                         "gross_annual_salary": gt["gross_annual_salary"],
+                        "base_relief_inputs": gt.get("base_relief_inputs", {}),
                         "base_chargeable_income": gt["base_chargeable_income"],
                         "base_tax": gt["base_tax"],
                         "scenario_chargeable_income": gt["scenario_chargeable_income"],
@@ -416,6 +458,7 @@ def build_coaching(cf: list[dict], facts: list[dict], rng: random.Random, count:
                         "tax_saving": gt["tax_saving"],
                         "changed_field": field,
                         "new_value": format(new_value, ".2f"),
+                        "extra_amount": format(extra_amount(field, new_value, base_reliefs), ".2f"),
                     },
                     "required_terms": vpc_fact["required_terms"],
                     "source_fact_ids": scenario.get("source_fact_ids", []) + vpc_fact["source_fact_ids"],
@@ -431,12 +474,13 @@ def build_coaching(cf: list[dict], facts: list[dict], rng: random.Random, count:
             base_gross = float(gt["gross_annual_salary"])
             base_reliefs = {k: float(v) for k, v in gt.get("base_relief_inputs", {}).items()}
             cf_result = run_counterfactual(base_gross, base_reliefs, field, new_value, ruleset)
+            base_calc = calculate_full(base_gross, base_reliefs, ruleset)
             turns = [
                 {"role": "user", "guidance": "describe spare savings and ask what to prioritise for tax purposes"},
                 {"role": "user", "guidance": "ask how to set up the voluntary pension lever the assistant recommends"},
                 {
                     "role": "user",
-                    "guidance": f"ask how much tax {new_value:.0f} into that lever would save",
+                    "guidance": f"ask how much tax they save by {change_phrase(field, new_value, base_reliefs)}",
                 },
             ]
             blueprints.append(
@@ -446,8 +490,12 @@ def build_coaching(cf: list[dict], facts: list[dict], rng: random.Random, count:
                     "turns": turns,
                     "authoritative": {
                         "gross_annual_salary": format(base_gross, ".2f"),
+                        "base_relief_inputs": {k: format(v, ".2f") for k, v in base_reliefs.items()},
+                        "base_chargeable_income": format(base_calc["chargeable_income"], ".2f"),
+                        "base_tax": format(cf_result["base_tax"], ".2f"),
                         "changed_field": field,
                         "new_value": format(new_value, ".2f"),
+                        "extra_amount": format(extra_amount(field, new_value, base_reliefs), ".2f"),
                         "scenario_chargeable_income": format(cf_result["scenario_chargeable_income"], ".2f"),
                         "scenario_tax": format(cf_result["scenario_tax"], ".2f"),
                         "tax_saving": format(cf_result["delta"], ".2f"),

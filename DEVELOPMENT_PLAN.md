@@ -183,7 +183,7 @@
 - [x] Build dialogue skeleton generator (programmatic) — `scripts/build_sft_jobs.py`; model-agnostic job files in `data/sft_jobs/` (layer_a 300 / layer_b 80 / layer_c 110 blueprints), one layer per model so switching is minimal
       - Accumulate-then-compute, counterfactual, correction, clarify-then-compute, coaching discovery/savings/sequencing, topic shift with retention, out-of-scope decline
 - [x] Engine verifies every number in every assistant turn — `scripts/verify_sft_generation.py`: schema checks, authorised-amount set from engine values, required-figure and required-term checks; rejects written with reasons
-- [ ] Generate initial batch: ~500 conversations — job files ready; process layers via opencode sessions (models: Flash for layer_a, strongest for layer_b, best + human review for layer_c), then run the verifier
+- [x] Generate initial batch: ~500 conversations — 490 generated and verified (layer_a 300, layer_b 80, layer_c 110), zero rejects; produced via opencode subagents against engine-locked blueprints, then filtered by `scripts/verify_sft_generation.py` (2026-09-20); reviewed data in `data/sft_verified/`
 - [x] Target: 3-8 turns per conversation, natural phrasing variety — enforced by schema checks and per-turn guidance
 
 ### 2.2 User Review Loop (Round 1)
