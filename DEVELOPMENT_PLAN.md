@@ -197,10 +197,10 @@
 ### 2.3 SFT Data Assembly
 - [x] Layer 1: Approved conversations (engine-verified) — 490 conversations across layers A/B/C (2026-09-20)
 - [x] Layer 2: Fresh single-turn Q&A — 1,116 English + 134 Pidgin, generated against engine-locked scenarios (3 phrasing variants per calc/counterfactual scenario + 12 facts × 8 styles). Gate 1 English sets rejected by user as not good enough and are not used
-- [ ] Layer 3: Replay data (10-20% general chat from open datasets)
-- [ ] Citation behavior: mix of cited and uncited answers (contextual, per constitution)
-- [x] Pidgin data (user-reviewed) — 110 conversations + 134 single-turn; style approved in review pass 1
-- [x] Core total: 1,740 examples, all engine-verified (target revised from 3,000–5,000; expand the weakest area after SFT evaluation rather than over-generate now)
+- [x] Layer 3: Replay data — 220 OASST1 (Apache-2.0) general-chat conversations, ~11% of examples / ~17% of assistant words; no tax content, added to prevent narrowing
+- [x] Citation behavior — cited fact variants added (24 English + 20 Pidgin) where the blueprint supplies the exact register citation (sections 30/31/32/41/55/58, s.51 NTAA, PRA s.4), plus uncited variants; contextual mix rather than boilerplate
+- [x] Pidgin data (user-reviewed) — 110 conversations + 151 single-turn after assembly; style approved in review pass 1
+- [x] Assembled dataset: **1,929 examples (train 1,833 / val 96)**, deduped (75 removed), zero eval overlap, manifest with sha256 provenance — `data/sft_v1/{train,val}.jsonl` + `MANIFEST.md`. Core+replay: ~96,000 assistant words
 
 ### 2.4 SFT Training (Round 1)
 - [ ] QLoRA on DAPT checkpoint

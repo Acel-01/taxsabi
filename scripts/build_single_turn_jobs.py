@@ -104,6 +104,44 @@ FACTS = [
     },
 ]
 
+CITATIONS = {
+    "bands": "Fourth Schedule (section 58) of the Nigeria Tax Act 2025",
+    "rent": "section 30(2)(a)(vi) of the Nigeria Tax Act 2025",
+    "minwage": "section 58 of the Nigeria Tax Act 2025",
+    "paye": "section 51 of the Nigeria Tax Administration Act 2025",
+    "pension": "section 30(2)(a)(iii) of the Nigeria Tax Act 2025",
+    "vpc": "section 30(2)(a)(iii) of the Nigeria Tax Act 2025",
+    "filing": "section 30(2)(a) of the Nigeria Tax Act 2025",
+    "refund": "section 55 of the Nigeria Tax Administration Act 2025",
+    "evidence": "sections 31 and 32 of the Nigeria Tax Act 2025",
+    "nocra": "section 30 of the Nigeria Tax Act 2025",
+    "objection": "section 41 of the Nigeria Tax Administration Act 2025",
+    "scope": "the Nigeria Tax Act 2025",
+}
+
+CITED_STYLES = [
+    ("cited_formal", "ask formally and require the answer to cite the exact legal provision"),
+    ("cited_conversational", "ask naturally and require the citation to be woven into the answer"),
+    ("cited_direct", "ask directly and require the exact section cited in the answer"),
+]
+
+CITED_STYLES_PIDGIN = [
+    ("cited_pidgin_formal", "ask in Pidgin formally and require the answer to cite the exact legal provision"),
+    ("cited_pidgin_conversational", "ask in natural Pidgin and require the citation woven into the answer"),
+]
+
+# 8 question styles for regular facts
+QUESTION_STYLES = [
+    ("direct", "ask the question directly and plainly"),
+    ("terse", "ask in a few words, shorthand style"),
+    ("verify", "say someone told them something about this and ask if it is correct"),
+    ("context", "give a one-line personal context first, then ask"),
+    ("explain", "ask for a simple explanation"),
+    ("list", "ask for the full list or the exact figures"),
+    ("command", "phrase it as a short command, e.g. 'break this down for me'"),
+    ("confused", "say they are confused about this and need it cleared up"),
+]
+
 QUESTION_STYLES = [
     ("direct", "ask the question directly and plainly"),
     ("terse", "ask in a few words, shorthand style"),
@@ -218,6 +256,7 @@ def build_cf(scenarios: list[dict], language: str, offset: int, count: int, vari
 def build_facts(facts: list[dict], language: str, variants_per_fact: int) -> list[dict]:
     out = []
     for fact in facts:
+        # Regular variants
         for j, style in enumerate(QUESTION_STYLES[:variants_per_fact]):
             pid = f"st-{'en' if language == 'en' else 'pcm'}-fact-{fact['id']}-{j:02d}"
             out.append(
@@ -234,6 +273,28 @@ def build_facts(facts: list[dict], language: str, variants_per_fact: int) -> lis
                     ],
                     "authoritative": {},
                     "required_terms": fact["required_terms"],
+                    "source_fact_ids": fact["source_fact_ids"],
+                }
+            )
+        # Cited variants: 2 per fact (formal + conversational citation)
+        cited_styles = CITED_STYLES if language == "en" else CITED_STYLES_PIDGIN
+        for j, style in enumerate(cited_styles[:2]):
+            pid = f"st-{'en' if language == 'en' else 'pcm'}-fact-cited-{fact['id']}-{j:02d}"
+            citation = CITATIONS[fact["id"]]
+            out.append(
+                {
+                    "conversation_id": pid,
+                    "type": "single_fact_cited",
+                    "language": language,
+                    "style": style[0],
+                    "turns": [
+                        {
+                            "role": "user",
+                            "guidance": f"{style[1]}; the question is about {fact['subject']}; the answer must cite the exact legal provision",
+                        }
+                    ],
+                    "authoritative": {"citation": CITATIONS[fact["id"]]},
+                    "required_terms": fact["required_terms"] + [CITATIONS[fact["id"]]],
                     "source_fact_ids": fact["source_fact_ids"],
                 }
             )
