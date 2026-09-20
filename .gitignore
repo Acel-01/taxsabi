@@ -30,3 +30,4 @@ submission/
 submission2.json
 app/dist/
 *.pembackups/
+data/sft_generated/

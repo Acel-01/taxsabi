@@ -180,17 +180,11 @@
 **This is the hardest phase.** The user's taste drives quality. Iterate.
 
 ### 2.1 Conversation Generation Pipeline
-- [ ] Build dialogue skeleton generator (programmatic)
-      - Accumulate-then-compute (facts across turns → calculation)
-      - Follow-up/counterfactual (calculate → what-if → what-if-again)
-      - Correction (user revises a fact → model uses new value)
-      - Clarify-then-compute (ambiguous → model asks → user answers)
-      - Coach conversations (relief discovery, savings modeling, sequencing)
-      - Topic shift with retention
-      - Out-of-scope decline (other country, other year, non-tax)
-- [ ] Engine verifies every number in every assistant turn
-- [ ] Generate initial batch: ~500 conversations
-- [ ] Target: 3-8 turns per conversation, natural phrasing variety
+- [x] Build dialogue skeleton generator (programmatic) — `scripts/build_sft_jobs.py`; model-agnostic job files in `data/sft_jobs/` (layer_a 300 / layer_b 80 / layer_c 110 blueprints), one layer per model so switching is minimal
+      - Accumulate-then-compute, counterfactual, correction, clarify-then-compute, coaching discovery/savings/sequencing, topic shift with retention, out-of-scope decline
+- [x] Engine verifies every number in every assistant turn — `scripts/verify_sft_generation.py`: schema checks, authorised-amount set from engine values, required-figure and required-term checks; rejects written with reasons
+- [ ] Generate initial batch: ~500 conversations — job files ready; process layers via opencode sessions (models: Flash for layer_a, strongest for layer_b, best + human review for layer_c), then run the verifier
+- [x] Target: 3-8 turns per conversation, natural phrasing variety — enforced by schema checks and per-turn guidance
 
 ### 2.2 User Review Loop (Round 1)
 - [ ] User reviews 100 sample conversations
