@@ -24,7 +24,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_VERIFIED = ROOT / "data" / "sft_verified"
 DEFAULT_OUT = ROOT / "data" / "sft_v1"
 
-LAYERS = ["layer_a", "layer_b", "layer_c", "single_en", "single_pcm"]
+LAYERS = ["layer_a", "layer_b", "layer_c", "single_en", "single_pcm", "topup_v3"]
 REPLAY = ROOT / "data" / "sft_generated" / "replay_en.jsonl"
 
 EVAL_FILES = [

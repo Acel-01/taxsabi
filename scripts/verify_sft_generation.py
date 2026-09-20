@@ -169,7 +169,7 @@ def run_layer(layer: str) -> None:
     blueprints = load_blueprints(layer)
     language = {
         "layer_a": "en", "layer_b": "en", "layer_c": "pcm",
-        "single_en": "en", "single_pcm": "pcm",
+        "single_en": "en", "single_pcm": "pcm", "topup_v3": "en",
     }[layer]
     generated_dir = GENERATED / layer
     if not generated_dir.exists():
@@ -193,7 +193,7 @@ def run_layer(layer: str) -> None:
             if blueprint is None:
                 rejected.append({"id": conv_id, "reasons": ["no matching blueprint"]})
                 continue
-            ok, reasons = verify_conversation(conversation, blueprint, language)
+            ok, reasons = verify_conversation(conversation, blueprint, blueprint.get("language", language))
             if ok:
                 conversation["verified_by_engine"] = True
                 conversation["verification"] = "engine+schema"
@@ -229,12 +229,12 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--layer",
-        choices=["layer_a", "layer_b", "layer_c", "single_en", "single_pcm"],
+        choices=["layer_a", "layer_b", "layer_c", "single_en", "single_pcm", "topup_v3"],
     )
     parser.add_argument("--all", action="store_true")
     args = parser.parse_args()
     if args.all:
-        for layer in ("layer_a", "layer_b", "layer_c", "single_en", "single_pcm"):
+        for layer in ("layer_a", "layer_b", "layer_c", "single_en", "single_pcm", "topup_v3"):
             run_layer(layer)
     elif args.layer:
         run_layer(args.layer)

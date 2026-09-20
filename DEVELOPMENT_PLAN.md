@@ -206,7 +206,9 @@
 - [x] Multi-turn trainer support — `scripts/finetune_qlora.py` now consumes the `turns` schema with assistant-only loss masking (system/user masked -100, assistant header masked, content + end-of-turn trained) plus a no-GPU `--dry-run` verifier; dry-run confirmed on the real Qwen3 tokenizer (1,833 records, avg 232 / max 695 tokens, zero truncations)
 - [ ] QLoRA on DAPT checkpoint (v5 merged; upload adapter from `backups/taxsabi_v5_backup.tar.gz`, merge with `scripts/merge_adapter.py`)
 - [ ] Moderate LR (~1e-4), 2 epochs (defaults: r=64, α=128, effective batch 8)
-- [ ] Checkpoint and evaluate (probe + paraphrase + coach + Pidgin; compare vs v5)
+- [x] SFT v1/v2 runs + held-out evaluation: v1 exposed the headline-first format flaw (total contradicted the model's own breakdown); v2 (working-first) fixed it — held-out exact tax 0/10 -> 4/10, no regressions
+- [x] SFT v3 top-up dataset built — 94 targeted drills (rent percentage with novel amounts, band boundaries, clarify/no-clarify, fact corrections incl. decontaminated questions); assembled to `data/sft_v3` (2,021 examples, eval-clean)
+- [ ] Retrain SFT v3 on the instance and re-evaluate (held-out + dev vs v2)
 
 ### 2.5 Evaluation Round 1
 - [ ] Run all eval suites (paraphrase, multi-turn, coach, calculation, Pidgin)
