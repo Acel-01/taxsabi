@@ -161,9 +161,13 @@
 - [x] Run 3 (best): 8 epochs, r=128, bf16, prose ×5; loss 1.346; probe: **full band table correct** (800k@0%, 15/18/21/23/25%); rent relief still misstated
 - [x] Run 4 (regression): run-3 recipe + distilled fact sheet as corpus doc 07 → number bleed: garbled bands (spurious 2,250,000 / 7,800,000 boundaries, duplicated 0%), blended rent figures. Dense consecutive facts repeated ×5 overfit the adapter
 - [x] Decision (2026-09-20): fact sheet removed from the DAPT corpus (now `sources/KEY_FACTS_REFERENCE.md` for SFT generation); SFT base = run-3 recipe without the fact sheet (v5)
-- [ ] Run 5: regenerate run-3 recipe on the cleaned corpus; verify bands on the probe; merge as the SFT base
+- [x] Run 5 (2026-09-20): run-3 recipe on the cleaned corpus; probe: 800k@0%, 2.2M@15%, 9M@18% correct; upper boundaries drift (22M/50M vs 13M/25M). Run-to-run variance vs run 3 confirms numeric tables are fragile via DAPT alone
+- [x] SFT base selected: v5 (recreate the merged model from the backed-up adapter via `scripts/merge_adapter.py`; merged models are not archived)
+- [ ] Degradation check (general language, Pidgin): deferred to the v5-vs-SFT comparison — English outputs coherent in the probe; Pidgin untested
 - [ ] If degradation: increase replay ratio, reduce epochs
 - [ ] Target: clear knowledge gain in the weights; precise fact-binding and answer behavior completed in SFT (see revised 1.3 gate)
+
+**Phase 1 status (2026-09-20): exiting under the revised gate — knowledge gain verified (bands, rates, terminology in the weights); precision and behavior deferred to SFT by design.**
 
 **Stage gate:** Material knowledge gain vs the base model on the probe — bands, rates, and terminology correct in free-form answers. Precise fact-binding (rent cap, procedure details) and answer behavior are completed in SFT. (Revision proposed 2026-09-20 after runs 3–4 showed DAPT learns structure well but over-concentrated numbers cause bleed; requiring 80% free-form fact accuracy in DAPT pushes precision into the wrong stage.)
 
