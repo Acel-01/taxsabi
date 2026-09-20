@@ -14,8 +14,8 @@ Example:
         --epochs 2 --lr 5e-5 --replay-ratio 0.15
 
 Replay source options:
-    --replay-dataset wikitext        (streams wikitext-103-raw-v1)
-    --replay-file path/to/text.txt   (local general text)
+    --replay-dataset Salesforce/wikitext   (streams wikitext-103-raw-v1)
+    --replay-file path/to/text.txt         (local general text)
 """
 from __future__ import annotations
 
@@ -78,7 +78,7 @@ def main() -> None:
     parser.add_argument("--lora-r", type=int, default=32)
     parser.add_argument("--lora-alpha", type=int, default=64)
     parser.add_argument("--replay-ratio", type=float, default=0.15)
-    parser.add_argument("--replay-dataset", default="wikitext")
+    parser.add_argument("--replay-dataset", default="Salesforce/wikitext")
     parser.add_argument("--replay-file", default=None)
     parser.add_argument("--val-fraction", type=float, default=0.02)
     parser.add_argument("--seed", type=int, default=42)
