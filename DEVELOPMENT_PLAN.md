@@ -136,10 +136,11 @@
 **Objective:** Bake domain knowledge into the weights via continued pretraining.
 
 ### 1.1 Corpus Preparation
-- [ ] Tokenize and clean the DAPT corpus
-- [ ] Structure into training-format documents (plain text, sectioned)
-- [ ] Mix with 10-20% general-domain text (replay to prevent narrowing)
-- [ ] Split into training/validation
+- [x] Tokenize and clean the DAPT corpus — cleaning done in 0.3 (deterministic cleaners, artifact sweeps); tokenization + EOS-separated 1024-block packing implemented in `scripts/dapt_pretrain.py` (runs on first launch)
+- [x] Structure into training-format documents — sectioned plain text: 2 cleaned statutes, PenCom guidelines, 6 procedural prose docs (~695K chars ≈ 174K tokens)
+- [x] Mix with 10-20% general-domain text — `--replay-ratio 0.15` (wikitext streaming or `--replay-file`), implemented in `scripts/dapt_pretrain.py`
+- [x] Split into training/validation — 98/2 block split, seed 42, implemented in `scripts/dapt_pretrain.py`
+- [ ] License check (inherited from 0.3) — confirm the public-document basis for statutes and PenCom guidelines before any redistribution
 
 ### 1.2 DAPT Training
 - [ ] Configure Unsloth for continued pretraining (next-token prediction on raw text)
@@ -155,7 +156,9 @@
 - [ ] Check for degradation: general language ability, instruction following, multilingual
 
 ### 1.4 Iterate
-- [ ] If knowledge gaps: expand corpus, retrain
+- [x] Run 1 (2026-09-20): 2 epochs, r=32, QLoRA 4-bit, 172 blocks, 55 s on A100; loss 2.358→2.109, eval 2.204→2.183. Probe: still fabricates rate tables (0/10 exact); partial gains (correct deduction arithmetic in one case, consistent Act naming)
+- [ ] Run 2: stronger pass — more epochs, r=64, bf16 instead of 4-bit, prose repeated 3x (`--repeat-prose`), then re-probe
+- [ ] If knowledge gaps persist after run 2: decide whether SFT carries expression, or expand corpus/curriculum before Phase 2
 - [ ] If degradation: increase replay ratio, reduce epochs
 - [ ] Target: model can answer factual questions about Nigerian tax law from weights alone
 
