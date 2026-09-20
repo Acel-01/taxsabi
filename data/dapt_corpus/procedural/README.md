@@ -12,7 +12,8 @@ Hand-written domain prose for Domain-Adaptive Continued Pretraining (Phase 1). T
 | `04_paye_payroll_and_compliance.md` | Employer and employee duties, the remittance clocks (PAYE, pension, WHT), returns, payslip literacy, reconciliation/refunds, routine |
 | `05_pension_and_vpc_guide.md` | Contributory Pension Scheme mechanics, mandatory and voluntary contributions, remittance rules and penalties, tax treatment, practical steps |
 | `06_scope_and_boundaries.md` | What the 2026 framework covers and what changed, out-of-scope topics, the discipline behind every statement |
-| `07_key_facts_reference.md` | Distilled verified-fact sheet: framework, bands, deductions, PAYE, pensions/VPC, refunds, assessments — added for DAPT run 4 after run 3 left rent-relief knowledge unabsorbed |
+
+Note: a distilled fact sheet (bands, reliefs, deadlines in consecutive sentences) was trialled as document 07 in DAPT run 4 and caused number bleed/garbling — dense numeric facts repeated too often overfit the adapter. It now lives at `sources/KEY_FACTS_REFERENCE.md` as a reference for SFT data generation, not as DAPT text.
 
 ## Grounding
 

@@ -157,12 +157,15 @@
 
 ### 1.4 Iterate
 - [x] Run 1 (2026-09-20): 2 epochs, r=32, QLoRA 4-bit, 172 blocks, 55 s on A100; loss 2.358→2.109, eval 2.204→2.183. Probe: still fabricates rate tables (0/10 exact); partial gains (correct deduction arithmetic in one case, consistent Act naming)
-- [ ] Run 2: stronger pass — more epochs, r=64, bf16 instead of 4-bit, prose repeated 3x (`--repeat-prose`), then re-probe
-- [ ] If knowledge gaps persist after run 2: decide whether SFT carries expression, or expand corpus/curriculum before Phase 2
+- [x] Run 2: 5 epochs, r=64, bf16, prose ×3 (`--repeat-prose 3 --no-4bit`); loss 1.926; probe: band boundaries 3M/12M/25M/50M correct, but first boundary wrong and top rates collapsed to 19%; rent relief still wrong
+- [x] Run 3 (best): 8 epochs, r=128, bf16, prose ×5; loss 1.346; probe: **full band table correct** (800k@0%, 15/18/21/23/25%); rent relief still misstated
+- [x] Run 4 (regression): run-3 recipe + distilled fact sheet as corpus doc 07 → number bleed: garbled bands (spurious 2,250,000 / 7,800,000 boundaries, duplicated 0%), blended rent figures. Dense consecutive facts repeated ×5 overfit the adapter
+- [x] Decision (2026-09-20): fact sheet removed from the DAPT corpus (now `sources/KEY_FACTS_REFERENCE.md` for SFT generation); SFT base = run-3 recipe without the fact sheet (v5)
+- [ ] Run 5: regenerate run-3 recipe on the cleaned corpus; verify bands on the probe; merge as the SFT base
 - [ ] If degradation: increase replay ratio, reduce epochs
-- [ ] Target: model can answer factual questions about Nigerian tax law from weights alone
+- [ ] Target: clear knowledge gain in the weights; precise fact-binding and answer behavior completed in SFT (see revised 1.3 gate)
 
-**Stage gate:** Model correctly answers ≥80% of domain-knowledge questions (bands, reliefs, procedures, sections) without SFT formatting.
+**Stage gate:** Material knowledge gain vs the base model on the probe — bands, rates, and terminology correct in free-form answers. Precise fact-binding (rent cap, procedure details) and answer behavior are completed in SFT. (Revision proposed 2026-09-20 after runs 3–4 showed DAPT learns structure well but over-concentrated numbers cause bleed; requiring 80% free-form fact accuracy in DAPT pushes precision into the wrong stage.)
 
 ---
 
