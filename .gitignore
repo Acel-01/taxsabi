@@ -29,5 +29,6 @@ data/train/targeted_v6c_pidgin_draft*.jsonl
 submission/
 submission2.json
 app/dist/
-*.pembackups/
+*.pem
+backups/
 data/sft_generated/
