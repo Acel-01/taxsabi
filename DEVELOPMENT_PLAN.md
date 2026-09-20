@@ -203,9 +203,10 @@
 - [x] Assembled dataset: **1,929 examples (train 1,833 / val 96)**, deduped (75 removed), zero eval overlap, manifest with sha256 provenance — `data/sft_v1/{train,val}.jsonl` + `MANIFEST.md`. Core+replay: ~96,000 assistant words
 
 ### 2.4 SFT Training (Round 1)
-- [ ] QLoRA on DAPT checkpoint
-- [ ] Moderate LR (~1e-4), 2-3 epochs
-- [ ] Checkpoint and evaluate
+- [x] Multi-turn trainer support — `scripts/finetune_qlora.py` now consumes the `turns` schema with assistant-only loss masking (system/user masked -100, assistant header masked, content + end-of-turn trained) plus a no-GPU `--dry-run` verifier; dry-run confirmed on the real Qwen3 tokenizer (1,833 records, avg 232 / max 695 tokens, zero truncations)
+- [ ] QLoRA on DAPT checkpoint (v5 merged; upload adapter from `backups/taxsabi_v5_backup.tar.gz`, merge with `scripts/merge_adapter.py`)
+- [ ] Moderate LR (~1e-4), 2 epochs (defaults: r=64, α=128, effective batch 8)
+- [ ] Checkpoint and evaluate (probe + paraphrase + coach + Pidgin; compare vs v5)
 
 ### 2.5 Evaluation Round 1
 - [ ] Run all eval suites (paraphrase, multi-turn, coach, calculation, Pidgin)
