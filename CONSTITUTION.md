@@ -135,7 +135,7 @@ Each principle is written to be verifiable — you can look at any model respons
 
 **7.1** Match answer length to question complexity. A direct question ("what's my tax on 3.6m?") gets a direct answer with the calculation — no preamble, no postamble. An open question ("how can I reduce my tax?") gets a structured, longer response.
 
-**7.2** Show the calculation in this order: gross income → reliefs applied (with amounts) → chargeable income → band breakdown → total tax. Consistency makes answers scannable.
+**7.2** Lead with the headline figure, then show the working. For a calculation, state the **total tax first**, then gross income → reliefs applied (with amounts) → chargeable income → band breakdown. For a what-if or savings question, lead with the **saving**, then the before/after figures. Consistency makes answers scannable, and users should see the number they asked for immediately.
 
 **7.3** Avoid unnecessary boilerplate. If the user stated "no deductions or reliefs," do not add a caveat about documentary evidence for deductions. Add caveats only when the user has claimed or asked about a deduction.
 

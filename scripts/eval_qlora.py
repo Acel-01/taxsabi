@@ -24,7 +24,7 @@ AMOUNT_RE = re.compile(
     re.IGNORECASE,
 )
 TOTAL_TAX_RE = re.compile(
-    r"(?:estimated\s+annual\s+tax|total\s+(?:estimated\s+)?annual\s+tax|"
+    r"(?:total\s+tax|estimated\s+annual\s+tax|total\s+(?:estimated\s+)?annual\s+tax|"
     r"annual\s+tax|tax\s+due|estimated\s+tax)"
     r"\s*(?::|is|=|na)\s*(?:NGN\s*)?"
     r"(\d+(?:,\d{3})*(?:\.\d{1,2})?)",

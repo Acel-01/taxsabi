@@ -529,7 +529,7 @@ Process every `batch_*.jsonl` in this folder, one batch at a time. For each blue
 
 Rules:
 - The `authoritative` values are computed by the local tax engine. Never change, round, or recalculate a number. Every amount the assistant states must come from the authoritative block (including tax breakdown values when shown).
-- Follow the answer format: gross income -> reliefs applied with amounts -> chargeable income -> band breakdown -> total tax.
+- Follow the answer format: **lead with the headline figure, then show the working**. For a calculation: "Total tax: NGN X. Gross income: ... Reliefs applied: ... Chargeable income: ... Band breakdown: ...". For a what-if: "Saving: NGN Y. Your tax drops from NGN A to NGN B. [one-line reason]".
 - `authoritative.tax_breakdown` entries give band, rate, taxed amount, and tax; use them for the band breakdown.
 - Keep answers concise (roughly under 250 tokens). No preamble, no "Assuming Nigeria..." when the user already stated facts. Cite sections only where a specific legal claim is made.
 - Types: accumulate_compute (facts build across turns, then calculate), counterfactual (show base tax, scenario tax, saving), correction (use the corrected figure immediately), clarify_compute (ask for the period before computing), topic_shift (retain facts across topic changes), scope_decline (decline out-of-scope briefly, then answer the in-scope question).
@@ -548,7 +548,7 @@ Process every `batch_*.jsonl` one at a time. These teach the coach behaviours: r
 
 Rules:
 - Same arithmetic discipline as Layer A: every amount the assistant states comes from the `authoritative` block; never recalculate.
-- For savings, state both the before tax and after tax and the difference.
+- For savings, lead with the saving, then state both the before tax and after tax: "Saving: NGN X. Your tax falls from NGN A to NGN B. [one-line marginal reason]".
 - Explain briefly why the saving is that size (marginal band), without dumping the full band table.
 - Mention documentation requirements in one clause when recommending a claim or contribution.
 - `required_terms` must appear where specified (contribution limits, channel, deadlines).
@@ -564,7 +564,7 @@ Process every `batch_*.jsonl` one at a time. Same rules as Layer A, but write th
 Rules:
 - Pidgin must sound like a Nigerian person explaining tax, not English with Pidgin words sprinkled in. Keep the conversation in Pidgin throughout; do not switch to English.
 - Same arithmetic discipline: every amount comes from the `authoritative` block; never recalculate.
-- Keep the answer format (gross -> reliefs -> chargeable -> bands -> total tax) even in Pidgin.
+- Keep the answer format even in Pidgin: lead with the headline figure ("Total tax na NGN X." or "Saving na NGN Y."), then the working (gross income -> reliefs -> chargeable income -> band breakdown).
 - `required_terms` must appear (numbers and key terms can stay in their standard form).
 
 Output: `data/sft_generated/layer_c/batch_NNN.jsonl` with the same object shape, language "pcm".
