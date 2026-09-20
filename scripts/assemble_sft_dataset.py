@@ -21,8 +21,8 @@ from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-VERIFIED = ROOT / "data" / "sft_verified"
-OUT = ROOT / "data" / "sft_v1"
+DEFAULT_VERIFIED = ROOT / "data" / "sft_verified"
+DEFAULT_OUT = ROOT / "data" / "sft_v1"
 
 LAYERS = ["layer_a", "layer_b", "layer_c", "single_en", "single_pcm"]
 REPLAY = ROOT / "data" / "sft_generated" / "replay_en.jsonl"
@@ -53,6 +53,17 @@ def sha256(path: Path) -> str:
 
 
 def main() -> None:
+    import argparse
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--verified-dir", type=Path, default=DEFAULT_VERIFIED)
+    parser.add_argument("--out", type=Path, default=DEFAULT_OUT)
+    parser.add_argument("--label", default="SFT Dataset v1")
+    args = parser.parse_args()
+    VERIFIED = args.verified_dir.resolve()
+    OUT = args.out.resolve()
+    label = args.label
+
     records: list[tuple[str, dict]] = []
     for layer in LAYERS:
         path = VERIFIED / f"{layer}.jsonl"
@@ -124,7 +135,7 @@ def main() -> None:
         if turn.get("role") == "assistant"
     )
     lines = [
-        "# SFT Dataset v1 — Manifest",
+        "# {label} — Manifest",
         "",
         f"- Assembled: 2026-09-20 from verified layers + OASST1 replay",
         f"- Total examples: {len(deduped)} (train {len(train)} / val {len(val)})",
@@ -153,7 +164,7 @@ def main() -> None:
         "",
         "Answer format: headline first (total tax / saving / citation), then the working.",
     ]
-    (OUT / "MANIFEST.md").write_text("\n".join(lines) + "\n")
+    (OUT / "MANIFEST.md").write_text("\n".join(lines).replace("{label}", label) + "\n")
     print(f"wrote train={len(train)} val={len(val)} -> {OUT}")
     print("manifest ->", OUT / "MANIFEST.md")
 
