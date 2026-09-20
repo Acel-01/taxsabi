@@ -91,33 +91,22 @@ def amount_in_set(amount: Decimal, values: set[Decimal]) -> bool:
 
 
 def required_key_figures(blueprint: dict) -> list[Decimal]:
-    """Key engine values that must appear in the assistant text."""
+    """Key engine values that must appear in the assistant text (content-based)."""
     auth = blueprint.get("authoritative", {})
     keys: list[Decimal] = []
-    btype = blueprint.get("type", "")
-    if btype == "counterfactual" or btype in ("coaching_discovery", "coaching_sequencing"):
+    if auth.get("scenario_tax") and auth.get("tax_saving"):
         for key in ("scenario_tax", "tax_saving"):
-            if auth.get(key):
-                parsed = parse_decimal(str(auth[key]))
-                if parsed is not None:
-                    keys.append(parsed)
-    elif btype == "coaching_savings":
-        for key in ("scenario_tax", "tax_saving"):
-            if auth.get(key):
-                parsed = parse_decimal(str(auth[key]))
-                if parsed is not None:
-                    keys.append(parsed)
-    elif btype == "correction":
-        corrected = auth.get("corrected", {})
-        if corrected.get("total_tax"):
-            parsed = parse_decimal(str(corrected["total_tax"]))
+            parsed = parse_decimal(str(auth[key]))
             if parsed is not None:
                 keys.append(parsed)
-    else:
-        if auth.get("total_tax"):
-            parsed = parse_decimal(str(auth["total_tax"]))
-            if parsed is not None:
-                keys.append(parsed)
+    elif auth.get("corrected", {}).get("total_tax"):
+        parsed = parse_decimal(str(auth["corrected"]["total_tax"]))
+        if parsed is not None:
+            keys.append(parsed)
+    elif auth.get("total_tax"):
+        parsed = parse_decimal(str(auth["total_tax"]))
+        if parsed is not None:
+            keys.append(parsed)
     return keys
 
 
@@ -128,7 +117,7 @@ def check_schema(conversation: dict, blueprint: dict, language: str) -> list[str
     if conversation.get("language") != language:
         problems.append(f"language mismatch: {conversation.get('language')}")
     turns = conversation.get("turns")
-    if not isinstance(turns, list) or not (3 <= len(turns) <= 8):
+    if not isinstance(turns, list) or not (2 <= len(turns) <= 8):
         problems.append(f"turn count invalid: {len(turns) if isinstance(turns, list) else 'missing'}")
         return problems
     roles = [turn.get("role") for turn in turns]
@@ -178,7 +167,10 @@ def load_blueprints(layer: str) -> dict[str, dict]:
 
 def run_layer(layer: str) -> None:
     blueprints = load_blueprints(layer)
-    language = {"layer_a": "en", "layer_b": "en", "layer_c": "pcm"}[layer]
+    language = {
+        "layer_a": "en", "layer_b": "en", "layer_c": "pcm",
+        "single_en": "en", "single_pcm": "pcm",
+    }[layer]
     generated_dir = GENERATED / layer
     if not generated_dir.exists():
         print(f"{layer}: no generated files at {generated_dir} - skipping")
@@ -235,11 +227,14 @@ def run_layer(layer: str) -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--layer", choices=["layer_a", "layer_b", "layer_c"])
+    parser.add_argument(
+        "--layer",
+        choices=["layer_a", "layer_b", "layer_c", "single_en", "single_pcm"],
+    )
     parser.add_argument("--all", action="store_true")
     args = parser.parse_args()
     if args.all:
-        for layer in ("layer_a", "layer_b", "layer_c"):
+        for layer in ("layer_a", "layer_b", "layer_c", "single_en", "single_pcm"):
             run_layer(layer)
     elif args.layer:
         run_layer(args.layer)
