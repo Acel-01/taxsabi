@@ -183,9 +183,13 @@ def main() -> None:
     tokenizer.save_pretrained(os.path.join(args.out, "adapter"))
 
     merged_dir = os.path.join(args.out, "merged")
-    if hasattr(model, "save_pretrained_merged"):
+    try:
+        if not hasattr(model, "save_pretrained_merged"):
+            raise AttributeError("save_pretrained_merged not available")
         model.save_pretrained_merged(merged_dir, tokenizer, save_method="merged_16bit")
-    else:
+    except Exception as error:  # noqa: BLE001
+        print(f"save_pretrained_merged failed ({type(error).__name__}: {error})")
+        print("falling back to in-memory merge_and_unload ...")
         merged = model.merge_and_unload()
         merged.save_pretrained(merged_dir)
         tokenizer.save_pretrained(merged_dir)
