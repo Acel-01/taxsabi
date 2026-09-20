@@ -32,3 +32,4 @@ app/dist/
 *.pem
 backups/
 data/sft_generated/
+data/sft_review/

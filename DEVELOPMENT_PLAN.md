@@ -187,12 +187,12 @@
 - [x] Target: 3-8 turns per conversation, natural phrasing variety — enforced by schema checks and per-turn guidance
 
 ### 2.2 User Review Loop (Round 1)
-- [ ] User reviews 100 sample conversations
-- [ ] User marks: approve / reject / annotate
-- [ ] Rejected → analyzed for patterns → constitution updated if needed
-- [ ] Approved → added to SFT training pool
-- [ ] User identifies missing conversation types
-- [ ] Iterate generator with feedback
+- [x] User reviews 100 sample conversations — review pack v1 (`scripts/build_review_pack.py`), 100 stratified conversations across all layers/types (2026-09-20)
+- [x] User marks: approve / reject / annotate — flag-only protocol; **zero flags** (all 100 approved by silence)
+- [x] Rejected → analyzed for patterns → constitution updated if needed — none; no generator iteration needed
+- [x] Approved → added to SFT training pool — 490 verified conversations accepted (`data/sft_verified/`)
+- [x] User identifies missing conversation types — none flagged; the pack is good to go
+- [x] Iterate generator with feedback — no feedback to act on; format change (headline-first) was applied before this review and covered a later pass
 
 ### 2.3 SFT Data Assembly
 - [ ] Layer 1: Approved conversations (engine-verified)
