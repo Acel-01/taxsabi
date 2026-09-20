@@ -163,6 +163,13 @@ def main():
 
     merged_dir = os.path.join(args.out, "merged")
     os.makedirs(merged_dir, exist_ok=True)
+    # Unsloth's merge copies read-only base weights from the HF cache; make them writable.
+    import subprocess
+    cache_root = os.path.join(
+        os.environ.get("HF_HOME", os.path.expanduser("~/.cache/huggingface")), "hub"
+    )
+    if os.path.exists(cache_root):
+        subprocess.run(["chmod", "-R", "u+w", cache_root], check=False, capture_output=True)
     try:
         if not hasattr(model, "save_pretrained_merged"):
             raise AttributeError("save_pretrained_merged not available")
@@ -171,13 +178,18 @@ def main():
             tokenizer,
             save_method="merged_16bit",
         )
+        print("merged model saved to", merged_dir)
     except Exception as error:  # noqa: BLE001
         print(f"save_pretrained_merged failed ({type(error).__name__}: {error})")
-        print("falling back to in-memory merge_and_unload ...")
-        merged_model = model.merge_and_unload()
-        merged_model.save_pretrained(merged_dir)
-        tokenizer.save_pretrained(merged_dir)
-    print("merged model saved to", merged_dir)
+        try:
+            print("falling back to in-memory merge_and_unload ...")
+            merged_model = model.merge_and_unload()
+            merged_model.save_pretrained(merged_dir)
+            tokenizer.save_pretrained(merged_dir)
+            print("merged model saved to", merged_dir)
+        except Exception as error2:  # noqa: BLE001
+            print(f"merge fallback failed too ({type(error2).__name__}: {error2})")
+            print("adapter saved; merge later with scripts/merge_adapter.py")
 
     try:
         try:

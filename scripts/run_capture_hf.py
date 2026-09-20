@@ -44,9 +44,10 @@ def load_model(model_id: str, adapter: str | None, device_map: str, dtype: str):
     if adapter:
         from peft import PeftModel
 
-        print(f"loading adapter {adapter}")
+        # Keep the adapter unmerged for inference: avoids unsloth/transformers
+        # merge-save quirks entirely (and is numerically equivalent here).
+        print(f"loading adapter {adapter} (unmerged inference)")
         model = PeftModel.from_pretrained(model, adapter)
-        model = model.merge_and_unload()
     model.eval()
     return model, tokenizer
 

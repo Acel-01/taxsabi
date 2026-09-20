@@ -24,6 +24,7 @@ import glob
 import json
 import os
 import random
+import subprocess
 import time
 from pathlib import Path
 
@@ -63,6 +64,39 @@ def load_replay_text(args, target_chars: int) -> str:
         if total >= target_chars:
             break
     return "\n".join(chunks)
+
+
+def make_cache_writable() -> None:
+    """Unsloth's merge copies base weights from the HF cache; recent hub
+    versions store cache files read-only, which makes the in-place merge fail.
+    Make them writable before saving."""
+    cache_root = Path(os.environ.get("HF_HOME", Path.home() / ".cache" / "huggingface")) / "hub"
+    if cache_root.exists():
+        subprocess.run(["chmod", "-R", "u+w", str(cache_root)], check=False, capture_output=True)
+
+
+def save_merged(model, tokenizer, merged_dir: str) -> bool:
+    """Save the merged fp16 model without crashing the run if merging fails."""
+    make_cache_writable()
+    try:
+        if not hasattr(model, "save_pretrained_merged"):
+            raise AttributeError("save_pretrained_merged not available")
+        model.save_pretrained_merged(merged_dir, tokenizer, save_method="merged_16bit")
+        print("merged model saved to", merged_dir)
+        return True
+    except Exception as error:  # noqa: BLE001
+        print(f"save_pretrained_merged failed ({type(error).__name__}: {error})")
+    try:
+        print("falling back to in-memory merge_and_unload ...")
+        merged = model.merge_and_unload()
+        merged.save_pretrained(merged_dir)
+        tokenizer.save_pretrained(merged_dir)
+        print("merged model saved to", merged_dir)
+        return True
+    except Exception as error:  # noqa: BLE001
+        print(f"merge fallback failed too ({type(error).__name__}: {error})")
+        print("adapter is saved and usable; merge later with scripts/merge_adapter.py")
+        return False
 
 
 def main() -> None:
@@ -183,17 +217,7 @@ def main() -> None:
     tokenizer.save_pretrained(os.path.join(args.out, "adapter"))
 
     merged_dir = os.path.join(args.out, "merged")
-    try:
-        if not hasattr(model, "save_pretrained_merged"):
-            raise AttributeError("save_pretrained_merged not available")
-        model.save_pretrained_merged(merged_dir, tokenizer, save_method="merged_16bit")
-    except Exception as error:  # noqa: BLE001
-        print(f"save_pretrained_merged failed ({type(error).__name__}: {error})")
-        print("falling back to in-memory merge_and_unload ...")
-        merged = model.merge_and_unload()
-        merged.save_pretrained(merged_dir)
-        tokenizer.save_pretrained(merged_dir)
-    print("merged model saved to", merged_dir)
+    merged_saved = save_merged(model, tokenizer, merged_dir)
 
     if args.gguf:
         try:
@@ -217,6 +241,7 @@ def main() -> None:
         "lr": args.lr,
         "training_loss": result.training_loss,
         "minutes": round(elapsed / 60, 1),
+        "merged_saved": merged_saved,
     }
     (Path(args.out) / "dapt_run.json").write_text(json.dumps(metadata, indent=2))
     print("run metadata ->", Path(args.out) / "dapt_run.json")
