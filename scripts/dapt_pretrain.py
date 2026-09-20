@@ -114,6 +114,14 @@ def main() -> None:
     parser.add_argument("--replay-ratio", type=float, default=0.15)
     parser.add_argument("--replay-dataset", default="Salesforce/wikitext")
     parser.add_argument("--replay-file", default=None)
+    parser.add_argument(
+        "--repeat-prose", type=int, default=1,
+        help="repeat the procedural prose docs this many times (upweights distilled facts)",
+    )
+    parser.add_argument(
+        "--no-4bit", action="store_true",
+        help="load the base in bf16 instead of 4-bit (better quality when VRAM allows)",
+    )
     parser.add_argument("--val-fraction", type=float, default=0.02)
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--gguf", action="store_true", help="also export q4_k_m GGUF (slow)")
@@ -145,7 +153,7 @@ def main() -> None:
         model_name=args.model,
         max_seq_length=args.max_seq_len,
         dtype=None,
-        load_in_4bit=True,
+        load_in_4bit=not args.no_4bit,
     )
     model = FastLanguageModel.get_peft_model(
         model,
@@ -159,7 +167,12 @@ def main() -> None:
     )
 
     print("\n=== tokenize + pack ===")
-    texts = [text for _, text in documents] + [replay_text]
+    texts = [text for _, text in documents]
+    prose = [text for name, text in documents if name.startswith("procedural/")]
+    if args.repeat_prose > 1:
+        texts += prose * (args.repeat_prose - 1)
+        print(f"prose repeated {args.repeat_prose}x ({len(prose)} docs, {sum(len(p) for p in prose):,} chars each pass)")
+    texts += [replay_text]
     dataset = Dataset.from_dict({"text": texts})
 
     def tokenize(batch):
@@ -242,6 +255,10 @@ def main() -> None:
         "training_loss": result.training_loss,
         "minutes": round(elapsed / 60, 1),
         "merged_saved": merged_saved,
+        "repeat_prose": args.repeat_prose,
+        "load_in_4bit": not args.no_4bit,
+        "lora_r": args.lora_r,
+        "lora_alpha": args.lora_alpha,
     }
     (Path(args.out) / "dapt_run.json").write_text(json.dumps(metadata, indent=2))
     print("run metadata ->", Path(args.out) / "dapt_run.json")
