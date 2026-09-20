@@ -149,11 +149,11 @@
 - [ ] Checkpoint after each epoch
 
 ### 1.3 Knowledge Evaluation
-- [ ] Test: does the model know the bands without being asked in SFT format?
-- [ ] Test: does it know PAYE procedures, relief claiming steps, documentation requirements?
-- [ ] Test: can it correctly reference the Act's sections when prompted?
-- [ ] Compare against Phase 0 baseline — quantify knowledge gain
-- [ ] Check for degradation: general language ability, instruction following, multilingual
+- [x] Test: does the model know the bands without being asked in SFT format? — probe fact-01: run 3 table fully correct; run 5 mostly correct (800k@0%, 15%, 18% rows right; upper boundaries drift)
+- [x] Test: does it know PAYE procedures, relief claiming steps, documentation requirements? — partial: pension-proof prompt captured; rent-cap prompt failed in every run (deferred to SFT); PAYE deadlines not probed directly
+- [x] Test: can it correctly reference the Act's sections when prompted? — no: probe outputs invented or misapplied citations (e.g., "Section 12(1)(a)"); recorded; citation accuracy is an SFT/GRPO target
+- [x] Compare against Phase 0 baseline — base: 0/40 exact calcs, invented flat rates; v5: real band structure present and used; gain is material and qualitative
+- [ ] Check for degradation: general language ability, instruction following, multilingual — English coherent on the probe; Pidgin untested. Deferred, not skipped: runnable from the backed-up v5 adapter on the next instance (dev probe, ~10 min) for clean DAPT attribution before SFT
 
 ### 1.4 Iterate
 - [x] Run 1 (2026-09-20): 2 epochs, r=32, QLoRA 4-bit, 172 blocks, 55 s on A100; loss 2.358→2.109, eval 2.204→2.183. Probe: still fabricates rate tables (0/10 exact); partial gains (correct deduction arithmetic in one case, consistent Act naming)
@@ -163,7 +163,7 @@
 - [x] Decision (2026-09-20): fact sheet removed from the DAPT corpus (now `sources/KEY_FACTS_REFERENCE.md` for SFT generation); SFT base = run-3 recipe without the fact sheet (v5)
 - [x] Run 5 (2026-09-20): run-3 recipe on the cleaned corpus; probe: 800k@0%, 2.2M@15%, 9M@18% correct; upper boundaries drift (22M/50M vs 13M/25M). Run-to-run variance vs run 3 confirms numeric tables are fragile via DAPT alone
 - [x] SFT base selected: v5 (recreate the merged model from the backed-up adapter via `scripts/merge_adapter.py`; merged models are not archived)
-- [ ] Degradation check (general language, Pidgin): deferred to the v5-vs-SFT comparison — English outputs coherent in the probe; Pidgin untested
+- [ ] Degradation check (general language, Pidgin): deferred, not skipped — v5 adapter is archived, so the check can run on the next instance before SFT (dev probe, ~10 min) for clean attribution; otherwise compare base→SFT
 - [ ] If degradation: increase replay ratio, reduce epochs
 - [ ] Target: clear knowledge gain in the weights; precise fact-binding and answer behavior completed in SFT (see revised 1.3 gate)
 
