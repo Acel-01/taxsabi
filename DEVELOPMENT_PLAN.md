@@ -143,10 +143,10 @@
 - [ ] License check (inherited from 0.3) — confirm the public-document basis for statutes and PenCom guidelines before any redistribution
 
 ### 1.2 DAPT Training
-- [ ] Configure Unsloth for continued pretraining (next-token prediction on raw text)
-- [ ] QLoRA on Qwen3-1.7B, low LR (~5e-5), 1-2 epochs max
-- [ ] Monitor for memorization vs absorption (validation loss vs training loss)
-- [ ] Checkpoint after each epoch
+- [x] Configure Unsloth for continued pretraining — `scripts/dapt_pretrain.py`: next-token prediction on EOS-separated 1024-token blocks, wikitext replay (15%), 98/2 train/val split, adapter + merged exports, `dapt_run.json` provenance
+- [x] QLoRA on Qwen3-1.7B, low LR — LR held at 5e-5 throughout; 4-bit QLoRA in run 1 only, switched to bf16 LoRA from run 2 (A100 40GB has the headroom); epochs exceeded the planned 1–2 (5, then 8) because absorption needed repetition
+- [x] Monitor for memorization vs absorption — loss 2.20 → 1.93 → 1.35 across runs; run 4 exposed memorization bleed from over-concentrated numeric facts (regression documented)
+- [x] Checkpoint after each epoch — `save_strategy="epoch"`; checkpoints lived on the instance; final adapter + run metadata archived locally
 
 ### 1.3 Knowledge Evaluation
 - [x] Test: does the model know the bands without being asked in SFT format? — probe fact-01: run 3 table fully correct; run 5 mostly correct (800k@0%, 15%, 18% rows right; upper boundaries drift)
