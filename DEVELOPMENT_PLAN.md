@@ -337,11 +337,11 @@
 **Objective:** Package the model into the product users experience.
 
 ### 5.1 GGUF Export & Optimization
-- [ ] Merge adapters → full model → GGUF Q4_K_M
-- [ ] Test through llama.cpp on dev laptop (speed, memory, correctness)
+- [x] Merge adapters → full model → GGUF — rebuilt from the four backed-up adapters (sha256-verified) and exported at Q4_K_M, Q5_K_M, Q6_K and Q8_0; **ship Q8_0** (quant fidelity gate below)
+- [x] Test through llama.cpp on dev laptop (speed, memory, correctness) — Q8_0: 1.70 GiB file, ~6.0 t/s generation on the i5-8250U (Q4 ~8.7 t/s in the same thermal state); correctness matches the full-precision captures
 - [ ] Test on Codespace (audit-class proxy)
-- [ ] Verify chat template works correctly for non-thinking mode
-- [ ] Compare file size and speed vs Gate 1 model
+- [x] Verify chat template works correctly for non-thinking mode — llama-server `/apply-template` renders byte-identical to the HF chat template (`…assistant\n<think>\n\n</think>\n\n`)
+- [x] Compare file size and speed vs Gate 1 model — Gate 1 was Q4_K_M (~1.06 GB); Q8_0 is 1.70 GB and ~30% slower, accepted to preserve accuracy (still far under the size budget)
 
 ### 5.2 App Bundle Updates
 - [ ] Update Tier 1 bundles with new model
@@ -360,6 +360,8 @@
 - [ ] Evaluate llama.cpp on Android (NDK build or Termux)
 - [ ] Evaluate MLC conversion for iOS
 - [ ] Prototype if feasible, defer if not — this is a stretch goal
+
+**Phase 5 status (2026-09-21): quant fidelity gate — ship Q8_0.** The frozen `grpo_v2` model was rebuilt from the backed-up adapters and exported at four precisions. Testing each through llama.cpp against the full-precision HF captures (held-out 20 + dev 30 + an 8-prompt sanity subset): Q4_K_M and Q6_K corrupt the 2026 band table ("four bands") and Q4 also flips arithmetic (rent relief 360k → 300k; the 700k zero-band taxed); Q5_K_M keeps arithmetic but substitutes an old band table and diverges on scope behaviour. **Q8_0 reproduces the measured model exactly — held-out 5/10, dev 8/9, 12/20 held-out answers byte-identical, chat template byte-identical.** Accepted trade-off: 1.70 GiB and ~6 t/s on the dev laptop vs Q4's ~1.06 GiB and ~8.7 t/s, because the shipped artifact is the GGUF and the accuracy is the competition's primary metric.
 
 ---
 
