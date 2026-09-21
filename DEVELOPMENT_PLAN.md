@@ -300,12 +300,12 @@
 **Workflow (2026-09-21):** build pool → sample difficulty on `data/grpo/pool_unknown.jsonl` with `scripts/sample_kto_completions.py` → `scripts/build_grpo_pool.py --score-samples` → `--select mid` (or mid+hard) → `scripts/grpo_train.py --model ~/models/kto_v1/merged --pool data/grpo/train_pool.jsonl --out ~/models/grpo_v1`.
 
 ### 4.3 GRPO Training
-- [ ] TRL GRPOTrainer (or Unsloth GRPO support)
-- [ ] Group size: 8–16 samples per prompt
-- [ ] QLoRA on KTO checkpoint
-- [ ] Monitor: training stability, reward curve, KL divergence from reference
-- [ ] Watch for: reward hacking (right answer, wrong reasoning), length inflation
-- [ ] Checkpoint frequently
+- [x] TRL GRPOTrainer (or Unsloth GRPO support) — v1 ran on `kto_v1` (81 mid-tier prompts, 40 steps, 11 min); conversational-completion reward bug fixed in `14ffd1b`
+- [x] Group size: 8–16 samples per prompt — 8 in v1; run 2 uses 16
+- [x] QLoRA on KTO checkpoint
+- [x] Monitor: training stability, reward curve, KL divergence from reference — reward mean ~0.55 with no upward trend over 40 steps; KL ~1e-4; loss negative (GRPO convention); run 2 needs more optimisation pressure (3 epochs, LR 5e-6, group 16)
+- [x] Watch for: reward hacking (right answer, wrong reasoning), length inflation — none: completion lengths stable 150–180 tokens, no clipped completions, no gibberish
+- [x] Checkpoint frequently — adapter + merged saved, backup sha256 verified
 
 ### 4.4 Evaluation
 - [ ] Calculation accuracy on held-out scenarios (target: ≥90% exact)
@@ -319,6 +319,8 @@
 - [ ] If accuracy plateaus: adjust difficulty distribution, increase group size
 - [ ] If degradation: reduce GRPO steps, increase KL penalty
 - [ ] Target: 3 iterations
+
+**GRPO v1 status (2026-09-21):** 81 mid-tier prompts (25–75% exact at sampling), 1 epoch / 40 steps, group 8, LR 1e-6. Results vs KTO: held-out exact 5/10 → 5/10 (flat), dev 6/9 → 6/9 (flat), paraphrase exact 17/40 → 18/40, **paraphrase consistency 3/8 → 5/8**, coach flat. Zero regressions and no degeneration; the reward curve was flat within 40 steps, so run 2 strengthens optimisation (3 epochs, LR 5e-6, group 16, temp 1.0) before expanding the pool.
 
 **Stage gate:** ≥90% exact calculation accuracy on held-out scenarios including boundary values. No regression on any other eval dimension.
 
