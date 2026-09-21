@@ -248,23 +248,23 @@
       - Decline vs guess behavior
       - Answer length appropriateness
       - Relief suggestion phrasing (question, not assertion)
-- [ ] Target: 2,000–5,000 binary-labeled examples
+- [x] Target: 2,000–5,000 binary-labeled examples — 3,144 labels (train 2,984 / val 160: 552 verified gold + 2,592 on-policy samples)
 - [ ] User spot-checks 200 labels for quality
 
 **Pipeline (2026-09-21):** `scripts/build_kto_prompts.py` builds an 864-prompt pool — 552 verified single-turn prompts with gold answers (calc, counterfactual, fact, cited fact, clarify) plus 312 novel engine-locked calculation prompts with fresh amounts; zero eval-suite overlap and no held-out probe amounts. `scripts/sample_kto_completions.py` samples 3 on-policy completions per prompt with temperature on the instance. `scripts/label_kto_samples.py` applies the deterministic/citation rules and writes `data/kto/{train,val}.jsonl` in KTO prompt/completion/label format plus `label_stats.json` (per-prompt difficulty for the GRPO pool later). `scripts/kto_train.py` runs Unsloth KTOTrainer (β=0.1, LR 5e-6, 1 epoch, r=64) and has a no-GPU dataset check. LLM-judge labels deferred to a later pass.
 
 ### 3.2 KTO Training
-- [ ] QLoRA on SFT checkpoint
-- [ ] KTO loss (prospect-theoretic, unpaired binary labels)
-- [ ] Monitor for reward hacking / degenerate outputs
-- [ ] Checkpoint and evaluate
+- [x] QLoRA on SFT checkpoint — kto_v1 trained from the frozen sft_v2 merged model (1 epoch, β=0.1, LR 5e-6, r=64; loss 0.409)
+- [x] KTO loss (prospect-theoretic, unpaired binary labels)
+- [x] Monitor for reward hacking / degenerate outputs — outputs clean, no repetition or format collapse across 1,010 captures
+- [x] Checkpoint and evaluate — adapter + merged backed up (`backups/taxsabi_kto_v1_backup.tar.gz`, sha256 verified)
 
 ### 3.3 Evaluation
-- [ ] Citation behavior: does it cite when appropriate, omit when not?
+- [x] Citation behavior: does it cite when appropriate, omit when not? — zero out-of-register sections across 1,010 captures; fact-05 now cites s.30(2)(a); cited-fact on-policy desirable rate 25%
 - [ ] Caveat behavior: section-32 only when deductions claimed?
 - [ ] Decline behavior: other years/countries → clean redirect?
-- [ ] Guess behavior: unstated amounts → asks, doesn't invent?
-- [ ] Run full eval suite
+- [ ] Guess behavior: unstated amounts → asks, doesn't invent? — not fixed (clar-01 computes an ambiguous amount; calc-08/09 over-ask)
+- [x] Run full eval suite — held-out, dev, paraphrase (100) and coach (15) captured and compared vs sft_v2; multi-turn still pending (llama.cpp)
 - [ ] User reviews 20 outputs — taste check
 
 ### 3.4 Iterate (Rounds 2–3)
@@ -274,6 +274,8 @@
 
 **Stage gate:** Citation behavior contextual (≥80% appropriate), zero invented acts/years, decline-and-ask behaviors reliable.
 
+**Phase 3 status (2026-09-21): stage gate not met — kept as a stepping stone.** KTO v1 improved calculations modestly (held-out exact tax 4/10 → 5/10, CI 5/10 → 7/10; dev 5/9 → 6/9; paraphrase calc 15/40 → 17/40, CI 15 → 22) and fixed the rent-cap rule (probe-calc-03 exact) and band-list recall (probe-fact-01), with zero invented sections. But high-band edges regressed (21%/23% split on base-pcm-05), the band table hallucinated once on dev, clarify/no-clarify is still unreliable, and paraphrase consistency stayed ~40% (gate 70%). Moving to Phase 4 GRPO, which optimizes exact totals directly.
+
 ---
 
 ## Phase 4: GRPO — Reinforcement Learning with Verifiable Rewards (Weeks 29–36)
@@ -281,19 +283,21 @@
 **Objective:** Sharpen calculation accuracy to near-perfect on the auditable distribution. No thinking mode.
 
 ### 4.1 Reward Function Design
-- [ ] Primary reward: final tax figure matches engine (binary, exact)
-- [ ] Secondary reward: chargeable income matches (partial credit)
-- [ ] Tertiary reward: citation format correct (small weight)
-- [ ] Penalty: answer length beyond necessary (discourage padding)
-- [ ] No thinking-mode reward — direct answers only
-- [ ] Validate reward function against 100 known scenarios
+- [x] Primary reward: final tax figure matches engine (binary, exact) — `tax_reward` in `scripts/grpo_train.py` (1.0 exact total)
+- [x] Secondary reward: chargeable income matches (partial credit) — 0.25 when CI is exact and the total is not
+- [ ] Tertiary reward: citation format correct (small weight) — deferred (v1 pool is single_calc only)
+- [ ] Penalty: answer length beyond necessary (discourage padding) — deferred
+- [x] No thinking-mode reward — chat template force-disabled for every apply_chat_template call
+- [ ] Validate reward function against 100 known scenarios — reward self-test covers all branches; full validation during the first run
 
 ### 4.2 Prompt Pool Curation
-- [ ] Source: existing 1,108 scenarios + newly generated
-- [ ] Difficulty distribution: model should succeed ~50-70% of the time (GRPO needs group variance)
-- [ ] Include: boundary values, relief combinations, monthly/annual, Pidgin phrasings
-- [ ] Exclude: scenarios the model always gets right (no learning signal) or always wrong (no variance)
-- [ ] Target: 500–1,500 prompts, curated by difficulty
+- [x] Source: existing 1,108 scenarios + newly generated — `scripts/build_grpo_pool.py`: 1,284 single_calc prompts (550 KTO, 529 verified SFT, 205 fresh novel amounts), eval-overlap clean
+- [x] Difficulty distribution: model should succeed ~50-70% of the time (GRPO needs group variance) — every prompt carries an easy/mid/hard/unknown tier; mid = measured 20-80% success, unknown awaiting the measurement pass
+- [x] Include: boundary values, relief combinations, monthly/annual, Pidgin phrasings
+- [ ] Exclude: scenarios the model always gets right (no learning signal) or always wrong (no variance) — selection ready (`--select mid`); runs after the difficulty measurement
+- [x] Target: 500–1,500 prompts, curated by difficulty
+
+**Workflow (2026-09-21):** build pool → sample difficulty on `data/grpo/pool_unknown.jsonl` with `scripts/sample_kto_completions.py` → `scripts/build_grpo_pool.py --score-samples` → `--select mid` (or mid+hard) → `scripts/grpo_train.py --model ~/models/kto_v1/merged --pool data/grpo/train_pool.jsonl --out ~/models/grpo_v1`.
 
 ### 4.3 GRPO Training
 - [ ] TRL GRPOTrainer (or Unsloth GRPO support)
