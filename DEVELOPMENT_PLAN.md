@@ -316,11 +316,13 @@
 - [ ] Base-model comparison (the full journey: base → DAPT → SFT → KTO → GRPO)
 
 ### 4.5 Iterate
-- [ ] If accuracy plateaus: adjust difficulty distribution, increase group size
+- [x] If accuracy plateaus: adjust difficulty distribution, increase group size — v2 used group 16 / LR 5e-6 / 3 epochs; v3 re-measures the hard tier on the current policy to rebuild a mid pool (on-policy RL saturates within ~1 epoch on 81 prompts)
 - [ ] If degradation: reduce GRPO steps, increase KL penalty
 - [ ] Target: 3 iterations
 
 **GRPO v1 status (2026-09-21):** 81 mid-tier prompts (25–75% exact at sampling), 1 epoch / 40 steps, group 8, LR 1e-6. Results vs KTO: held-out exact 5/10 → 5/10 (flat), dev 6/9 → 6/9 (flat), paraphrase exact 17/40 → 18/40, **paraphrase consistency 3/8 → 5/8**, coach flat. Zero regressions and no degeneration; the reward curve was flat within 40 steps, so run 2 strengthens optimisation (3 epochs, LR 5e-6, group 16, temp 1.0) before expanding the pool.
+
+**GRPO v2 status (2026-09-21):** same pool, 3 epochs / 120 steps, group 16, LR 5e-6, temp 1.0. Training reward climbed 0.55 → 0.89–0.98 and held; KL ≤ 0.02; lengths stable. Vs KTO: dev exact 6/9 → **8/9** (+2: the 21%/23% band-edge and the Pidgin over-clarify both fixed), held-out 5/10 flat (CI 7/10; 12/20 answers byte-identical), paraphrase exact 17/40 flat with consistency maintained at 5/8, plus behaviour fixes (probe-scope-01 director now affirms coverage; probe-fact-04 pension-vs-NHF roles corrected). Most of the reward gain is mastery of the 81 training prompts, so v3 enlarges the mid pool: re-measure the 371 hard prompts on `grpo_v2` at temp 1.0, then rerun.
 
 **Stage gate:** ≥90% exact calculation accuracy on held-out scenarios including boundary values. No regression on any other eval dimension.
 
