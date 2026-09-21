@@ -1,0 +1,6963 @@
+{
+  "prompts": 864,
+  "prompts_with_samples": 864,
+  "gold_examples": 552,
+  "sample_examples": 2592,
+  "sample_desirable": 1236,
+  "sample_undesirable": 1356,
+  "sample_desirable_rate": 0.4769,
+  "by_type": {
+    "clarify_ask": {
+      "samples": 36,
+      "desirable": 3
+    },
+    "single_calc": {
+      "samples": 1650,
+      "desirable": 707
+    },
+    "single_counterfactual": {
+      "samples": 252,
+      "desirable": 168
+    },
+    "single_fact": {
+      "samples": 522,
+      "desirable": 325
+    },
+    "single_fact_cited": {
+      "samples": 132,
+      "desirable": 33
+    }
+  },
+  "reasons": {
+    "total_mismatch": 941,
+    "total_exact": 707,
+    "terms_and_citation_clean": 358,
+    "missing_terms": 274,
+    "saving_exact": 163,
+    "saving_mismatch": 72,
+    "computed_instead_of_asking": 33,
+    "unauthorised_amounts": 20,
+    "from_to_mismatch": 6,
+    "no_saving_stated": 6,
+    "from_to_exact": 5,
+    "asks_period": 3,
+    "no_total_stated": 2,
+    "invented section": 1,
+    "invented act year": 1
+  },
+  "gold_check_failures": [],
+  "prompt_stats": [
+    {
+      "prompt_id": "kto-novel-0180",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "tu3-rent-pcm-0006",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-cf-1048",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0153",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-pcm-fact-cited-evidence-00",
+      "type": "single_fact_cited",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-pcm-calc-0001",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "tu3-bound-0009",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-pcm-fact-paye-03",
+      "type": "single_fact",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "tu3-fact-pcm-pension-vs-nhf-00",
+      "type": "single_fact",
+      "language": "pcm",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-1161",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "tu3-clar-0007",
+      "type": "clarify_ask",
+      "language": "pcm",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-pcm-fact-cited-bands-01",
+      "type": "single_fact_cited",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0142",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0129",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "st-pcm-fact-minwage-03",
+      "type": "single_fact",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "st-pcm-fact-bands-00",
+      "type": "single_fact",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "st-en-calc-0037",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-2024",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-fact-nocra-01",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-cf-1021",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0029",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-fact-cited-paye-01",
+      "type": "single_fact_cited",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "st-en-fact-nocra-06",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "tu3-clar-0011",
+      "type": "clarify_ask",
+      "language": "pcm",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-fact-vpc-02",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "st-pcm-fact-minwage-02",
+      "type": "single_fact",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-0150",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-1021",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0203",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0114",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0060",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-pcm-calc-1013",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-pcm-calc-1012",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-fact-cited-minwage-00",
+      "type": "single_fact_cited",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "st-en-fact-cited-evidence-00",
+      "type": "single_fact_cited",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "st-en-cf-0038",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "tu3-bound-0013",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0012",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0294",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0168",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0077",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "st-pcm-fact-cited-pension-00",
+      "type": "single_fact_cited",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "st-pcm-calc-0002",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "st-en-calc-2178",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-0000",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-cf-1050",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "tu3-rent-pcm-0003",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-cf-0041",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-pcm-fact-cited-paye-00",
+      "type": "single_fact_cited",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-cf-0046",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "kto-novel-0216",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0133",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-1053",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0033",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-1151",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0188",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0232",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-pcm-fact-paye-04",
+      "type": "single_fact",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-cf-1014",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0057",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-pcm-fact-nocra-00",
+      "type": "single_fact",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "kto-novel-0019",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "kto-novel-0254",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0138",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-cf-2031",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "kto-novel-0086",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0093",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-fact-minwage-00",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0036",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-2133",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "kto-novel-0151",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-0152",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0308",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "tu3-fact-student-02",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0053",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0072",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0030",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-2097",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-fact-evidence-05",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0227",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0173",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-cf-1018",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0219",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0105",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0157",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-fact-vpc-05",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "st-en-calc-0119",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-0102",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0137",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "st-pcm-fact-bands-03",
+      "type": "single_fact",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "kto-novel-0205",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-cf-2030",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0089",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-fact-filing-04",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "tu3-rent-0008",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0274",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0076",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0163",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0132",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0255",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0035",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0224",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0068",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-cf-1015",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-1123",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0017",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-cf-1051",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0108",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0250",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-2173",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-1050",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "st-en-calc-2137",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "tu3-rent-pcm-0001",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-pcm-fact-pension-02",
+      "type": "single_fact",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-fact-paye-00",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "tu3-fact-evidence-00",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-pcm-calc-1016",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-pcm-fact-refund-01",
+      "type": "single_fact",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "st-pcm-fact-filing-01",
+      "type": "single_fact",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "st-en-fact-paye-06",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-2098",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "tu3-cf-0000",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0167",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0189",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0148",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0139",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0067",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0150",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-0074",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0288",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "kto-novel-0079",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "tu3-clar-0003",
+      "type": "clarify_ask",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-1049",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "st-en-calc-1089",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0262",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-pcm-fact-vpc-01",
+      "type": "single_fact",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-fact-scope-01",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0118",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "tu3-bound-0014",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-fact-nocra-04",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0284",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-0144",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "st-en-calc-2136",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0063",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-pcm-fact-cited-rent-00",
+      "type": "single_fact_cited",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-fact-bands-01",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "st-en-calc-2096",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "tu3-rent-0010",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "tu3-bound-0002",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-fact-cited-objection-01",
+      "type": "single_fact_cited",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0191",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "tu3-rent-0013",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-pcm-fact-pension-00",
+      "type": "single_fact",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0278",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-cf-0043",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0264",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "tu3-fact-school-fees-00",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "kto-novel-0127",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0240",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0124",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0087",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-0077",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "st-en-fact-filing-03",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-2138",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0246",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "st-en-fact-evidence-04",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "st-pcm-fact-vpc-03",
+      "type": "single_fact",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "st-en-cf-0037",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0239",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-2035",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "tu3-rent-pcm-0004",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "st-en-fact-cited-vpc-01",
+      "type": "single_fact_cited",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-pcm-cf-0007",
+      "type": "single_counterfactual",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "st-en-fact-cited-filing-01",
+      "type": "single_fact_cited",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-fact-vpc-01",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0097",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "st-pcm-cf-0010",
+      "type": "single_counterfactual",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0228",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-fact-objection-02",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0275",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-fact-refund-07",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "kto-novel-0267",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0070",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0082",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "tu3-clar-0004",
+      "type": "clarify_ask",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-1087",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0233",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-0075",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "kto-novel-0034",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-cf-2033",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0307",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0075",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0040",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0041",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0002",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-pcm-calc-0004",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-1163",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "tu3-cf-0006",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-fact-filing-00",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "st-pcm-cf-0006",
+      "type": "single_counterfactual",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-1085",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-2103",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-0039",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-0179",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "kto-novel-0208",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-2106",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-fact-cited-nocra-00",
+      "type": "single_fact_cited",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-fact-pension-03",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-pcm-calc-0007",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-pcm-fact-cited-evidence-01",
+      "type": "single_fact_cited",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0048",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-1052",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-fact-refund-03",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "tu3-rent-0005",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-1095",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-1051",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0290",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "kto-novel-0231",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0005",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-0108",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-fact-objection-04",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "kto-novel-0023",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-2139",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-2031",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-cf-2025",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "tu3-fact-refund-00",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "kto-novel-0253",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-1023",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "tu3-bound-0001",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-cf-0006",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-1094",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "tu3-clar-0001",
+      "type": "clarify_ask",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-0072",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-cf-1054",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0258",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-fact-cited-objection-00",
+      "type": "single_fact_cited",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-pcm-fact-cited-refund-01",
+      "type": "single_fact_cited",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-fact-scope-02",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-0038",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-cf-2029",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-fact-pension-06",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "tu3-fact-refund-01",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "st-pcm-fact-cited-minwage-00",
+      "type": "single_fact_cited",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0300",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0218",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0135",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "st-en-fact-cited-pension-01",
+      "type": "single_fact_cited",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "st-en-fact-rent-01",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "st-pcm-fact-cited-minwage-01",
+      "type": "single_fact_cited",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "tu3-cf-pcm-0003",
+      "type": "single_counterfactual",
+      "language": "pcm",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-fact-bands-02",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0043",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-fact-paye-07",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-2104",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-cf-1052",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "st-pcm-calc-0006",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "st-en-calc-2026",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "st-en-calc-0046",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0084",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-cf-1022",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-fact-refund-06",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "kto-novel-0305",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-fact-cited-pension-00",
+      "type": "single_fact_cited",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0008",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-cf-2026",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "st-en-calc-2062",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-2169",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0056",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-fact-objection-01",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "kto-novel-0179",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-fact-evidence-00",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0309",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-2132",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-2174",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-pcm-calc-0009",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0221",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0190",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0130",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0027",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "kto-novel-0007",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-2029",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0115",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0085",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0243",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0297",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-0109",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "kto-novel-0237",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "tu3-rent-pcm-0007",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0257",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-pcm-fact-vpc-00",
+      "type": "single_fact",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "tu3-bound-0008",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0164",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-fact-cited-bands-01",
+      "type": "single_fact_cited",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-0003",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-1020",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0303",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-2034",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-pcm-calc-0003",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "st-en-calc-0076",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-2175",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0241",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "tu3-clar-0005",
+      "type": "clarify_ask",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "tu3-fact-vpc-00",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0021",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0176",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-1018",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-pcm-fact-evidence-00",
+      "type": "single_fact",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-fact-cited-refund-01",
+      "type": "single_fact_cited",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "kto-novel-0234",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-2061",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "st-en-fact-minwage-04",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0236",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-fact-bands-06",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "st-en-fact-scope-00",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0184",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "st-en-calc-2067",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-fact-rent-03",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-cf-0005",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-0112",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-pcm-fact-paye-01",
+      "type": "single_fact",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-cf-1016",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-cf-0040",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "kto-novel-0298",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0003",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-1127",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0155",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "st-en-fact-scope-07",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0047",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-1056",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "st-en-calc-0117",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0211",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-pcm-fact-nocra-01",
+      "type": "single_fact",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0004",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-1164",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "st-pcm-fact-rent-02",
+      "type": "single_fact",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "tu3-fact-rent-cap-01",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "st-en-fact-minwage-06",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0092",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-fact-pension-02",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-fact-evidence-01",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "st-pcm-fact-nocra-04",
+      "type": "single_fact",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-fact-scope-04",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0026",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-cf-0007",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-2177",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0121",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-fact-minwage-05",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-pcm-cf-0002",
+      "type": "single_counterfactual",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-0047",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-0006",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-cf-1020",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "st-en-calc-2099",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-fact-pension-00",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-2156",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-cf-0047",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0292",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-2065",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-0073",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0024",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0131",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-fact-refund-04",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "st-en-fact-refund-02",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-pcm-calc-1018",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-cf-1012",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "st-en-fact-evidence-07",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-0042",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-pcm-cf-0008",
+      "type": "single_counterfactual",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "tu3-rent-0014",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0100",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0196",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0042",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-fact-cited-rent-00",
+      "type": "single_fact_cited",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-1157",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-cf-0053",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-fact-filing-05",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "st-en-fact-evidence-06",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-pcm-fact-vpc-02",
+      "type": "single_fact",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0182",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0248",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-0118",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-0009",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-fact-bands-03",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-pcm-fact-evidence-02",
+      "type": "single_fact",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0116",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-1013",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0126",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-1091",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0078",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-pcm-fact-filing-04",
+      "type": "single_fact",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "st-en-calc-1015",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-pcm-fact-cited-filing-01",
+      "type": "single_fact_cited",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "kto-novel-0117",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-2100",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0177",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-fact-paye-01",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "kto-novel-0235",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "st-en-calc-0041",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-fact-objection-06",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "st-en-fact-vpc-03",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "st-en-fact-rent-00",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-0110",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "st-en-fact-evidence-03",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "kto-novel-0110",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-fact-vpc-04",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "tu3-fact-pcm-school-fees-00",
+      "type": "single_fact",
+      "language": "pcm",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "tu3-rent-0012",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-0116",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "tu3-fact-pcm-rent-cap-00",
+      "type": "single_fact",
+      "language": "pcm",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-pcm-fact-cited-bands-00",
+      "type": "single_fact_cited",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-2030",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "st-pcm-fact-rent-01",
+      "type": "single_fact",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-fact-filing-02",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-cf-0039",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-0113",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-cf-1023",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0101",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "st-en-calc-1090",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "tu3-cf-0002",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-pcm-fact-minwage-00",
+      "type": "single_fact",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "kto-novel-0251",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "st-en-fact-rent-07",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0031",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "st-en-calc-1088",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "tu3-bound-0005",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-fact-nocra-02",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "st-en-calc-1086",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-2066",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0245",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0083",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0266",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-pcm-fact-filing-03",
+      "type": "single_fact",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "kto-novel-0141",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-cf-0035",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-pcm-fact-pension-04",
+      "type": "single_fact",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "st-en-fact-scope-06",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "tu3-bound-0003",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-cf-0004",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "tu3-fact-student-00",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "st-en-fact-minwage-03",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "tu3-clar-0000",
+      "type": "clarify_ask",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0201",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-pcm-fact-minwage-01",
+      "type": "single_fact",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "st-en-cf-1019",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0214",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-fact-paye-03",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-cf-0002",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-2143",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0226",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0154",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "st-pcm-fact-evidence-01",
+      "type": "single_fact",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-cf-1057",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "tu3-fact-school-fees-02",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0158",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0020",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "tu3-rent-0001",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "tu3-bound-0007",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0171",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-fact-scope-03",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "kto-novel-0095",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0170",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "tu3-clar-0009",
+      "type": "clarify_ask",
+      "language": "pcm",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "tu3-bound-0011",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0282",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0145",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0212",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-1158",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "st-pcm-cf-0001",
+      "type": "single_counterfactual",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-fact-cited-minwage-01",
+      "type": "single_fact_cited",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "st-en-cf-1058",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-fact-minwage-01",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0263",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0215",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0259",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-1019",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-cf-2024",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-1058",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-0044",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "tu3-fact-student-03",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "st-pcm-fact-rent-03",
+      "type": "single_fact",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "st-en-fact-vpc-07",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "tu3-cf-0004",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-pcm-calc-0010",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0062",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0136",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "tu3-fact-pension-vs-nhf-00",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-fact-cited-scope-00",
+      "type": "single_fact_cited",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "st-pcm-cf-0003",
+      "type": "single_counterfactual",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "tu3-cf-0003",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-fact-bands-05",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "st-pcm-cf-0009",
+      "type": "single_counterfactual",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "st-en-calc-0048",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-cf-0008",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-fact-objection-05",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-fact-bands-07",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "tu3-rent-0004",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0256",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-fact-bands-00",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "st-pcm-fact-cited-filing-00",
+      "type": "single_fact_cited",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-cf-0042",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "st-en-calc-2071",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "st-en-fact-paye-02",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-cf-0009",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-fact-scope-05",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0172",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0109",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-2054",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-2084",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-2027",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-fact-cited-scope-01",
+      "type": "single_fact_cited",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "tu3-rent-pcm-0005",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-fact-cited-vpc-00",
+      "type": "single_fact_cited",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-fact-minwage-07",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "kto-novel-0120",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "st-pcm-fact-evidence-03",
+      "type": "single_fact",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0016",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "tu3-fact-abuja-lagos-03",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "st-en-calc-0002",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "kto-novel-0185",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "tu3-rent-0009",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "tu3-fact-abuja-lagos-02",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-pcm-fact-nocra-03",
+      "type": "single_fact",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "st-pcm-calc-1017",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-cf-2032",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-0045",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "kto-novel-0187",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0009",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "st-en-calc-0149",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-pcm-fact-cited-vpc-00",
+      "type": "single_fact_cited",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "st-en-calc-0111",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-2172",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "kto-novel-0198",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0281",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "tu3-fact-paye-01",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "tu3-clar-0002",
+      "type": "clarify_ask",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0285",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-2033",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-fact-objection-00",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "st-en-calc-0154",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0128",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0186",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-2107",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "tu3-fact-paye-00",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-pcm-fact-refund-03",
+      "type": "single_fact",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "kto-novel-0037",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0301",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0122",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-pcm-fact-filing-02",
+      "type": "single_fact",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "st-pcm-fact-bands-04",
+      "type": "single_fact",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "kto-novel-0025",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "tu3-cf-pcm-0000",
+      "type": "single_counterfactual",
+      "language": "pcm",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-cf-0036",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0044",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0112",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-1122",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-cf-2028",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0059",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-2069",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "st-pcm-fact-paye-00",
+      "type": "single_fact",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0049",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-cf-1017",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "st-pcm-calc-1019",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0099",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-fact-evidence-02",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "tu3-rent-0002",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0209",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-0082",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0073",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0197",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "st-en-calc-1129",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "st-pcm-fact-rent-04",
+      "type": "single_fact",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "kto-novel-0289",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0055",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "st-en-calc-0081",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "st-en-calc-0153",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "kto-novel-0293",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "tu3-bound-0000",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0001",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "tu3-cf-0001",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0175",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0011",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-pcm-calc-0011",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "tu3-fact-student-01",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-2160",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0210",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0065",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-1092",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "kto-novel-0161",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-1055",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0279",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0220",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0054",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0242",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-1165",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-1016",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-fact-rent-05",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-fact-nocra-07",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "tu3-fact-rent-cap-00",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-0005",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "tu3-cf-0005",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-pcm-cf-0004",
+      "type": "single_counterfactual",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-fact-objection-07",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "kto-novel-0096",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-fact-paye-04",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-fact-cited-paye-00",
+      "type": "single_fact_cited",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "kto-novel-0260",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-0010",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-2105",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "st-en-fact-objection-03",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0156",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-0145",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-pcm-cf-0000",
+      "type": "single_counterfactual",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0038",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0032",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-0040",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0094",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-1124",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0107",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-cf-0000",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-0148",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "st-pcm-fact-evidence-04",
+      "type": "single_fact",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "kto-novel-0074",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-fact-bands-04",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "kto-novel-0199",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "tu3-fact-pension-vs-nhf-01",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0200",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "tu3-cf-pcm-0002",
+      "type": "single_counterfactual",
+      "language": "pcm",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "tu3-fact-abuja-lagos-00",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "tu3-rent-0007",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0280",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0080",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-2140",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0015",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0050",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "tu3-bound-0006",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-fact-rent-04",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "kto-novel-0159",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-2141",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-2162",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-2028",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-pcm-calc-0008",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "st-pcm-fact-nocra-02",
+      "type": "single_fact",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-fact-cited-rent-01",
+      "type": "single_fact_cited",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0238",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0174",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-cf-0044",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-0114",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0123",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0213",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-fact-cited-filing-00",
+      "type": "single_fact_cited",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0069",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-pcm-fact-cited-nocra-00",
+      "type": "single_fact_cited",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "kto-novel-0192",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-0078",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0010",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-pcm-fact-bands-02",
+      "type": "single_fact",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "st-en-calc-0043",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-2025",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-pcm-fact-cited-pension-01",
+      "type": "single_fact_cited",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "tu3-fact-pension-vs-nhf-02",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-pcm-fact-minwage-04",
+      "type": "single_fact",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "tu3-fact-vpc-01",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "kto-novel-0249",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0193",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-0146",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "tu3-cf-pcm-0001",
+      "type": "single_counterfactual",
+      "language": "pcm",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-0147",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-cf-0045",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "st-en-fact-pension-05",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0143",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "tu3-bound-0004",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-pcm-fact-paye-02",
+      "type": "single_fact",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "st-en-cf-1056",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "kto-novel-0061",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "tu3-rent-0000",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-pcm-fact-cited-paye-01",
+      "type": "single_fact_cited",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "kto-novel-0000",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-2060",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-fact-filing-01",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0165",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0286",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0217",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0223",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0311",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-cf-2027",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0088",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-1022",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-pcm-fact-refund-02",
+      "type": "single_fact",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "st-en-calc-1093",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-pcm-fact-filing-00",
+      "type": "single_fact",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0178",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "tu3-rent-0003",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0230",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-2063",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-fact-cited-refund-00",
+      "type": "single_fact_cited",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "kto-novel-0247",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0310",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0269",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0104",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0222",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0252",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0146",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-1012",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0271",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "tu3-rent-0011",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0014",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-1159",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-pcm-fact-cited-nocra-01",
+      "type": "single_fact_cited",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-pcm-cf-0005",
+      "type": "single_counterfactual",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0160",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-fact-refund-01",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "st-en-fact-refund-05",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "tu3-fact-school-fees-01",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0058",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0270",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0144",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0272",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0090",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-2070",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-1017",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "tu3-clar-0010",
+      "type": "clarify_ask",
+      "language": "pcm",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "tu3-fact-pcm-abuja-lagos-00",
+      "type": "single_fact",
+      "language": "pcm",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "st-pcm-fact-pension-03",
+      "type": "single_fact",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-pcm-fact-refund-04",
+      "type": "single_fact",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "st-en-calc-0036",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "kto-novel-0204",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0244",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-fact-nocra-03",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0045",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-fact-cited-nocra-01",
+      "type": "single_fact_cited",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0046",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-0171",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-pcm-fact-cited-vpc-01",
+      "type": "single_fact_cited",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "kto-novel-0287",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-1166",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0304",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-2176",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-1057",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-pcm-calc-1015",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0106",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-fact-nocra-00",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-pcm-fact-vpc-04",
+      "type": "single_fact",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "kto-novel-0119",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "st-en-calc-2126",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-cf-1059",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0183",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0028",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-1130",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "tu3-fact-school-fees-03",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-cf-0011",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-fact-nocra-05",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-cf-1055",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0295",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-2134",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "tu3-cf-0007",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-cf-1049",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0149",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-1121",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0018",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0152",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "kto-novel-0103",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-cf-0010",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-fact-filing-07",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "st-pcm-cf-0011",
+      "type": "single_counterfactual",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-0079",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0306",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0194",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-pcm-fact-cited-refund-00",
+      "type": "single_fact_cited",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-0080",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0265",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0071",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "tu3-fact-abuja-lagos-01",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "kto-novel-0111",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0147",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0283",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-2168",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0134",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-1131",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-fact-paye-05",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-fact-vpc-06",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "st-en-calc-0083",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-fact-pension-07",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0098",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-pcm-calc-0000",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0268",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0261",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-0008",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0291",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "tu3-fact-bands-01",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-cf-1013",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-2135",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0125",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "tu3-clar-0008",
+      "type": "clarify_ask",
+      "language": "pcm",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "tu3-fact-pension-vs-nhf-03",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0169",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "st-en-calc-2101",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0039",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "st-en-fact-pension-04",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0081",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0091",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-cf-2034",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0013",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "tu3-fact-bands-00",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "st-en-fact-filing-06",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "st-en-calc-2032",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-pcm-fact-cited-rent-01",
+      "type": "single_fact_cited",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-pcm-calc-1014",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "kto-novel-0195",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "tu3-clar-0006",
+      "type": "clarify_ask",
+      "language": "pcm",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-0170",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0066",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-fact-minwage-02",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-fact-pension-01",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-0004",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-fact-refund-00",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-0011",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0302",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-fact-rent-02",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "kto-novel-0229",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-1125",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-2064",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0277",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-fact-rent-06",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0296",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0162",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-2068",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0273",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0225",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "tu3-rent-0006",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0276",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-cf-0001",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0051",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-pcm-calc-0005",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-1120",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-fact-cited-bands-00",
+      "type": "single_fact_cited",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0299",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0166",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0113",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0181",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-0115",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0022",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "tu3-bound-0012",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0064",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-pcm-fact-refund-00",
+      "type": "single_fact",
+      "language": "pcm",
+      "source": "sft_single_pcm",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "st-en-calc-0155",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-0128",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 2
+    },
+    {
+      "prompt_id": "st-en-calc-0007",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "tu3-rent-pcm-0000",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "tu3-rent-pcm-0002",
+      "type": "single_calc",
+      "language": "pcm",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-fact-cited-evidence-01",
+      "type": "single_fact_cited",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "kto-novel-0052",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "tu3-fact-evidence-01",
+      "type": "single_fact",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 1
+    },
+    {
+      "prompt_id": "kto-novel-0006",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0206",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0140",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-0001",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0202",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-1059",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-2142",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-calc-0167",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "st-en-cf-0003",
+      "type": "single_counterfactual",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "kto-novel-0207",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "tu3-bound-0010",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_topup",
+      "samples": 3,
+      "desirable": 0
+    },
+    {
+      "prompt_id": "st-en-calc-1014",
+      "type": "single_calc",
+      "language": "en",
+      "source": "sft_single_en",
+      "samples": 3,
+      "desirable": 3
+    },
+    {
+      "prompt_id": "kto-novel-0102",
+      "type": "single_calc",
+      "language": "en",
+      "source": "novel_template",
+      "samples": 3,
+      "desirable": 0
+    }
+  ]
+}
