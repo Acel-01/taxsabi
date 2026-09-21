@@ -33,3 +33,5 @@ app/dist/
 backups/
 data/sft_generated/
 data/sft_review/
+data/kto/samples.jsonl
+data/kto/sample_run.json

@@ -204,11 +204,13 @@
 
 ### 2.4 SFT Training (Round 1)
 - [x] Multi-turn trainer support — `scripts/finetune_qlora.py` now consumes the `turns` schema with assistant-only loss masking (system/user masked -100, assistant header masked, content + end-of-turn trained) plus a no-GPU `--dry-run` verifier; dry-run confirmed on the real Qwen3 tokenizer (1,833 records, avg 232 / max 695 tokens, zero truncations)
-- [ ] QLoRA on DAPT checkpoint (v5 merged; upload adapter from `backups/taxsabi_v5_backup.tar.gz`, merge with `scripts/merge_adapter.py`)
-- [ ] Moderate LR (~1e-4), 2 epochs (defaults: r=64, α=128, effective batch 8)
+- [x] QLoRA on DAPT checkpoint (v5 merged; upload adapter from `backups/taxsabi_v5_backup.tar.gz`, merge with `scripts/merge_adapter.py`)
+- [x] Moderate LR (~1e-4), 2 epochs (defaults: r=64, α=128, effective batch 8)
 - [x] SFT v1/v2 runs + held-out evaluation: v1 exposed the headline-first format flaw (total contradicted the model's own breakdown); v2 (working-first) fixed it — held-out exact tax 0/10 -> 4/10, no regressions
 - [x] SFT v3 top-up dataset built — 94 targeted drills (rent percentage with novel amounts, band boundaries, clarify/no-clarify, fact corrections incl. decontaminated questions); assembled to `data/sft_v3` (2,021 examples, eval-clean)
-- [ ] Retrain SFT v3 on the instance and re-evaluate (held-out + dev vs v2)
+- [x] Retrain SFT v3 on the instance and re-evaluate (held-out + dev vs v2) — v3 held-out exact tax 4/10 (flat), dev 4/9 vs v2's 5/9; fixed some rent/clarify cases but regressed facts/scope (student filing, director scope, band recall)
+
+**Phase 2 status (2026-09-21): SFT v2 frozen as the checkpoint of record.** The v3 top-up did not move held-out exact tax and slipped the dev probe, so more SFT data is not the lever — the pipeline moves to Phase 3 (KTO) and Phase 4 (GRPO) as planned. The 2.5 suites (paraphrase/multi-turn/coach) and the user's 20-output taste pass still run on v2 when the instance is next up.
 
 ### 2.5 Evaluation Round 1
 - [ ] Run all eval suites (paraphrase, multi-turn, coach, calculation, Pidgin)
@@ -232,12 +234,12 @@
 **Objective:** Teach the model which answer is better — citation discipline, caveat appropriateness, decline-vs-guess, answer cleanliness.
 
 ### 3.1 Binary Label Generation
-- [ ] Deterministic labels (engine-verified):
+- [x] Deterministic labels (engine-verified):
       - Correct tax figure → desirable
       - Wrong tax figure → undesirable
       - Exact citation match → desirable
       - Invented act/year/section → undesirable
-- [ ] Rule-based labels (citation checker):
+- [x] Rule-based labels (citation checker):
       - Citation present when legal claim made → desirable
       - Citation absent when needed → undesirable
       - Citation present for simple arithmetic → undesirable (per constitution)
@@ -248,6 +250,8 @@
       - Relief suggestion phrasing (question, not assertion)
 - [ ] Target: 2,000–5,000 binary-labeled examples
 - [ ] User spot-checks 200 labels for quality
+
+**Pipeline (2026-09-21):** `scripts/build_kto_prompts.py` builds an 864-prompt pool — 552 verified single-turn prompts with gold answers (calc, counterfactual, fact, cited fact, clarify) plus 312 novel engine-locked calculation prompts with fresh amounts; zero eval-suite overlap and no held-out probe amounts. `scripts/sample_kto_completions.py` samples 3 on-policy completions per prompt with temperature on the instance. `scripts/label_kto_samples.py` applies the deterministic/citation rules and writes `data/kto/{train,val}.jsonl` in KTO prompt/completion/label format plus `label_stats.json` (per-prompt difficulty for the GRPO pool later). `scripts/kto_train.py` runs Unsloth KTOTrainer (β=0.1, LR 5e-6, 1 epoch, r=64) and has a no-GPU dataset check. LLM-judge labels deferred to a later pass.
 
 ### 3.2 KTO Training
 - [ ] QLoRA on SFT checkpoint
