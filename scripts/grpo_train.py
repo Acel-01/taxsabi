@@ -48,13 +48,41 @@ def load_pool(path: Path) -> list[dict]:
     return rows
 
 
+_TOKENIZER = None
+
+
+def completion_text(completion) -> str:
+    """Normalize a TRL completion (string, message list, or token ids) to text."""
+    if isinstance(completion, str):
+        return completion
+    if isinstance(completion, (list, tuple)):
+        if completion and all(isinstance(item, int) for item in completion):
+            if _TOKENIZER is not None:
+                return _TOKENIZER.decode(completion, skip_special_tokens=True)
+            return ""
+        parts = []
+        for item in completion:
+            if isinstance(item, dict):
+                content = item.get("content", "")
+                if isinstance(content, list):
+                    content = " ".join(
+                        str(part.get("text", "")) if isinstance(part, dict) else str(part)
+                        for part in content
+                    )
+                parts.append(str(content or ""))
+            else:
+                parts.append(str(item))
+        return " ".join(parts)
+    return str(completion or "")
+
+
 def tax_reward(completions, expected_total_tax=None, expected_chargeable_income=None, **kwargs):
     """TRL reward function: exact final total (1.0) or exact CI (0.25)."""
     rewards = []
     expected_tax = expected_total_tax or [None] * len(completions)
     expected_ci = expected_chargeable_income or [None] * len(completions)
     for completion, want_tax, want_ci in zip(completions, expected_tax, expected_ci):
-        text = completion or ""
+        text = completion_text(completion)
         reward = 0.0
         if want_tax is not None:
             predicted = extract_labeled_amount(text, TOTAL_TAX_RE)
@@ -75,6 +103,7 @@ def reward_check() -> None:
         ("Chargeable income: NGN 800.00. Total tax: NGN 999.00.", "100.00", "800.00", 0.25, "CI only"),
         ("Chargeable income: NGN 999.00. Total tax: NGN 999.00.", "100.00", "800.00", 0.0, "both wrong"),
         ("I need to know your salary first.", "100.00", "800.00", 0.0, "no total"),
+        ([{"role": "assistant", "content": "Total tax: NGN 100.00."}], "100.00", "800.00", 1.0, "message list"),
     ]
     ok = True
     for completion, want_tax, want_ci, expected_reward, label in cases:
@@ -191,6 +220,7 @@ def main() -> None:
     if not args.out:
         raise SystemExit("--out is required for training")
 
+    global _TOKENIZER
     import torch
     from unsloth import FastLanguageModel
     try:
@@ -222,6 +252,7 @@ def main() -> None:
         random_state=args.seed,
     )
     disable_thinking(tokenizer)
+    _TOKENIZER = tokenizer
 
     dataset = build_dataset(rows)
     print(f"train prompts: {len(dataset)} | num_generations {args.num_generations} "
