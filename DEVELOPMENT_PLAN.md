@@ -348,7 +348,7 @@
 - [ ] Test on Windows (user's machine), Linux (dev machine), macOS (untestable — note)
 - [ ] Update the TaxSabi.html app if needed (new capabilities → new UI affordances)
 
-### 5.3 Fact Ledger Architecture (Tier 2) — post-Gate-2; see `TIER2_PLAN.md`
+### 5.3 Fact Ledger Architecture (Tier 2) — post-Gate-2 product work (outside this submission)
 - [ ] Design the ledger schema (income, reliefs, period, established facts, pending questions)
 - [ ] Build grammar-constrained extraction (GBNF or JSON schema)
 - [ ] Build the merge/validate/compute loop
@@ -488,7 +488,7 @@
 - **Evaluation:** dev 8/9 exact, held-out 5/10 exact (7/10 chargeable income), paraphrase 17/40 with 5/8 phrasing groups consistent; zero out-of-register citations across 1,010 captures.
 - **Benchmarks (participant mode, dev laptop):** 3.3–4.7 t/s generation, ~1.94 GB peak RSS, `Sperf` 22–31, `Seff` ~73, no throttling detected; audit numbers will differ.
 - **Provenance:** `provenance/` committed with the final adapter (Git LFS), training scripts, run logs, dataset documentation, checksums and the merge/quantization notes; REPORT.md carries the Model Provenance section and before/after comparison.
-- **Remaining known gaps:** band-list answers are phrasing-sensitive (2/6 phrasings fail even at full precision); clarification boundary imperfect; multi-turn and coach suites not run on the final GGUF; Tier 2 (fact ledger, mobile) deferred to `TIER2_PLAN.md`.
+- **Remaining known gaps:** band-list answers are phrasing-sensitive (2/6 phrasings fail even at full precision); clarification boundary imperfect; multi-turn and coach suites not run on the final GGUF; Tier 2 (fact ledger, mobile) deferred to post-competition product work.
 
 ---
 

@@ -312,9 +312,7 @@ Answer format:
 
 Number discipline: use ONLY values from the blueprint `authoritative` block; never invent, recalculate, or round. Amount format "NGN 3,000,000" (comma separators, no .00).
 
-Method: temporary Python script via heredoc defining the question and answer per conversation_id, then merging blueprint fields (id from conversation_id, type, language, authoritative, required_terms, source_fact_ids, scenario_id, scenario_family) plus generated_by "opencode".
-
-Do not modify other files. Do not run scripts/verify_sft_generation.py. Return one line per batch handled.
+Records generated from these blueprints are verified with `scripts/verify_sft_generation.py` before entering the training pool.
 """
 
 
