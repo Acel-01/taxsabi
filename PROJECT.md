@@ -18,51 +18,56 @@ Answers personal-income-tax questions for the Nigeria Tax Act 2025, 2026 year of
 ## Architecture
 
 ```text
-Nigeria Tax Act 2025 (extracted text + verified source register)
+Nigeria Tax Act 2025 + NTAA 2025 + PenCom VPC Guidelines
+(extracted text + verified source register, ~695K chars)
                           |
                           v
 Deterministic Decimal tax rules engine (src/rules_engine/)
                           |
                           v
-Engine-verified Q&A training dataset (1,411 records; 49 human-reviewed Pidgin)
+Engine-verified datasets: SFT v2 (1,929 examples),
+KTO v1 (3,144 labels), GRPO pools (1,284 prompts)
                           |
                           v
-QLoRA fine-tuning of Qwen2.5-1.5B-Instruct
+QLoRA pipeline: DAPT v5 -> SFT v2 -> KTO v1 -> GRPO v2
+(Unsloth, A100 40GB, no thinking mode)
                           |
                           v
-GGUF Q4_K_M (~941 MB) -> llama.cpp
+GGUF Q8_0 (1.70 GiB) -> llama.cpp
 ```
 
 The rules engine is the source of numerical truth for training data and verification. It is **not** invoked at inference time: the submitted GGUF is evaluated independently by the challenge infrastructure.
 
 ## Design decisions
 
+- **Qwen3-1.7B over smaller models.** Benchmarked against Qwen2.5-0.5B, Qwen3-0.6B, Llama-3.2-1B and the Gate-1 Qwen2.5-1.5B; the 1.7B class is the largest that stays inside the 8 GB / 4 vCPU profile while holding statutory facts and Pidgin.
+- **Q8_0 over Q4/Q5/Q6.** A measured fidelity study (held-out × dev × band-phrasing tests) showed Q4_K_M and Q6_K corrupt the 2026 band table and Q4 flips arithmetic; Q5_K_M substitutes an older band table. Q8_0 reproduces the full-precision model, so we accepted ~30–45% lower throughput and 1.70 GiB for accuracy. Details: `provenance/merge_quantize.md`.
+- **Four-stage pipeline.** DAPT absorbs the statutes and procedures; SFT shapes working-first answers and conversation behavior; KTO teaches citation/answer preferences from deterministic labels; GRPO optimizes the exact final tax figure with the engine as verifier. GRPO v2 is frozen after v3 traded behavior for no calculation gain.
 - **Raw model only.** The evaluation measures the GGUF directly; an app layer would add nothing to the score.
-- **1.5B over 0.6B.** Accuracy dominates once throughput clears the profiler's fixed 15 t/s reference. A 0.6B model was 2.1x faster locally but unreliable on statutory facts.
-- **Q4_K_M over Q5/Q8.** ~1.7 GB peak RSS against a 7 GB budget, with no observed accuracy regression on domain evaluations.
-- **Three dataset revisions** (v5 → v6b → v6c), each driven by held-out evaluation failures. v6c removed canned preambles so answers start directly with the computation.
 - **Decimal everywhere.** Monetary values are Python `Decimal`, serialized as strings; every calculation and counterfactual record is verified against the engine before training.
 
 ## Verified facts
 
-Every legal fact traces to `sources/SOURCE_REGISTER.md` (F-001…F-007), verified against the Nigeria Tax Act 2025 and, for NHF, the NHF Act 1992 as amended by the BFA 2022.
+Every legal fact traces to `sources/SOURCE_REGISTER.md` (F-001…F-019), verified against the Nigeria Tax Act 2025, the Nigeria Tax Administration Act 2025, and the Pension Reform Act 2014 / PenCom VPC Guidelines.
 
 ## Measured results
 
 | Metric | Value |
 |---|---|
-| Generation (local, i5-8250U locked 1.6 GHz, 4 threads) | 10.09 t/s |
-| ADTC profiler participant run (audit-class hardware, shipped report) | 25.3 t/s, 1,712 MB peak RSS, no throttling |
-| Natural English evaluation (shipped GGUF) | 7/8 total tax, 8/8 chargeable income |
-| Clean held-out English, novel amounts/wording (shipped GGUF) | 2/12 exact, 3/12 within NGN 1, 9/12 chargeable income |
-| Pidgin holdout (shipped GGUF) | 3/3 total tax, 2/3 chargeable income |
+| Participant profiler (shipped Q8_0, i5-8250U, 4 threads) | 3.3–4.7 t/s generation, ~1.94 GB peak RSS, `Sperf` 22–31, `Seff` ~73, no throttling |
+| Held-out probe, novel amounts (10 calculations) | 5/10 exact final tax, 7/10 chargeable income |
+| Dev probe (9 calculations) | 8/9 exact final tax |
+| Paraphrase suite (40 calculations) | 17/40 exact, 5/8 phrasing groups consistent |
+| Citation discipline | zero out-of-register sections across 1,010 captures |
 
 ## Known limitations
 
-- Exact band totals can drift on novel amounts, especially band-boundary segmentation above NGN 25M.
-- Scoped to single-turn Q&A; multi-turn dialogue is not supported.
-- Full technical writeup and benchmark details: `REPORT.md`.
+- Band-list answers are phrasing-sensitive: 2 of 6 tested phrasings fail even at full precision (quantization preserves, not causes, this).
+- The clarify/no-clarify boundary is occasionally wrong on ambiguous Pidgin amounts.
+- A few statutory nuances remain imperfect (student filing duty, “CRA” abbreviation, NIRS naming).
+- Scoped to single-turn Q&A; long multi-turn fact accumulation is not supported.
+- Full technical writeup, provenance disclosure and before/after examples: `REPORT.md`.
 
 ## Reproducibility
 
-Base model: `Qwen/Qwen2.5-1.5B-Instruct` (Apache 2.0). QLoRA via Unsloth on a Colab T4 (rank 32, alpha 64, 3 epochs, lr 2e-4). Dataset generation, verification, and training scripts live in `scripts/`; commands in `README.md`.
+Base model: `unsloth/Qwen3-1.7B` at revision `6262b50d6c1f8ee5e4ac750d710c33603bfc2a0c` (Apache 2.0). QLoRA via Unsloth (rank 64, alpha 128; DAPT rank 128). Training scripts, run metadata, per-step GRPO metrics and checksums live in `provenance/`; dataset details in `provenance/dataset_info.md`; merge/quantization commands in `provenance/merge_quantize.md`.

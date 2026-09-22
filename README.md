@@ -4,23 +4,26 @@ ADTC 2026 — Laptop LLM Challenge, Corporate/Enterprise track.
 
 A fully offline Nigerian personal-income-tax assistant: a fine-tuned GGUF model that answers 2026 tax-band, relief, calculation, and what-if questions in English and Nigerian Pidgin. A deterministic Decimal-based rules engine verifies every training example against the Nigeria Tax Act 2025, so the model learns from engine-guaranteed arithmetic.
 
-The scored artifact is the raw GGUF (`model/TaxSabi-1.5B-Q4_K_M.gguf`), downloaded by `download_model.sh` and run through llama.cpp. No application layer is invoked at evaluation time.
+The scored artifact is the raw GGUF (`model/TaxSabi-Qwen3-1.7B-Q8_0.gguf`), downloaded by `download_model.sh` and run through llama.cpp. No application layer is invoked at evaluation time.
 
-Project overview: `PROJECT.md`
-Technical report: `REPORT.md`
-Verified source register: `sources/SOURCE_REGISTER.md`
+- Project overview: `PROJECT.md`
+- Technical report (incl. Model Provenance): `REPORT.md`
+- Proof of training (adapter, scripts, logs, checksums): `provenance/`
+- Verified source register: `sources/SOURCE_REGISTER.md`
+- Development plan and Gate 2 outcome: `DEVELOPMENT_PLAN.md`
 
-## Submission checklist
+## Submission checklist (Gate 2)
 
 - Repository is **public** on GitHub
-- `metadata.json` is fully filled in with exactly **2 test prompts**
-- `download_model.sh` downloads the model to `model/` without credentials, idempotently
+- `metadata.json` is fully filled in — exactly **2 test prompts** plus the Gate 2 `provenance` object
+- `download_model.sh` declares a **static, pinned** model URL and downloads to `model/` without credentials, idempotently
 - The downloaded file is a valid **GGUF** weight file
 - `model/*.gguf` is gitignored — weights are not committed
-- `REPORT.md` is filled in with the technical writeup
+- `REPORT.md` includes the **Model Provenance** section and a before/after comparison
+- `provenance/` contains the final adapter (Git LFS), training scripts, run logs, dataset documentation, checksums and merge/quantization notes
 - The model runs entirely **offline** — zero external network calls during inference
 - Runtime is **llama.cpp** only
-- Runs within the 8 GB RAM / 7 GB budget laptop profile (~1.7 GB peak RSS measured)
+- Runs within the 8 GB RAM / 7 GB budget laptop profile (~1.9 GB peak RSS measured)
 
 ## Quickstart
 
@@ -28,15 +31,14 @@ Verified source register: `sources/SOURCE_REGISTER.md`
 # download the submission model (idempotent, no credentials)
 bash download_model.sh
 
-# run the official profiler
+# run the official profiler in participant mode
 python3 -m pip install "git+https://github.com/Africa-Deep-Tech-Foundation/adtc-profiler.git"
 adtc-profiler run --submission . --mode participant --output submission.json
 
 # chat with the model
-llama-cli \
-  -m model/TaxSabi-1.5B-Q4_K_M.gguf \
-  -cnv -t 4 -c 2048 -n 256 --temp 0 \
-  -p "I earn NGN 800,000 a year and no deductions or reliefs. How much tax do I pay? Please show the calculation."
+llama-cli -m model/TaxSabi-Qwen3-1.7B-Q8_0.gguf \
+  -cnv --jinja -t 4 -c 2048 --temp 0 \
+  -sys "You are an assistant that answers questions about Nigerian individual income tax under the Nigeria Tax Act 2025 for the 2026 year of assessment."
 
 # rules engine self-test
 uv run python src/rules_engine/test_engine.py
@@ -46,44 +48,30 @@ uv run python src/rules_engine/test_engine.py
 
 | Path | Purpose |
 |---|---|
-| `sources/` | Extracted statute text + verified source register (F-001…F-007) |
+| `sources/` | Extracted statute text + verified source register (F-001…F-019) |
 | `src/rules_engine/` | Deterministic 2026 tax calculator (dataset verifier) |
-| `data/` | Dataset schema, scenarios, and the frozen training candidate |
-| `scripts/` | Data generation, verification, QLoRA fine-tuning, and evaluation scripts |
+| `data/` | SFT/KTO/GRPO datasets, eval suites, capture evidence |
+| `scripts/` | Data generation, verification, QLoRA training, evaluation |
+| `provenance/` | Gate 2 proof-of-training package (adapter, scripts, logs, checksums) |
+| `reports/` | Stage comparison reports and profiler benchmarks |
 | `bench/` | llama-bench scripts and results |
 | `model/` | Downloaded submission GGUF (gitignored) |
 
 ## The model
 
-- Base: Qwen2.5-1.5B-Instruct (Apache 2.0), QLoRA fine-tuned (rank 32, 3 epochs, lr 2e-4)
-- Training data: `data/train/final_en_pcm_v6c_candidate.jsonl` — 1,411 records (1,362 English, 49 human-reviewed Pidgin), every number engine-verified
-- Quantization: GGUF Q4_K_M, 941 MB
-- Measured (i5-8250U @ 1.6 GHz, 4 threads, CPU-only): 10.09 t/s generation, ~1.7 GB peak RSS
-- Official profiler participant run (audit-class hardware): 25.3 t/s generation, 1,712 MB peak RSS, no throttling, `arc_easy(50)` 0.76 — see `submission.json`
-- Dev-machine reference (i5-8250U @ 1.6 GHz): 8.83 t/s — a worst-case floor, ~1.7 GB peak RSS
+- **Base:** Qwen3-1.7B (`unsloth/Qwen3-1.7B` @ `6262b50d6c1f8ee5e4ac750d710c33603bfc2a0c`, Apache 2.0)
+- **Pipeline:** DAPT → SFT → KTO → GRPO, all QLoRA via Unsloth (see `provenance/training_log.txt`)
+- **Training data:** 1,929 engine-verified SFT examples; 3,144 KTO binary labels; engine-grounded GRPO prompt pools — every naira figure is engine-computed (`provenance/dataset_info.md`)
+- **Quantization:** GGUF **Q8_0**, 1.70 GiB. Q4_K_M, Q5_K_M and Q6_K were exported and tested but rejected: Q4/Q6 corrupt the 2026 band table (and Q4 flips arithmetic), Q5 substitutes an older table; Q8_0 matches the full-precision model on the held-out (5/10), dev (8/9) and band-phrasing comparisons (`provenance/merge_quantize.md`)
+- **Measured (participant profiler, i5-8250U, 4 threads):** 3.3–4.7 t/s generation, ~1.94 GB peak RSS, `Sperf` 22–31, `Seff` ~73, no throttling detected
+- **Evaluation:** held-out probe 5/10 exact final tax (7/10 chargeable income); dev probe 8/9; paraphrase suite 17/40 exact with 5/8 phrasing groups consistent; zero out-of-register citations across 1,010 captured outputs
 
-## Reproducing the data
+## Reproducing the pipeline
 
-```bash
-uv run python scripts/generate_scenarios.py
-uv run python scripts/render_seed_dataset.py
-uv run python scripts/generate_behavior_dataset.py
-uv run python scripts/generate_counterfactual_dataset.py
-uv run python scripts/generate_targeted_v6.py
-uv run python scripts/generate_pidgin_v6c.py
-uv run python scripts/strip_preamble.py --input data/train/final_english_v5.jsonl --output data/train/final_english_v5_concise.jsonl
-uv run python scripts/assemble_dataset.py \
-  --inputs data/train/final_english_v5_concise.jsonl \
-           data/train/targeted_v6_english_concise.jsonl \
-           data/train/pidgin_train_v5_concise.jsonl \
-           data/train/targeted_v6_pidgin_reviewed_concise.jsonl \
-           data/train/targeted_v6c_pidgin_reviewed.jsonl \
-  --output data/train/final_en_pcm_v6c_candidate.jsonl \
-  --max-calculation 1100
-```
-
-Cloud-generated records are never trusted until `scripts/verify_dataset.py` passes.
+Training pipeline (GPU): `scripts/dapt_pretrain.py` → `scripts/finetune_qlora.py` → `scripts/kto_train.py` → `scripts/grpo_train.py`.
+Data pipeline: `scripts/build_sft_jobs.py`, `scripts/build_kto_prompts.py`, `scripts/build_grpo_pool.py`, verified by `scripts/verify_sft_generation.py`.
+Exact commands, hyperparameters and the merge/quantization steps: `provenance/training_log.txt` and `provenance/merge_quantize.md`.
 
 ## License
 
-Model weights derive from Qwen2.5-1.5B-Instruct (Apache 2.0). Repository code follows the ADTC submission template (GPL-3.0).
+Model weights derive from Qwen3-1.7B (Apache 2.0). OASST1 replay data is Apache-2.0; the statutes are public government gazettes. Repository code follows the ADTC submission template (GPL-3.0).
