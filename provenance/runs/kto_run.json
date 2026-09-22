@@ -1,0 +1,11 @@
+{
+  "model": "/home/shadeform/models/sft_v2/merged",
+  "train": "data/kto/train.jsonl",
+  "val": "data/kto/val.jsonl",
+  "train_examples": 2984,
+  "epochs": 1,
+  "lr": 5e-06,
+  "beta": 0.1,
+  "lora_r": 64,
+  "training_loss": 0.4090507698442597
+}

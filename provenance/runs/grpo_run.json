@@ -1,0 +1,13 @@
+{
+  "model": "/home/shadeform/models/kto_v1/merged",
+  "pool": "data/grpo/train_pool.jsonl",
+  "prompts": 81,
+  "epochs": 3.0,
+  "lr": 5e-06,
+  "beta": 0.04,
+  "temperature": 1.0,
+  "num_generations": 16,
+  "max_completion_length": 320,
+  "lora_r": 64,
+  "training_loss": -0.020007151644676924
+}

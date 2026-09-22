@@ -2,74 +2,181 @@
 
 **Team ID:** taxsabi
 **Domain:** corporate_enterprise
-**Model:** TaxSabi-1.5B-Q4_K_M
+**Model:** TaxSabi-Qwen3-1.7B-Q8_0 (GGUF Q8_0, llama.cpp)
+**Base model:** `unsloth/Qwen3-1.7B` @ `6262b50d6c1f8ee5e4ac750d710c33603bfc2a0c`
 
 ---
 
 ## Problem
 
-Millions of Nigerians owe personal income tax under the Nigeria Tax Act 2025 (2026 year of assessment), but accurate guidance is out of reach: accountants are expensive, official tools are scarce, and the internet is unreliable or unavailable in many regions. TaxSabi is a fully offline Nigerian personal-income-tax assistant that answers band, relief, and calculation questions directly on an ordinary laptop, in English and Nigerian Pidgin.
-
-Target users are employees and small earners in Nigeria who need to understand their PAYE burden, rent relief, pension contributions, and what-if scenarios without connectivity. Running the model locally, with no network calls and no GPU, is the entire point: the answer must be available in a village kiosk or a Lagos apartment on an 8 GB laptop.
+Millions of Nigerians owe personal income tax under the Nigeria Tax Act 2025 (2026
+year of assessment), but accurate guidance is out of reach: accountants are
+expensive, official tools are scarce, and connectivity is unreliable outside major
+cities. TaxSabi is a fully offline Nigerian personal-income-tax assistant that runs
+on an ordinary 8 GB laptop and answers band, relief, calculation and what-if
+questions in English and Nigerian Pidgin. Target users are employees and small
+earners who need to understand PAYE, rent relief and pension contributions without
+a network connection.
 
 ## Design Decisions
 
-- **Base model:** Qwen2.5-1.5B-Instruct. Chosen after CPU-only llama.cpp benchmarking of Qwen2.5-0.5B, Qwen3-0.6B, Llama-3.2-1B, Qwen2.5-1.5B, and Qwen3-1.7B. The 1.5B class was the largest that stayed safely within the 7 GB memory budget with room to spare while retaining strong instruction-following and multilingual behavior.
-- **Quantization:** GGUF Q4_K_M (~941 MB). Q5_K_M and Q8_0 were considered; Q4_K_M keeps peak RSS at ~1.7 GB, leaving a wide safety margin under the 8 GB laptop profile, with only minor boundary-precision cost on adversarial evaluations (see Evaluation).
-- **Fine-tuning:** QLoRA (Unsloth) on a Google Colab T4, rank 32, alpha 64, 3 epochs, learning rate 2e-4, sequence length 2048. Three iterative dataset revisions (v5 → v6b → v6c), each driven by held-out evaluation failures.
-- **Training data:** 1,411 records (1,362 English, 49 human-reviewed Nigerian Pidgin). Every calculation and counterfactual record was computed by a deterministic Decimal-based rules engine implementing the Nigeria Tax Act 2025 bands and reliefs; cloud-generated paraphrases were rejected whenever their numbers disagreed with the engine. All monetary values use Decimal with two-decimal ROUND_HALF_UP, serialized as strings.
-- **Cross-disciplinary pairing (load-bearing):** tax law. The deterministic engine is the source of numerical truth for every training example and for dataset verification; it is not invoked at inference time. The submitted GGUF is a domain-adapted conversational model evaluated independently by the challenge infrastructure.
-- **Rejected alternatives:** a RAG/Qdrant application layer (not invoked by the evaluator; removed from the critical path), larger models (Qwen3-1.7B and 9B-class models failed the CPU throughput/memory analysis), and a 0.6B speed-first model (insufficient factual reliability).
+- **Base model: Qwen3-1.7B.** Chosen after CPU benchmarking of Qwen2.5-0.5B,
+  Qwen3-0.6B, Llama-3.2-1B and Qwen2.5-1.5B: the 1.7B class is the largest that
+  stays well inside the 8 GB / 4 vCPU profile while following instructions and
+  handling Pidgin. It replaces the Gate-1 model (Qwen2.5-1.5B-Instruct).
+- **Pipeline:** continued pretraining (DAPT) → SFT → KTO → GRPO, all QLoRA via
+  Unsloth. DAPT absorbs the statutes and procedures; SFT shapes the answer format
+  (working first, total last) and conversation behaviour; KTO teaches
+  citation/answer preferences from deterministic labels; GRPO optimises the exact
+  final tax figure with the rules engine as the verifier.
+- **Quantization: Q8_0 — chosen after a measured fidelity study.** We exported
+  Q4_K_M, Q5_K_M, Q6_K and Q8_0 and tested each through llama.cpp against the
+  full-precision model:
+
+  | Quant | Held-out exact | Dev exact | 2026 band table |
+  |---|---:|---:|---|
+  | bf16 (reference) | 5/10 | 8/9 | correct on 4/6 phrasings |
+  | **Q8_0 (shipped)** | **5/10** | **8/9** | **4/6 — same pattern as bf16** |
+  | Q5_K_M | 5/10 | — | older/wrong band table |
+  | Q6_K | — | — | corrupt ("four bands") |
+  | Q4_K_M | 1/5 subset | — | "four bands"; arithmetic flips (rent relief 360k→300k; a 700k zero-band taxed) |
+
+  Q4_K_M is ~2× faster, but it corrupts core statutory knowledge (the band table
+  is one of our own test prompts) and flips arithmetic on unseen amounts.
+  Accuracy is 50% of the score, so we ship Q8_0 and state the throughput cost
+  plainly in Benchmarks.
+- **Rejected alternatives:** RAG/retrieval at inference (not invoked by the
+  evaluator; the challenge judges the raw model), a 0.6B speed-first model
+  (insufficient factual reliability), a full-fine-tune (not needed at this scale),
+  and Q4/Q5/Q6 quantization (fidelity above).
+
+## Model Provenance
+
+- **Base model:** `unsloth/Qwen3-1.7B`, revision
+  `6262b50d6c1f8ee5e4ac750d710c33603bfc2a0c` (Apache-2.0; mirror of
+  `Qwen/Qwen3-1.7B`).
+- **Fine-tuning method:** QLoRA (LoRA rank 64, alpha 128; DAPT used rank 128,
+  alpha 256), trained with Unsloth on a single NVIDIA A100-SXM4-40GB via
+  AGH/Shadeform. Weight-level fine-tuning — not prompt engineering.
+- **Training datasets (all generated by this team and engine-verified):**
+
+  | Dataset | Size | Source | License |
+  |---|---:|---|---|
+  | DAPT corpus | ~695K chars | Nigeria Tax Act 2025 + NTAA 2025 (public statutes), PenCom VPC Guidelines 2018 (regulator publication), 6 original procedural docs | Government gazettes / regulator publication; original prose by the team |
+  | SFT v2 | 1,929 examples | 490 engine-verified conversations + 1,250 single-turn Q&A (team-generated) + 220 OASST1 replay | Team content; OASST1 is Apache-2.0 |
+  | KTO v1 | 3,144 binary labels | 552 engine-verified gold answers + 2,592 on-policy samples labelled deterministically | Team-generated |
+  | GRPO v2 | 81 training prompts (from 1,284) | engine-grounded calculation prompts | Team-generated |
+
+- **Proof of training** is committed in `provenance/`: the final GRPO v2 adapter
+  (`adapter_model.safetensors` + `adapter_config.json`, Git LFS), the training
+  scripts, per-stage run metadata, per-step GRPO metrics, dataset documentation,
+  SHA256 checksums and the merge/quantization notes. No hosted notebook was used;
+  training ran from these scripts on rented GPU instances.
+- **Training summary:** DAPT v5 loss 1.3449 (8 epochs); SFT v2 loss 0.2335
+  (2 epochs, 1,833 examples, assistant-only loss masking); KTO v1 loss 0.4091
+  (1 epoch, 2,984 examples); GRPO v2 loss −0.0200 (3 epochs, 120 steps, reward
+  mean 0.55 → 0.83–0.98, KL ≤ 0.02). A later GRPO v3 attempt was rejected after
+  it introduced factual regressions without calculation gains; GRPO v2 is frozen.
+- **Before/after (unmodified base vs this model, same prompts):**
+
+  **Prompt 1 (tp_001):** “I earn NGN 800,000 a year and no deductions or reliefs.
+  How much tax do I pay? Please show the calculation.”
+  - *Base Qwen3-1.7B:* a long hedging essay that states assumptions and formulas
+    but never commits to a final tax figure in its opening response (excerpt):
+    “To calculate the individual income tax for a Nigerian resident, we need to
+    consider the **Nigeria Tax Act 2025**… ### **Assumptions:** — You earn
+    **NGN 800,000** per year… ### **Step 1: Determine the Taxable Income**…”
+  - *TaxSabi:* “Gross income: NGN 800,000. Reliefs applied: none — total relief
+    NGN 0. Chargeable income: NGN 800,000. Band breakdown: first NGN 800,000 at
+    0% = NGN 0. Total tax: NGN 0.”
+
+  **Prompt 2 (tp_002):** “How many tax bands apply to individuals in Nigeria in
+  2026, and what is each rate?”
+  - *Base Qwen3-1.7B:* fabricates a table starting “Up to N100,000 — 15%;
+    N100,001 to N200,000 — 20%; … N700,001 to N800,000 — 50%”, none of which
+    matches the Act.
+  - *TaxSabi:* “In 2026, individuals are taxed on their chargeable income using a
+    graduated band breakdown table. The first NGN 800,000 is taxed at 0%; the
+    next NGN 2,200,000 … at 15%; the next NGN 9,000,000 at 18%; the next
+    NGN 13,000,000 at 21%; the next NGN 25,000,000 at 23%; and amounts above
+    NGN 50,000,000 at 25%.”
 
 ## Constraints
 
-- Target hardware: 8 GB RAM laptop, integrated GPU only, Ubuntu 22.04, ~4 vCPUs.
-- Inference must be 100% offline: no network calls, no external services.
-- Runtime must be llama.cpp; the artifact is a single GGUF file.
-- Development machine (worst-case proxy): Intel Core i5-8250U locked at 1.6 GHz base clock, 4 threads, WSL2, 16 GB RAM — slower than the evaluation machine.
-- Data constraints: primary source is the Nigeria Tax Act 2025 (Fourth Schedule bands; section 30 deductions; section 32 evidence; NHF treatment via the NHF Act 1992 as amended by the BFA 2022). Facts are tracked in a source register (F-001…F-007) and only verified facts enter training.
+- Target hardware: 8 GB RAM, 4 vCPU (Intel i5 10th–12th gen), integrated GPU,
+  llama.cpp only, 100% offline during evaluation.
+- Development hardware is deliberately weaker than the evaluation profile: Intel
+  i5-8250U (4 threads, 1.6 GHz base), 5 GB RAM visible to WSL2.
+- Data constraint: the primary legal source is the Nigeria Tax Act 2025 plus the
+  Nigeria Tax Administration Act 2025 and PenCom guidelines; every fact is traced
+  in `sources/SOURCE_REGISTER.md` and every figure is computed by the Decimal
+  rules engine before entering training data.
 
 ## Benchmarks
 
-Measured locally with llama-bench (`-p 512 -n 128 -t 4 -ngl 0`, CPU-only, WSL2):
+Measured with the official ADTC profiler in participant mode (same `llama-bench
+-p 512 -n 128 -ngl 0` pipeline the audit uses), on the development laptop:
 
-| Metric | Value |
-|---|---|
-| Machine | Intel Core i5-8250U, 4 threads @ 1.6 GHz, WSL2 |
-| RAM at peak | 1.70 GB RSS (~1.62 GiB) |
-| Generation speed | 10.09 t/s (session-dependent range 7.8–13.7 t/s) |
-| Prompt processing | 25.62 t/s (session-dependent range 20–34 t/s) |
-| Thermal throttling | None observed (CPU locked at base clock) |
+| Metric | Q8_0 (shipped) | Q4_K_M (for comparison) |
+|---|---:|---:|
+| Generation speed | 3.3–4.7 t/s across two participant runs | 7.0 t/s |
+| First-token latency (512-token prompt) | 31–34 s | 26.2 s |
+| Peak RSS | ~1.94 GB | 1.88 GB |
+| Steady-state RSS | ~1.81–1.84 GB | 1.80 GB |
+| Sperf = min(TPS/15,1)×100 | 22–31 | 46.6 |
+| Seff = (7.0−peak_GB)/7.0×100 | ~73 | 73.7 |
+| Thermal throttling detected | No | No |
 
-Local numbers are a worst-case floor. A participant-mode measurement on audit-class hardware (4-vCPU AMD EPYC 7763) recorded 25.3 t/s generation — confirming the evaluation machine clears the profiler's 15 t/s throughput reference, with `Sperf` capped at 100.
+Reports are committed as `submission.json` (Q8_0); the Q4_K_M participant report
+is in `reports/benchmark_q4_participant.json`. Reproduce with:
+
+```bash
+adtc-profiler run --submission . --mode participant --output submission.json --skip-accuracy
+```
+
+Honest notes: the development laptop is slower than the Standard Laptop spec, so
+these numbers are a floor; the organizers' audit machine will measure its own
+values. In Gate 1, the audit environment measured ~40% below our local bench on
+similar hardware, which is expected environment variance. Q8_0 costs roughly
+30–45% throughput versus Q4_K_M; we accepted that to protect accuracy. Peak RSS
+is ~1.9 GB, far inside the 8 GB limit, with no OOM risk observed.
 
 ## Evaluation
 
-Measured on the shipped Q4_K_M GGUF through llama.cpp (`scripts/eval_gguf_llamacpp.py`):
+Scored with the team's held-out suites (all engine-scored for calculations):
 
-| Set | Total-tax exact | Total-tax within NGN 1 | Chargeable income |
-|---|---:|---:|---:|
-| Natural-phrasing English (8) | 7/8 | 7/8 | 8/8 |
-| Held-out clean English (12) | 2/12 | 3/12 | 9/12 |
-| Reviewed Pidgin holdout (3 calc + 3 behavior) | 3/3 | 3/3 | 2/3 |
+| Suite | Result |
+|---|---|
+| Dev probe (9 calculations) | 8/9 exact final tax |
+| Held-out probe (10 novel calculations) | 5/10 exact (7/10 chargeable income) |
+| Paraphrase suite (40 calculations) | 17/40 exact, 5/8 phrasing groups consistent |
 
-The natural-phrasing set overlaps training phrasings; the clean set uses new amounts and wording and is the honest generalization measure. For reference, the pre-quantization merged model scored slightly higher on the clean set (3/12 exact, 7/12 within NGN 1, 12/12 chargeable income), so Q4_K_M quantization costs some boundary precision. Known limitations, stated plainly: exact band totals occasionally drift by small rounding deltas (NGN 0.05–0.20) on novel amounts, and band-boundary segmentation above NGN 25M is the weakest area. Statutory facts, relief rules, citations, scope refusals, and chargeable income are reliable. The model is scoped to single-turn question-and-answer; multi-turn dialogue with facts accumulated across turns is not supported and can produce inconsistent follow-up answers.
+Behaviour: the rent-relief rule (20% of annual rent, capped at NGN 500,000) is
+applied correctly on most prompts; statutory answers carry traceable citations
+with zero out-of-register sections across 1,010 captured outputs; scope refusals
+(Ghana, corporate VAT) and clarification requests work.
 
-Two boundary failure modes are named and understood:
-
-- **Undershoot** — above NGN 50,000,000, the marginal amount over the threshold is occasionally taxed as part of a blended total instead of only the slice above the boundary (e.g., NGN 50,000,001).
-- **Overshoot** — when income exactly exhausts a band (e.g., NGN 3,000,000), an extra band slice is occasionally applied even though the income is fully allocated.
-
-A rejected v6d candidate (fully documented in git history) fixed the undershoot case but moved the overshoot mode onto a common natural-phrasing prompt (NGN 250,000 monthly) that v6c handles correctly, while improving the clean set from 2/12 to 3/12 exact. v6c was selected because its residual known failure — a one-naira-over-threshold high-income edge — is a lower-risk failure than getting an ordinary monthly-salary framing wrong, which judges are far likelier to probe.
+Known limitations, stated plainly:
+- Band-list answers are phrasing-sensitive: 2 of 6 tested phrasings fail even at
+  full precision (quantization preserves, not causes, this).
+- The clarify/no-clarify boundary is occasionally wrong on ambiguous Pidgin
+  amounts.
+- A few statutory nuances remain imperfect (student filing duty, the “CRA”
+  abbreviation, NIRS naming).
+- The model is scoped to single-turn question answering; long multi-turn
+  fact-accumulation is not a supported mode.
 
 ## Repository Layout
 
-- `src/rules_engine/` — deterministic Decimal tax engine, rules JSON, tests
-- `scripts/` — dataset generation, verification, deduplication, QLoRA fine-tuning and evaluation scripts
-- `data/` — dataset schema, scenario files, and the final training candidate
+- `src/rules_engine/` — deterministic Decimal tax engine + rules JSON + tests
+- `scripts/` — data generation, verification, training and evaluation scripts
+- `data/` — datasets (SFT v2, KTO v1, GRPO pools, eval suites)
 - `sources/SOURCE_REGISTER.md` — verified legal facts with citations
+- `provenance/` — adapter, training scripts/logs, dataset docs, checksums
+- `submission.json` — official participant-mode profiler report (Q8_0)
 - `model/` — downloaded by `download_model.sh` (not committed)
 
-These are self-reported development benchmarks. Official scores are measured by the ADTC profiler on the standard evaluation machine.
-
-A second participant-mode profiler run was performed on a 4-vCPU AMD EPYC 7763 cloud instance to approximate audit-class hardware: 25.3 t/s generation, 1,712 MB peak RSS, no throttling, identical accuracy (0.76). That report is included as `submission.json`; our own laptop's report (9.89 t/s) remains in git history for comparison, since development hardware is deliberately slower than the evaluation profile.
+*Note on the Git commit SHA:* the submission repository commit is captured
+automatically by the profiler in its `reproducibility` block. It is intentionally
+not added to `metadata.json`, because the template schema rejects an explicit
+`git_commit_sha` key and would abort the profiler run.

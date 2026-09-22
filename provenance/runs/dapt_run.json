@@ -1,0 +1,29 @@
+{
+  "model": "unsloth/Qwen3-1.7B",
+  "corpus": {
+    "ntaa_2025_clean.txt": 187277,
+    "pencom_vc_guidelines_2018_clean.txt": 28892,
+    "tax_act_2025_clean.txt": 428778,
+    "procedural/01_income_tax_basics_2026.md": 6918,
+    "procedural/02_reliefs_and_deductions_guide.md": 11244,
+    "procedural/03_tax_efficiency_planning.md": 8520,
+    "procedural/04_paye_payroll_and_compliance.md": 7674,
+    "procedural/05_pension_and_vpc_guide.md": 10261,
+    "procedural/06_scope_and_boundaries.md": 5773
+  },
+  "corpus_chars": 695337,
+  "replay_chars": 104679,
+  "replay_ratio": 0.15,
+  "train_blocks": 214,
+  "val_blocks": 5,
+  "block_size": 1024,
+  "epochs": 8,
+  "lr": 5e-05,
+  "training_loss": 1.344887618665342,
+  "minutes": 4.0,
+  "merged_saved": true,
+  "repeat_prose": 5,
+  "load_in_4bit": false,
+  "lora_r": 128,
+  "lora_alpha": 256
+}

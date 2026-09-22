@@ -1,0 +1,86 @@
+{
+  "schema_version": "1.3.0",
+  "profiler_version": "adtc-profiler 0.1.0",
+  "submission": {
+    "team_id": "taxsabi",
+    "domain": "corporate_enterprise",
+    "language_scope": [
+      "en",
+      "pcm"
+    ],
+    "african_alpha_claim": true,
+    "budget_laptop_claim": true,
+    "submitter": {
+      "name": "Chukwuemeka Aladimma",
+      "email": "emekaaladimma@gmail.com",
+      "github_handle": "Acel-01"
+    },
+    "cross_disciplinary_pairing": {
+      "discipline": "tax_law",
+      "load_bearing": true,
+      "description": "An offline assistant that answers Nigerian personal-income-tax questions — tax bands, reliefs, calculations, and what-if scenarios — in English and Nigerian Pidgin, with every trained answer verified by a deterministic tax rules engine."
+    },
+    "test_prompts": [
+      {
+        "prompt_id": "tp_001",
+        "prompt": "I earn NGN 800,000 a year and no deductions or reliefs. How much tax do I pay? Please show the calculation."
+      },
+      {
+        "prompt_id": "tp_002",
+        "prompt": "What are the individual income-tax bands in Nigeria for the 2026 year of assessment?"
+      }
+    ],
+    "model": {
+      "name": "TaxSabi-Qwen3-1.7B-Q4_K_M",
+      "runtime": "llama.cpp",
+      "quantization": "GGUF Q4_K_M",
+      "parameters_estimate": "1.7B",
+      "packaging": "binary_bundle"
+    },
+    "provenance": {
+      "base_model_source": "huggingface:unsloth/Qwen3-1.7B",
+      "base_model_commit_sha": "6262b50d6c1f8ee5e4ac750d710c33603bfc2a0c",
+      "fine_tuning_method": "qlora",
+      "training_datasets": [
+        "self-generated engine-verified tax Q&A (see REPORT.md)"
+      ]
+    }
+  },
+  "environment": {
+    "measured_on": "participant_laptop",
+    "cpu_model": "Intel(R) Core(TM) i5-8250U CPU @ 1.60GHz",
+    "ram_gb": 5.8,
+    "gpu": "none",
+    "os": "Ubuntu 20.04.6 LTS"
+  },
+  "throughput": {
+    "tokens_per_second_generation": 6.99,
+    "first_token_latency_ms": 26199.09,
+    "prompt_tokens": 512,
+    "generated_tokens": 128,
+    "threads_used": 4
+  },
+  "memory": {
+    "peak_rss_mb": 1883.34,
+    "steady_state_rss_mb": 1794.87,
+    "peak_vms_mb": 2387.73
+  },
+  "accuracy": [],
+  "cpu_thermal": {
+    "cpu_percent_p99": 79.5,
+    "core_temp_c_peak": null,
+    "throttled": false
+  },
+  "reproducibility": {
+    "git_commit_sha": "000000000000",
+    "docker_image_digest": "unknown",
+    "random_seed": 42
+  },
+  "model_info": {
+    "params_count": 1720574976,
+    "context_length": 40960,
+    "architecture": "qwen3",
+    "claimed_params_estimate": "1.7B",
+    "params_match": true
+  }
+}

@@ -1,0 +1,51 @@
+TaxSabi — training log summary
+Final model: TaxSabi-Qwen3-1.7B-Q8_0
+Pipeline: Qwen3-1.7B → DAPT v5 → SFT v2 → KTO v1 → GRPO v2
+Hardware: NVIDIA A100-SXM4-40GB (AGH / Shadeform), Unsloth QLoRA, bf16 LoRA.
+
+Stage 1 — DAPT v5 (scripts/dapt_pretrain.py; provenance/runs/dapt_run.json)
+  corpus: 695,337 chars (Nigeria Tax Act 2025 + NTAA 2025 cleaned text,
+          PenCom VPC Guidelines 2018, 6 original procedural documents)
+  replay: 104,679 chars mixed at 15% (wikitext streaming)
+  blocks: 214 train / 5 val at 1024 tokens; epochs 8; lr 5e-5; r=128 alpha=256; bf16
+  final loss 1.3449 (~4 min on A100)
+  note: per-step host logs are not retained; final metrics are in dapt_run.json and
+        probe results across DAPT runs are documented in DEVELOPMENT_PLAN.md.
+
+Stage 2 — SFT v2 (scripts/finetune_qlora.py; provenance/runs/sft_run.json)
+  data: data/sft_v2/{train,val}.jsonl — 1,833 train / 96 val examples
+  epochs 2; lr 1e-4; r=64 alpha=128; effective batch 8; assistant-only loss masking
+  final loss 0.2335
+  held-out probe (10 unseen calculations): 4/10 exact total tax, no regressions.
+
+Stage 3 — KTO v1 (scripts/kto_train.py; provenance/runs/kto_run.json)
+  data: data/kto/{train,val}.jsonl — 2,984 train / 160 val binary labels
+        (552 engine-verified gold desirable + 2,592 on-policy samples labelled by
+         the rules engine and citation checks)
+  epochs 1; lr 5e-6; beta 0.1; r=64 alpha=128
+  final loss 0.4091; zero out-of-register citations across 1,010 captured outputs
+  held-out probe: 5/10 exact (4/10 before); dev probe 6/9.
+
+Stage 4 — GRPO v2 (scripts/grpo_train.py; provenance/runs/grpo_run.json)
+  pool: data/grpo/train_pool.jsonl — 81 mid-tier prompts selected from 1,284
+        engine-grounded prompts (each with exact total tax + chargeable income)
+  epochs 3 (120 steps); lr 5e-6; beta 0.04; temperature 1.0;
+  16 generations per prompt; r=64 alpha=128
+  reward: final total exact = 1.0; chargeable income exact only = 0.25
+  final loss -0.0200
+  reward mean 0.5516 at step 5 → 0.8328 at step 120 (0.89–0.98 across epoch 3)
+  KL <= 0.02; completion length 143–194 tokens; no clipped completions
+  per-step metrics: provenance/grpo_v2_steps.csv
+  results: dev probe 6/9 → 8/9; paraphrase exact 17/40 with consistency 5/8;
+  held-out 5/10; behaviour fixes on director-equity and pension-vs-NHF answers.
+
+Rejected after GRPO v2 (documented in reports/ and DEVELOPMENT_PLAN.md):
+  GRPO v3 (enlarged pool, 1 epoch): no calculation gain and fact regressions
+  (claimed a 30% top rate, re-broke the VPC expansion, answered without income),
+  so grpo_v2 was frozen as the final checkpoint.
+
+Quantization fidelity study (scripts in provenance/scripts; details in
+provenance/merge_quantize.md): Q4_K_M and Q6_K corrupt the 2026 band table and Q4
+also flips arithmetic; Q5_K_M substitutes an older band table; Q8_0 reproduces the
+full-precision model on the held-out probe (5/10), dev probe (8/9) and band
+phrasing comparison (4/6, identical pattern to full precision), so Q8_0 ships.

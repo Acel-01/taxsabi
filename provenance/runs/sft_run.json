@@ -1,0 +1,9 @@
+{
+  "model": "/home/shadeform/models/dapt_v5_merged",
+  "train": "data/sft_v2/train.jsonl",
+  "records": 1833,
+  "epochs": 2,
+  "lr": 0.0001,
+  "lora_r": 64,
+  "training_loss": 0.2335247790449051
+}
